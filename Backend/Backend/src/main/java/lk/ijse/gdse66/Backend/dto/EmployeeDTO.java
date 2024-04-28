@@ -2,9 +2,17 @@ package lk.ijse.gdse66.Backend.dto;
 
 import lk.ijse.gdse66.Backend.enums.AccessRole;
 import lk.ijse.gdse66.Backend.enums.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class EmployeeDTO {
     private String employeeCode;
     private String employeeName;
