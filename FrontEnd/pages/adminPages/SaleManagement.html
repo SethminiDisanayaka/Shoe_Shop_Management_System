@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sale Management Form</title>
+  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
+
+  <meta content="Shoe Shop Management System" name="keywords">
+  <meta content="This is shoe management project" name="description">
+  <meta content="Sethmini Dissanayake" name="author">
+  <meta content="Sethmini Dissanayake" name="owner">
+  <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
+  <meta content="green" name="theme-color">
+
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+
+  <style>
+    .sidebar-nav .nav-link {
+      font-size: 22px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="../../assets/css/Dashboard.css">
+</head>
+<body style=" background-color: #f8f9fa">
+
+<nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand" href="#">Hello Shoe</a>
+    <div class="navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+
+        <!-- Profile Picture with Admin Name -->
+        <li class="nav-item">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="../../assets/img/admin1.jpg" alt="Profile" class="rounded-circle profile-picture">
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="margin-left: 10px">David Wilson</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>David Wilson</h6>
+              <span>Manager</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="AdminLogin.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<aside id="sidebar" class="sidebar " style="background-color: lightblue; font-family: 'Arial Black'; color: black; " >
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="CustomerManagement.html" style="color: black">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Customer Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Inventory Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Sales Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Employee Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Supplier Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="" id="incomeDetails" style="color: black">
+        <i class="bi bi-kanban"></i>
+        <span>Income Details</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="" style="color: black">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>LogOut</span>
+      </a>
+    </li>
+
+  </ul>
+
+</aside>
+
+
+<main id="main" class="main">
+  <div class="container mt-5">
+    <h2>Sale Service</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="itemCode">Item Code</label>
+          <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="orderNo">Order No</label>
+          <input type="text" class="form-control" id="orderNo" placeholder="Order No.">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="customerName">Customer Name</label>
+          <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="itemDesc">Item desc</label>
+          <input type="text" class="form-control" id="itemDesc" placeholder="Item Description">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="size">Size</label>
+          <input type="text" class="form-control" id="size" placeholder="Size of a shoe">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="unitPrice">Unit Price</label>
+          <input type="text" class="form-control" id="unitPrice" placeholder="Unit Price">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="qty">Item Quantity</label>
+          <input type="text" class="form-control" id="qty" placeholder="Quantity">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="totalPrice">Total Price</label>
+          <input type="text" class="form-control" id="totalPrice" placeholder="Total Price">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="purchaseDate">Purchase Date</label>
+          <input type="date" class="form-control" id="purchaseDate">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" class="form-control">
+            <option selected>Choose...</option>
+            <option>Cash</option>
+            <option>Card</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="point">Added Point</label>
+          <input type="text" class="form-control" id="point" placeholder="Added Point">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cashierName">Cashier Name</label>
+          <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
+        </div>
+      </div>
+
+      <button type="save" class="btn btn-primary">Save</button>
+      <button type="Update" class="btn btn-primary">Update</button>
+      <button type="Delete" class="btn btn-primary">Delete</button>
+    </form>
+  </div>
+
+  <div class="card info-card" style="margin-top: 10px; margin-right: 12px">
+    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+      <div class="col-11 justify-content-around sectionBorder"
+           style="height: 290px; background: white">
+        <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+          <table class="table table-light table-striped table-bordered table-hover" >
+            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+            <tr>
+              <th scope="col">Item Code</th>
+              <th scope="col">Order No.</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Item Desc</th>
+              <th scope="col">Size </th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Item Quantity</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Purchase Date</th>
+              <th scope="col">Payment Method</th>
+              <th scope="col">Added Point</th>
+              <th scope="col">Cashier Name</th>
+
+            </tr>
+            </thead>
+            <tbody id="saleServiceTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="">Sethmini Dissanayake</a>
+  </div>
+</footer>
+</body>
+</html>
