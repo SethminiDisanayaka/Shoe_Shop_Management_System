@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.dto;
 
+import lk.ijse.gdse66.Backend.enums.AccessRole;
 import lk.ijse.gdse66.Backend.enums.Gender;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ public class EmployeeDTO {
     private Gender gender;
     private String status;
     private String designation;
-    private String accessRole;
+    private AccessRole accessRole;
     private Date DOB;
     private Date joinDate;
     private String attachedBranch;
