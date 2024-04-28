@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Supplier Management Form</title>
+  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
+
+  <meta content="Shoe Shop Management System" name="keywords">
+  <meta content="This is shoe management project" name="description">
+  <meta content="Sethmini Dissanayake" name="author">
+  <meta content="Sethmini Dissanayake" name="owner">
+  <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
+  <meta content="green" name="theme-color">
+
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+
+  <style>
+    .sidebar-nav .nav-link {
+      font-size: 22px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="../../assets/css/Dashboard.css">
+</head>
+<body style=" background-color: #f8f9fa">
+<!--<header>
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="adminDashboard.html" class="logo d-flex align-items-center">
+            <span class="d-none d-lg-block">Easy <span>Rent.</span></span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>-->
+
+<nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand" href="#">Hello Shoe</a>
+    <div class="navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+
+        <!-- Profile Picture with Admin Name -->
+        <li class="nav-item">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="../../assets/img/admin1.jpg" alt="Profile" class="rounded-circle profile-picture">
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="margin-left: 10px">David Wilson</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>David Wilson</h6>
+              <span>Manager</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="AdminLogin.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<aside id="sidebar" class="sidebar " style="background-color: lightblue; font-family: 'Arial Black'; color: black; " >
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="CustomerManagement.html" style="color: black">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Customer Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Inventory Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Sales Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Employee Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" href="#" style="color: black">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Supplier Manage</span><i
+              class="bi bi-chevron-down ms-auto"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="" id="incomeDetails" style="color: black">
+        <i class="bi bi-kanban"></i>
+        <span>Income Details</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="" style="color: black">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>LogOut</span>
+      </a>
+    </li>
+
+  </ul>
+
+</aside>
+<main id="main" class="main">
+  <div class="container mt-5">
+    <h2>Supplier Form</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="supplierCode">Supplier Code</label>
+          <input type="text" class="form-control" id="supplierCode" placeholder="Supplier Code">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="supplierName">Supplier Name</label>
+          <input type="text" class="form-control" id="supplierName" placeholder="Supplier Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="category">Category</label>
+          <select id="category" class="form-control">
+            <option selected>Choose...</option>
+            <option>International</option>
+            <option>Local</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputCity" placeholder="city">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" id="inputCountry" placeholder="Country">
+        </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <input type="text" class="form-control" id="inputState"placeholder="status">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contactNumber1">Contact</label>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="contactNumber1" placeholder="Contact Number">
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="contactNumber2" placeholder="Another Contact Number">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">E-mail</label>
+        <input type="text" class="form-control" id="inputEmail" placeholder="abcd12#gmail.com">
+      </div>
+      <button type="save" class="btn btn-primary">Save</button>
+      <button type="Update" class="btn btn-primary">Update</button>
+      <button type="Delete" class="btn btn-primary">Delete</button>
+    </form>
+  </div>
+
+  <div class="card info-card" style="margin-top: 10px; margin-right: 12px">
+    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+      <div class="col-11 justify-content-around sectionBorder"
+           style="height: 290px; background: white">
+        <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+          <table class="table table-light table-striped table-bordered table-hover" >
+            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+            <tr>
+              <th scope="col">Supplier Code</th>
+              <th scope="col">Supplier Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Address</th>
+              <th scope="col">Contact No.1</th>
+              <th scope="col">Contact No.1 </th>
+              <th scope="col">E-mail</th>
+
+
+            </tr>
+            </thead>
+            <tbody id="supplierTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- View Customer Details Table End -->
+  </div>
+</main>
+
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="">Sethmini Dissanayake</a>
+  </div>
+</footer>
+</body>
+</html>
