@@ -31,25 +31,6 @@
     <script src="../../assets/js/jquery-3.7.1.min.js"></script>
 </head>
 <body style=" background-color: #f8f9fa">
-<!--<header>
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="adminDashboard.html" class="logo d-flex align-items-center">
-            <span class="d-none d-lg-block">Easy <span>Rent.</span></span>
-        </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div>
-
-    <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
@@ -83,14 +64,15 @@
 </nav>
 
 <div class="sidebar">
-    <a href="#">Dashboard</a>
-    <a href="#">Sales</a>
-    <a href="#">Suppliers</a>
-    <a href="#">Customers</a>
-    <a href="#">Employees</a>
-    <a href="#">Inventory</a>
+    <a href="../../pages/adminDashboard.html">Dashboard</a>
+    <a href="../adminPages/SaleManagement.html">Sales</a>
+    <a href="../adminPages/SupplierManagement.html">Suppliers</a>
+    <a href="../adminPages/CustomerManagement.html">Customers</a>
+    <a href="../adminPages/EmployeeManagement.html">Employees</a>
+    <a href="../adminPages/InventoryManagement.html">Inventory</a>
     <a href="#">Users</a>
     <a href="#">Log Out</a>
+
 </div>
 
 <main id="main" class="main" style="padding-left: 100px">
@@ -107,21 +89,7 @@
                     <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
                 </div>
             </div>
-           <!-- <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="category">Category</label>
-                    <select id="category" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>International</option>
-                        <option>Local</option>
-                    </select>
-                </div>
-            </div>-->
-            <!--<div class="mb-sm-0 mt-3 col-md-11">
-                <label class="form-label" for="employee_Img">Employee image</label>
-                <input class="form-control" id="employee_Img" type="file" name="employee_Img">
-                <span class="control-error"></span>
-            </div>-->
+
             <div class="form-group col-md-6">
                 <label for="employeeImage">Employee Image</label>
                 <input type="file" class="form-control" id="employeeImage">
