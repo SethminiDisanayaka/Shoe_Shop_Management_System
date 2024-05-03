@@ -2,11 +2,11 @@ package lk.ijse.gdse66.Backend.service;
 
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CustomerService {
-    void saveCustomer(CustomerDTO dto);
-    void updateCustomer(CustomerDTO dto);
+    CustomerDTO saveCustomer(CustomerDTO dto);
+    CustomerDTO updateCustomer(CustomerDTO dto);
     void deleteCustomer(String customerCode);
-    ArrayList<CustomerDTO> getAllCustomer();
+    List<CustomerDTO> getAllCustomers();
 }
