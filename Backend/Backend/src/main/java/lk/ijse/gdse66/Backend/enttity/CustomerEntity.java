@@ -22,7 +22,7 @@ public class CustomerEntity {
     private String customerName;
     private Gender gender;
     private Date joinDate;
-    private lk.ijse.gdse66.Backend.enums.Level Level;
+    private Level Level;
     private double totalPoints;
     private Date DOB;
     private String address;
