@@ -1,8 +1,6 @@
 package lk.ijse.gdse66.Backend.enttity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.gdse66.Backend.enums.Gender;
 import lk.ijse.gdse66.Backend.enums.Level;
 import lombok.AllArgsConstructor;
@@ -20,9 +18,11 @@ public class CustomerEntity {
     @Id
     private String customerCode;
     private String customerName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private Date joinDate;
-    private Level Level;
+    @Enumerated(EnumType.STRING)
+    private Level level;
     private double totalPoints;
     private Date DOB;
     private String address;

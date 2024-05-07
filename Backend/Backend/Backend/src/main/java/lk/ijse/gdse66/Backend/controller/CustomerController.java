@@ -3,6 +3,7 @@ package lk.ijse.gdse66.Backend.controller;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +38,10 @@ public class CustomerController {
         return customerService.updateCustomer(customerDTO);
     }
 
+    @DeleteMapping("/delete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCustomer(@PathVariable("customerCode")String customerCode){
+        customerService.deleteCustomer(customerCode);
+    }
     
 }
