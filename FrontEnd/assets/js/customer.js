@@ -1,8 +1,10 @@
 getAllCustomers();
+/*loadNextCustomerId();*/
 
-function getAllCustomers(){
+/*get all*/
+function getAllCustomers() {
     $.ajax({
-        url: "http://localhost:8080/api/v1/customer/getAllCustomers",
+        url: "http://localhost:8080/app/api/v1/customers/getAllCustomers",
         method: "GET",
         dataType: "json",
         success: function (response) {
@@ -16,70 +18,203 @@ function getAllCustomers(){
     })
 }
 
+function loadCustomerDataInTable(customers) {
+    var tableBody = document.getElementById("customerTable");
+    tableBody.innerHTML = "";
+
+    customers.forEach(function(customer) {
+        var row = document.createElement("tr");
+
+        ["customerCode", "customerName", "gender", "joinDate", "level", "totalPoints", "dob", "address"].forEach(function(property) {
+            var cell = document.createElement("td");
+            cell.textContent = customer[property];
+            row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
+    });
+}
+
+
+var customers = [
+    {
+        customerCode: "C001",
+        customerName: "John Doe",
+        gender: "Male",
+        joinDate: "2024-05-08",
+        level: "Gold",
+        totalPoints: 500,
+        dob: "1990-01-01",
+        address: "1234 Main St, City"
+    },
+    {
+        customerCode: "C002",
+        customerName: "Jane Smith",
+        gender: "Female",
+        joinDate: "2024-05-09",
+        level: "Silver",
+        totalPoints: 300,
+        dob: "1985-05-15",
+        address: "5678 Elm St, Town"
+    }
+];
+
+function loadCustomerData() {
+    var tableBody = document.getElementById("customerTable");
+    tableBody.innerHTML = "";
+
+    customers.forEach(function(customer) {
+        var row = document.createElement("tr");
+
+        ["customerCode", "customerName", "gender", "joinDate", "level", "totalPoints", "dob", "address"].forEach(function(property) {
+            var cell = document.createElement("td");
+            cell.textContent = customer[property];
+            row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
+    });
+}
+window.onload = function() {
+    loadCustomerData();
+};
+
+/*/!*next id*!/
+function loadNextCustomerId(){
+    $.ajax({
+        url:"http://localhost:8080/api/v1/customers/nextId",
+        method:"GET",
+        success:function (response) {
+            console.log(response)
+            $("#cId").val(response);
+        },
+        error:function (xhr, status, error) {
+            console.log(error)
+        }
+    })
+}*/
+
 $("#btnCustomerSave").click(function (){
     saveCustomer();
 })
+
+/*save*/
 function saveCustomer(){
-    let id=$("#customerCode").val();
-    let name=$("#customerName").val();
-    let gender=$("#gender").val();
-    let joinDate=$("#joinDate").val();
-    let level=$("#level").val();
-    let totalPoints=$("#totalPoints").val();
-    let dob=$("#dob").val();
-    let address=$("#inputAddress").val();
-    let city=$("#inputCity").val();
-    let country=$("#inputCountry").val();
-    let state=$("#inputState").val();
-    let zip=$("#inputZip").val();
+    const customerCode = document.getElementById('customerCode').value;
+    const customerName = document.getElementById('customerName').value;
+    const gender = document.getElementById('gender').value;
+    const joinDate = document.getElementById('joinDate').value;
+    const level= document.getElementById('level').value;
+    const totalPoints = document.getElementById('totalPoints').value;
+    const dob = document.getElementById('dob').value;
+    const address1 = document.getElementById('inputAddress').value;
+    const address2 = document.getElementById('inputCity').value;
 
-    console.log(name)
-    console.log(gender)
-    console.log(joinDate)
-    console.log(level)
-    console.log(totalPoints)
-    console.log(dob)
-    console.log(address)
-    console.log(city)
-    console.log(country)
-    console.log(state)
-    console.log(zip)
-
-    if(name==="" || gender==="" || joinDate==="" || level==="" || totalPoints==="" || dob==="" ||address==="" || city==="" ||  country==="" || state==="" || zip===""){
-        alert("fill all empty fields !!")
-        return;
+    const customer = {
+        customerCode:customerCode,
+        customerName:customerName,
+        gender:gender,
+        joinDate:joinDate,
+        level:level,
+        totalPoints:totalPoints,
+        dob:dob,
+        address:`${address1},${address2}`
     }
 
     $.ajax({
-        url: 'http://localhost:8080/api/v1/customer/save',
-        method:"Post",
-        dataType: "json",
-        contentType:"application/json",
-        data:JSON.stringify({
-            "code":id,
-            "name":name,
-            "gender":gender,
-            "joinDate":joinDate,
-            "level":level,
-            "totalPoints":totalPoints,
-            "dob":dob,
-            "address":address,
-            "city":city,
-            "country":country,
-            "state":state,
-            "zip":zip
-        }),
+        url: 'http://localhost:8080/app/api/v1/customers/save',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(customer),
+        success: function (response) {
+            console.log(response);
+            /*document.getElementById('customerForm').reset();*/
+            alert('Customer information saved successfully!');
 
-        success:function (response) {
-            console.log(response)
         },
-        error:function (xhr,status,err) {
-            console.log(err)
-            console.log(xhr.status)
-            if(xhr.status===409){
-                alert("This customer is already in the system !!")
-            }
+        error: function (xhr, status, error) {
+            console.error(error);
+            alert('Failed to save customer information. Please try again.');
         }
+    });
+}
 
-    })
+
+/*update customer*/
+$("#btnCustomerUpdate").click(function (){
+    updateCustomer()
+})
+function updateCustomer() {
+    const customerCode = document.getElementById('customerCode').value;
+    const customerName = document.getElementById('customerName').value;
+    const gender = document.getElementById('gender').value;
+    const joinDate = document.getElementById('joinDate').value;
+    const level= document.getElementById('level').value;
+    const totalPoints = document.getElementById('totalPoints').value;
+    const dob = document.getElementById('dob').value;
+    const address1 = document.getElementById('inputAddress').value;
+    const address2 = document.getElementById('inputCity').value;
+
+    const customer = {
+        customerCode:customerCode,
+        customerName:customerName,
+        gender:gender,
+        joinDate:joinDate,
+        level:level,
+        totalPoints:totalPoints,
+        dob:dob,
+        address:`${address1},${address2}`
+    }
+
+
+
+    $.ajax({
+        url: 'http://localhost:8080/app/api/v1/customers/update',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(customer),
+        success: function (response) {
+            console.log(response);
+            /*document.getElementById('customerForm').reset();*/
+            alert('Customer information update successfully!');
+
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+            alert('Failed to update customer information. Please try again.');
+        }
+    });
+}
+
+/*table click*/
+$('#customerTable').on('click', 'tr', function (){
+    var code = $(this).find('td:eq(0)').text();
+    var name = $(this).find('td:eq(1)').text();
+    var gender = $(this).find('td:eq(2)').text();
+    var joinDate = $(this).find('td:eq(3)').text();
+    var level = $(this).find('td:eq(4)').text();
+    var totalPoints = $(this).find('td:eq(5)').text();
+    var dob = $(this).find('td:eq(6)').text();
+    var address = $(this).find('td:eq(7)').text();
+
+    $("#customerCode").val(code);
+    $("#customerName").val(name);
+    $("#gender").val(gender);
+    $("#joinDate").val(joinDate);
+    $("#level").val(level);
+    $("#totalPoints").val(totalPoints);
+    $("#dob").val(dob);
+    $("#inputAddress").val(address);
+})
+
+/*$("#cClearBtn").click(function (){
+    clearCustomerInputFields();
+})*/
+
+$(document).ready(function () {
+    getAllCustomers();
+});
+
+function customerCapitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
