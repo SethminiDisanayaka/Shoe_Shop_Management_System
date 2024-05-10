@@ -29,9 +29,6 @@ public class SalesEntity {
     private Integer totalPoints;
     private String cashier;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_name", nullable = false)
-    private CustomerEntity customerName;
 
 
 
