@@ -2,6 +2,7 @@ package lk.ijse.gdse66.Backend.enttity;
 
 import jakarta.persistence.*;
 import lk.ijse.gdse66.Backend.enums.AccessRole;
+import lk.ijse.gdse66.Backend.enums.Designation;
 import lk.ijse.gdse66.Backend.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,8 @@ public class EmployeeEntity {
     private Gender gender;
     private String status;
     private String branch;
-    private String designation;
+    @Enumerated(EnumType.STRING)
+    private Designation designation;
     @Enumerated(EnumType.STRING)
     private AccessRole accessRole;
     @Temporal(TemporalType.DATE)
