@@ -23,7 +23,7 @@ public class EmployeeDTO {
     private AccessRole accessRole;
     private Date DOB;
     private Date joinDate;
-    private String attachedBranch;
+    private String branch;
     private String address;
     private String contactNo;
     private String Email;

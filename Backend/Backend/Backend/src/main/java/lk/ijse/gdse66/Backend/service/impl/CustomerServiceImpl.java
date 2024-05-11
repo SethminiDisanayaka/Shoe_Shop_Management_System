@@ -37,10 +37,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(String customerCode) {
+    public boolean deleteCustomer(String customerCode) {
         if (!customerRepo.existsById(customerCode)){
             throw new NotFoundException("Can't find customer id!!!");
         }
+        customerRepo.existsById(customerCode);
+        return false;
     }
 
     @Override

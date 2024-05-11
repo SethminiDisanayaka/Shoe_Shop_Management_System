@@ -2,8 +2,6 @@ package lk.ijse.gdse66.Backend.controller;
 
 
 import lk.ijse.gdse66.Backend.dto.EmployeeDTO;
-import lk.ijse.gdse66.Backend.repository.EmployeeRepo;
-import lk.ijse.gdse66.Backend.service.CustomerService;
 import lk.ijse.gdse66.Backend.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,7 @@ public class EmployeeController {
         System.out.println("Employee is working");
     }
 
-    @GetMapping("/getAllCustomers")
+    @GetMapping("/getAllEmployees")
     public List<EmployeeDTO> getAllCustomers() {
         return employeeService.getAllEmployee();
     }
@@ -40,7 +38,7 @@ public class EmployeeController {
         return employeeService.updateEmployee(employeeDTO);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{employeeCode}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEmployee(@PathVariable("employeeCode") String employeeCode) {
 
