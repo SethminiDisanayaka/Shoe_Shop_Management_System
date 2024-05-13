@@ -38,9 +38,9 @@ public class CustomerController {
         return customerService.updateCustomer(customerDTO);
     }
 
-    @DeleteMapping("/delete/{customerCode}")
-    public void delete(@PathVariable("customerCode")String customerCode){
-        customerService.deleteCustomer(customerCode);
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id")String id){
+        customerService.deleteCustomer(id);
     }
     
 }
