@@ -8,6 +8,6 @@ import java.util.List;
 public interface SupplierService {
     SupplierDTO saveSupplier(SupplierDTO dto);
     SupplierDTO updateSupplier(SupplierDTO dto);
-    void deleteSupplier(String supplierCode);
+    boolean deleteSupplier(String id);
     List<SupplierDTO> getAllSuppliers();
 }
