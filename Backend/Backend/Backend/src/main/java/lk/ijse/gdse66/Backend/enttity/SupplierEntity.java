@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "supplier")
 public class SupplierEntity {
     @Id
+    /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private String supplierCode;
     private String supplierName;
     @Enumerated(EnumType.STRING)

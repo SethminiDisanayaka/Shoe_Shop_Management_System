@@ -1,6 +1,8 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
+import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.dto.SupplierDTO;
+import lk.ijse.gdse66.Backend.enttity.CustomerEntity;
 import lk.ijse.gdse66.Backend.enttity.SupplierEntity;
 import lk.ijse.gdse66.Backend.repository.SupplierRepo;
 import lk.ijse.gdse66.Backend.service.SupplierService;
@@ -23,10 +25,12 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public SupplierDTO saveSupplier(SupplierDTO supplierDTO) {
-        if (!supplierRepo.existsById(supplierDTO.getSupplierCode()))
-            return mapper.map(supplierRepo.save(mapper.map(supplierRepo, SupplierEntity.class)), SupplierDTO.class);
-        throw new DuplicateRecordException("Supplier ID is Already Exist");
-    }
+            if (supplierRepo.existsById(supplierDTO.getSupplierCode())){
+                throw new DuplicateRecordException("Supplier ID is Already Exist");
+            }
+            return mapper.map(supplierRepo.save(mapper.map(supplierDTO, SupplierEntity.class)),SupplierDTO.class);
+        }
+
 
     @Override
     public SupplierDTO updateSupplier(SupplierDTO supplierDTO) {
