@@ -18,6 +18,7 @@ function getAllCustomers() {
     })
 }
 
+/*load customer into table*/
 function loadCustomerDataInTable(customers) {
     var tableBody = document.getElementById("customerTable");
     tableBody.innerHTML = "";
@@ -36,7 +37,7 @@ function loadCustomerDataInTable(customers) {
 }
 
 
-var customers = [
+/*var customers = [
     {
         customerCode: "C001",
         customerName: "John Doe",
@@ -57,8 +58,9 @@ var customers = [
         dob: "1985-05-15",
         address: "5678 Elm St, Town"
     }
-];
+];*/
 
+/*/!*load customer data*!/
 function loadCustomerData() {
     var tableBody = document.getElementById("customerTable");
     tableBody.innerHTML = "";
@@ -77,7 +79,7 @@ function loadCustomerData() {
 }
 window.onload = function() {
     loadCustomerData();
-};
+};*/
 
 /*/!*next id*!/
 function loadNextCustomerId(){
@@ -210,6 +212,39 @@ $('#customerTable').on('click', 'tr', function (){
 /*$("#cClearBtn").click(function (){
     clearCustomerInputFields();
 })*/
+
+$(document).ready(function () {
+    getAllCustomers();
+
+    $('#btnCustomerDelete').on('click', function() {
+        var customerCode = $('#customerCode').val();
+        if (customerCode !== "") {
+            deleteCustomer(customerCode);
+        } else {
+            alert("Please select a customer to delete.");
+        }
+    });
+});
+
+/*delete customer*/
+function deleteCustomer(customerCode) {
+    $.ajax({
+        url: 'http://localhost:8080/app/api/v1/customers/delete/' + customerCode,
+        type: 'DELETE',
+        success: function (response) {
+            console.log(response);
+            alert('Customer deleted successfully!');
+            getAllCustomers();
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+            alert('Failed to delete customer. Please try again.');
+        }
+    });
+}
+
+
+
 
 $(document).ready(function () {
     getAllCustomers();
