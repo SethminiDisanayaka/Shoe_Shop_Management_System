@@ -41,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (!customerRepo.existsById(id)){
             throw new NotFoundException("Can't find customer id!!!");
         }
-       /* customerRepo.existsById(customerCode);*/
+        customerRepo.deleteById(id);
         return false;
     }
 

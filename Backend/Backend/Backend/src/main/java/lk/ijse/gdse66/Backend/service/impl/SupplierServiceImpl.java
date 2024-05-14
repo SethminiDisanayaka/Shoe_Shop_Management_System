@@ -46,6 +46,7 @@ public class SupplierServiceImpl implements SupplierService {
         if (!supplierRepo.existsById(id)){
             throw new NotFoundException("Can't find supplier id!!!");
         }
+        supplierRepo.deleteById(id);
         return false;
     }
 

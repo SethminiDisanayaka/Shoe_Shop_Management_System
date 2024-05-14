@@ -39,11 +39,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(String employeeCode) {
-        if (!employeeRepo.existsById(employeeCode)){
+    public boolean deleteEmployee(String id) {
+        if (!employeeRepo.existsById(id)){
             throw new NotFoundException("Can't find customer id!!!");
         }
-
+        employeeRepo.deleteById(id);
+        return false;
     }
 
     @Override

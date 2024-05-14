@@ -1,15 +1,21 @@
-package lk.ijse.gdse66.Backend.dto;
+package lk.ijse.gdse66.Backend.enttity;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lk.ijse.gdse66.Backend.dto.InventoryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class InventoryDTO {
+@Entity
+@Table(name = "inventory")
+public class InventoryEntity {
+    @Id
     private String itemCode;
     private String itemDesc;
     private String itemPicture;

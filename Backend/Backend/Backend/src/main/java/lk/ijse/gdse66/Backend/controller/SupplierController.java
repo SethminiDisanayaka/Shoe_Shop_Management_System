@@ -40,7 +40,7 @@ public class SupplierController {
         return supplierService.updateSupplier(supplierDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id")String id){
         supplierService.deleteSupplier(id);
     }
