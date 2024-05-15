@@ -42,4 +42,9 @@ public class InventoryController {
     public void delete(@PathVariable(value = "id") String id){
         inventoryService.deleteItem(id);
     }
+
+    @GetMapping("/search")
+    public List<InventoryDTO> search(@RequestParam("id") String id){
+        return inventoryService.searchItem(id);
+    }
 }

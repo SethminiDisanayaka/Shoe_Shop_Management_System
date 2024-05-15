@@ -39,9 +39,8 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEmployee(@PathVariable("id") String employeeCode) {
-
+    public void delete(@PathVariable(value = "id") String id){
+        employeeService.deleteEmployee(id);
     }
 
 }

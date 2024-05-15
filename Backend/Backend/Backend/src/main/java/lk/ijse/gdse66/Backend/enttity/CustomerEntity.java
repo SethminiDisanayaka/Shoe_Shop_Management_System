@@ -26,4 +26,5 @@ public class CustomerEntity {
     private double totalPoints;
     private Date DOB;
     private String address;
+    private String purchaseDate;
 }

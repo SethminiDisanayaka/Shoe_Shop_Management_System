@@ -21,4 +21,5 @@ public class CustomerDTO {
     private double totalPoints;
     private Date DOB;
     private String address;
+    private String purchaseDate;
 }

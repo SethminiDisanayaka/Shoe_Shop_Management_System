@@ -19,6 +19,12 @@ import java.util.List;
 public class SalesEntity {
 
     @Id
+    private String itemCode;
+    private String itemName;
+    private String price;
+    private int orderQty;
+    private double total;
+   /* @Id
     private String orderNo;
 
     @CreationTimestamp
@@ -27,9 +33,6 @@ public class SalesEntity {
     private Double total;
     private String paymentMethod;
     private Integer totalPoints;
-    private String cashier;
-
-
-
+    private String cashier;*/
 
 }

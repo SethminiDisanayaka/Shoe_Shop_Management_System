@@ -12,16 +12,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @ToString
 public class SaleDTO {
-    private String itemCode;
-    private String orderNo;
-    private String customerName;
-    private String itemDesc;
-    private int size;
-    private double unitPrice;
-    private int quantity;
-    private double totalPrice;
-    private Timestamp purchaseDate;
-    private String paymentMethod;
-    private double addedPoint;
-    private String cashierName;
+   private String itemCode;
+   private String itemName;
+   private String price;
+   private int orderQty;
+   private double total;
 }

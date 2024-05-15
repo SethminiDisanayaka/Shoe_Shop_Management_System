@@ -8,6 +8,6 @@ import java.util.List;
 public interface EmployeeService {
     EmployeeDTO saveEmployee(EmployeeDTO dto);
     EmployeeDTO updateEmployee(EmployeeDTO dto);
-    boolean deleteEmployee(String employeeCode);
+    boolean deleteEmployee(String id);
     List<EmployeeDTO> getAllEmployee();
 }
