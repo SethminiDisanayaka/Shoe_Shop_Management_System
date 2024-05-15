@@ -26,7 +26,7 @@ function loadCustomerDataInTable(customers) {
     customers.forEach(function(customer) {
         var row = document.createElement("tr");
 
-        ["customerCode", "customerName", "gender", "joinDate", "level", "totalPoints", "dob", "address"].forEach(function(property) {
+        ["customerCode", "customerName", "gender", "joinDate", "level", "totalPoints", "dob", "address","purchaseDate"].forEach(function(property) {
             var cell = document.createElement("td");
             cell.textContent = customer[property];
             row.appendChild(cell);
@@ -111,6 +111,7 @@ function saveCustomer(){
     const dob = document.getElementById('dob').value;
     const address1 = document.getElementById('inputAddress').value;
     const address2 = document.getElementById('inputCity').value;
+    const purchaseDate = document.getElementById('purchaseDate').value;
 
     const customer = {
         customerCode:customerCode,
@@ -120,7 +121,8 @@ function saveCustomer(){
         level:level,
         totalPoints:totalPoints,
         dob:dob,
-        address:`${address1},${address2}`
+        address:`${address1},${address2}`,
+        purchaseDate:purchaseDate
     }
 
     $.ajax({
@@ -132,7 +134,7 @@ function saveCustomer(){
             console.log(response);
             /*document.getElementById('customerForm').reset();*/
             alert('Customer information saved successfully!');
-
+            getAllCustomers();
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -156,6 +158,7 @@ function updateCustomer() {
     const dob = document.getElementById('dob').value;
     const address1 = document.getElementById('inputAddress').value;
     const address2 = document.getElementById('inputCity').value;
+    const purchaseDate = document.getElementById('purchaseDate').value;
 
     const customer = {
         customerCode:customerCode,
@@ -165,7 +168,8 @@ function updateCustomer() {
         level:level,
         totalPoints:totalPoints,
         dob:dob,
-        address:`${address1},${address2}`
+        address:`${address1},${address2}`,
+        purchaseDate:purchaseDate
     }
 
 
@@ -179,7 +183,7 @@ function updateCustomer() {
             console.log(response);
             /*document.getElementById('customerForm').reset();*/
             alert('Customer information update successfully!');
-
+            getAllCustomers();
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -198,6 +202,7 @@ $('#customerTable').on('click', 'tr', function (){
     var totalPoints = $(this).find('td:eq(5)').text();
     var dob = $(this).find('td:eq(6)').text();
     var address = $(this).find('td:eq(7)').text();
+    var purchaseDate = $(this).find('td:eq(8)').text();
 
     $("#customerCode").val(code);
     $("#customerName").val(name);
@@ -207,6 +212,7 @@ $('#customerTable').on('click', 'tr', function (){
     $("#totalPoints").val(totalPoints);
     $("#dob").val(dob);
     $("#inputAddress").val(address);
+    $("#purchaseDate").val(purchaseDate);
 })
 
 /*$("#cClearBtn").click(function (){
@@ -229,7 +235,7 @@ $(document).ready(function () {
 /*delete customer*/
 function deleteCustomer(customerCode) {
     $.ajax({
-        url: 'http://localhost:8080/app/api/v1/customers/delete/' + customerCode,
+        url: 'http://localhost:8080/app/api/v1/customers/' + customerCode,
         type: 'DELETE',
         success: function (response) {
             console.log(response);

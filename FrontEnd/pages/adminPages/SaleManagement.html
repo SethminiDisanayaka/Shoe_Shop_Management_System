@@ -82,75 +82,119 @@
   <div class="container mt-5">
     <h2>Sale Service</h2>
     <form>
-      <div class="form-row">
+      <div class="row">
+      <!-- Sale Details -->
+        <div class="col-md-4">
+      <div class="form-row" style="background-color: lightseagreen; border-radius: 15px " >
+        <div class="form-group col-md-12">
+          <h4>Sale Details</h4>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="saleId">Sale ID</label>
+          <input type="text" class="form-control" id="saleId" placeholder="Sale ID">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="saleDate">Sale Date</label>
+          <input type="text" class="form-control" id="saleDate" placeholder="Sale Date">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="customerCode">Customer Code</label>
+          <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="customerName">Customer Name</label>
+          <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+        </div>
+      </div>
+        </div>
+
+      <!-- Item Details -->
+        <div class="col-md-4">
+      <div class="form-row" style="background-color: #25cff2; border-radius: 15px">
+        <div class="form-group col-md-12">
+          <h4>Item Details</h4>
+        </div>
         <div class="form-group col-md-6">
           <label for="itemCode">Item Code</label>
           <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
         </div>
         <div class="form-group col-md-6">
-          <label for="orderNo">Order No</label>
-          <input type="text" class="form-control" id="orderNo" placeholder="Order No.">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="customerName">Customer Name</label>
-          <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="itemDesc">Item desc</label>
-          <input type="text" class="form-control" id="itemDesc" placeholder="Item Description">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="size">Size</label>
-          <input type="text" class="form-control" id="size" placeholder="Size of a shoe">
+          <label for="itemName">Item Name</label>
+          <input type="text" class="form-control" id="itemName" placeholder="Item Name">
         </div>
         <div class="form-group col-md-6">
           <label for="unitPrice">Unit Price</label>
-          <input type="text" class="form-control" id="unitPrice" placeholder="Unit Price">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="qty">Item Quantity</label>
-          <input type="text" class="form-control" id="qty" placeholder="Quantity">
+          <input type="text" class="form-control" id="unitPrice">
         </div>
         <div class="form-group col-md-6">
-          <label for="totalPrice">Total Price</label>
-          <input type="text" class="form-control" id="totalPrice" placeholder="Total Price">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="purchaseDate">Purchase Date</label>
-          <input type="date" class="form-control" id="purchaseDate">
+          <label for="qtyOnHand">Qty on Hand</label>
+          <input type="text" class="form-control" id="qtyOnHand">
         </div>
         <div class="form-group col-md-6">
-          <label for="paymentMethod">Payment Method</label>
-          <select id="paymentMethod" class="form-control">
-            <option selected>Choose...</option>
-            <option>Cash</option>
-            <option>Card</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="point">Added Point</label>
-          <input type="text" class="form-control" id="point" placeholder="Added Point">
+          <label for="buyQty">Buy Qty</label>
+          <input type="text" class="form-control" id="buyQty">
         </div>
         <div class="form-group col-md-6">
           <label for="cashierName">Cashier Name</label>
           <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
         </div>
+        <div class="form-group col-md-6">
+          <label for="price">Price</label>
+          <input type="text" class="form-control" id="price" placeholder="Price">
+        </div>
+        <button id="btnAddtoCart" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Add to Cart</button>
       </div>
+        </div>
+      <!-- Purchase Details -->
+        <div class="col-md-4">
+      <div class="form-row" style="background-color:#b7b9cc;  border-radius: 15px">
+        <div class="form-group col-md-12">
+          <h4>Purchase Details</h4>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="total">Total</label>
+          <input type="text" class="form-control" id="total">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="discount">Discount</label>
+          <input type="text" class="form-control" id="discount">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="subTotal">Sub Total</label>
+          <input type="text" class="form-control" id="subTotal">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" class="form-control">
+            <option selected>Choose...</option>
+            <option value="CASH">Cash</option>
+            <option value="CARD">Card</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cash">Cash</label>
+          <input type="text" class="form-control" id="cash">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="balance">Balance</label>
+          <input type="text" class="form-control" id="balance">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cardNo">Card No.</label>
+          <input type="text" class="form-control" id="cardNo">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="bank">Bank</label>
+          <input type="text" class="form-control" id="bank">
+        </div>
 
-      <button type="save" class="btn btn-primary">Save</button>
-      <button type="Update" class="btn btn-primary">Update</button>
-      <button type="Delete" class="btn btn-primary">Delete</button>
+        <button id="btnPurchase" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Purchase</button>
+
+      </div>
+        </div>
+      </div>
     </form>
+
   </div>
 
   <div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
@@ -162,17 +206,10 @@
             <thead class="text-dark table-danger text-center  table-bordered sticky-top">
             <tr>
               <th scope="col">Item Code</th>
-              <th scope="col">Order No.</th>
-              <th scope="col">Customer Name</th>
-              <th scope="col">Item Desc</th>
-              <th scope="col">Size </th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Item Quantity</th>
-              <th scope="col">Total Price</th>
-              <th scope="col">Purchase Date</th>
-              <th scope="col">Payment Method</th>
-              <th scope="col">Added Point</th>
-              <th scope="col">Cashier Name</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Order Qty </th>
+              <th scope="col">Total</th>
 
             </tr>
             </thead>

@@ -29,6 +29,7 @@
     </style>
     <link rel="stylesheet" href="../../assets/css/Dashboard.css">
     <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/employee.js"></script>
 </head>
 <body style=" background-color: #f8f9fa">
 
@@ -90,9 +91,15 @@
                 </div>
             </div>
 
+            <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="employeeProfilePic">Employee Image</label>
                 <input type="file" class="form-control" id="employeeProfilePic">
+            </div>
+                <div class="form-group col-md-6">
+                    <label for="status">Status</label>
+                    <input type="text" class="form-control" id="status">
+                </div>
             </div>
 
             <div class="form-row">
@@ -100,9 +107,9 @@
                     <label for="gender">Gender</label>
                     <select id="gender" class="form-control">
                         <option selected>Choose...</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="OTHER">OTHER</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
@@ -119,9 +126,9 @@
                     <label for="designation">Designation</label>
                     <select id="designation" class="form-control">
                         <option selected>Choose...</option>
-                        <option value="MANAGER">Manager</option>
-                        <option value="SUPERVISOR">Supervisor</option>
-                        <option value="CASHIER">Cashier</option>
+                        <option value="MANAGER">MANAGER</option>
+                        <option value="SUPERVISOR">SUPERVISOR</option>
+                        <option value="CASHIER">CASHIER</option>
                     </select>
                 </div>
             </div>
@@ -130,17 +137,17 @@
                         <label for="accessRole">Access Role</label>
                         <select id="accessRole" class="form-control">
                             <option selected>Choose...</option>
-                            <option value="USER">User</option>
-                            <option value="ADMIN">Admin</option>
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
                         </select>
                     </div>
                 <div class="form-group col-md-6">
                     <label for="branch">Attached Branch</label>
                     <select id="branch" class="form-control">
                         <option selected>Choose...</option>
-                        <option value="GALLE">Galle</option>
-                        <option value="COLOMBO">Colombo</option>
-                        <option value="MATARA">Matara</option>
+                        <option value="GALLE">GALLE</option>
+                        <option value="COLOMBO">COLOMBO</option>
+                        <option value="MATARA">MATARA</option>
                     </select>
 
                 </div>
@@ -180,9 +187,9 @@
             </div>
 
 
-            <button id="btnEmployeeSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b">Submit</button>
-            <button id="btnEmployeeUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a">Update</button>
-            <button id="btnEmployeeDelete" type="button" class="btn btn-primary mr-2" style="background-color: #ffab00">Delete</button>
+            <button id="btnEmployeeSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b" onclick="saveEmployee()">Submit</button>
+            <button id="btnEmployeeUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a" onclick="updateEmployee()">Update</button>
+            <button id="btnEmployeeDelete" type="button" class="btn btn-primary mr-2" style="background-color: #ffab00" onclick="deleteEmployee()">Delete</button>
             <button id="btnEmployeeClear" type="button" class="btn btn-dark" style="background-color: #8f5fe8">Clear</button>
         </form>
     </div>
@@ -201,11 +208,13 @@
                             <th scope="col">Gender</th>
                             <th scope="col">Status</th>
                             <th scope="col">Designation </th>
+                            <th scope="col">Access Role </th>
                             <th scope="col">DOB</th>
                             <th scope="col">Date of Join</th>
                             <th scope="col">Attached Branch</th>
                             <th scope="col">Address</th>
                             <th scope="col">Contact No.</th>
+                            <th scope="col">Email </th>
                             <th scope="col"> Guardian Name</th>
                             <th scope="col">Guardian Contact No.</th>
                         </tr>
@@ -227,5 +236,274 @@
         Designed by <a href="">Sethmini Dissanayake</a>
     </div>
 </footer>
+
+<script>
+    getAllEmployees();
+
+    /*getAll Employees*/
+    function getAllEmployees(){
+        $.ajax({
+            url: "http://localhost:8080/app/api/v1/employees/getAllEmployees",
+            method: "GET",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                console.log(response.length);
+                console.log("success to load employees")
+                loadEmployeeDataInTable(response);
+            },
+            error: function (xhr, status, err) {
+                console.log("Fail to load employees")
+                console.log(err)
+            }
+        })
+    }
+
+    /*load employee into table*/
+    function loadEmployeeDataInTable(employees) {
+        var tableBody = document.getElementById("employeeTable");
+        tableBody.innerHTML = "";
+
+        employees.forEach(function (employee) {
+            var row = document.createElement("tr");
+
+            ["employeeCode", "employeeName", "employeeProfilePic", "gender", "status", "branch", "designation", "accessRole",
+                "dob", "joinDate", "address", "contactNo", "Email", "guardianName", "guardianContactNo"].forEach(function (property) {
+                var cell = document.createElement("td");
+                cell.textContent = employee[property];
+                row.appendChild(cell);
+            });
+            tableBody.appendChild(row);
+        });
+
+    }
+
+    /*Save employee*/
+
+    $(document).on("click", "#btnSupplierSave", function() {
+        console.log("Button clicked");
+        saveSupplier();
+    });
+
+    function saveEmployee(){
+        const employeeCode = document.getElementById('employeeCode').value;
+        const employeeName = document.getElementById('employeeName').value;
+        const employeeProfilePic = document.getElementById('employeeProfilePic').value;
+        const gender = document.getElementById('gender').value;
+        const status= document.getElementById('status').value;
+        const branch = document.getElementById('branch').value;
+        const designation = document.getElementById('designation').value;
+        const accessRole = document.getElementById('accessRole').value;
+        const dob = document.getElementById('dob').value;
+        const joinDate = document.getElementById('joinDate').value;
+        const address1 = document.getElementById('inputAddress').value;
+        const address2 = document.getElementById('inputCity').value;
+        const contactNo = document.getElementById('contactNo').value;
+        const Email = document.getElementById('Email').value;
+        const guardianName = document.getElementById('guardianName').value;
+        const guardianContactNo = document.getElementById('guardianContactNumber').value;
+
+        const employee = {
+            employeeCode:employeeCode,
+            employeeName:employeeName,
+            employeeProfilePic:employeeProfilePic,
+            gender:gender,
+            status:status,
+            branch:branch,
+            designation:designation,
+            accessRole:accessRole,
+            dob:dob,
+            joinDate:joinDate,
+            address:`${address1},${address2}`,
+            contactNo:contactNo,
+            Email:Email,
+            guardianName:guardianName,
+            guardianContactNo:guardianContactNo
+        }
+
+        $.ajax({
+            url: 'http://localhost:8080/app/api/v1/employees/save',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(employee),
+            success: function (response) {
+                console.log(response);
+                alert('Employees information saved successfully!');
+                getAllEmployees();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Failed to save employee information. Please try again.');
+            }
+        });
+    }
+
+    /*table click*/
+    $('#employeeTable').on('click', 'tr', function (){
+        var employeeCode = $(this).find('td:eq(0)').text();
+        var employeeName = $(this).find('td:eq(1)').text();
+        var employeeProfilePic = $(this).find('td:eq(2)').text();
+        var gender = $(this).find('td:eq(3)').text();
+        var status = $(this).find('td:eq(4)').text();
+        var branch = $(this).find('td:eq(5)').text();
+        var designation = $(this).find('td:eq(6)').text();
+        var accessRole = $(this).find('td:eq(7)').text();
+        var dob = $(this).find('td:eq(8)').text();
+        var joinDate = $(this).find('td:eq(9)').text();
+        var address = $(this).find('td:eq(10)').text();
+        var contactNo = $(this).find('td:eq(11)').text();
+        var Email = $(this).find('td:eq(12)').text();
+        var guardianName = $(this).find('td:eq(13)').text();
+        var guardianContactNo = $(this).find('td:eq(14)').text();
+
+        $("#employeeCode").val(employeeCode);
+        $("#employeeName").val(employeeName);
+        $("#employeeProfile").val(employeeProfilePic);
+        $("#gender").val(gender);
+        $("#status").val(status);
+        $("#branch").val(branch);
+        $("#designation").val(designation);
+        $("#accessRole").val(accessRole);
+        $("#dob").val(dob);
+        $("#joinDate").val(joinDate);
+        $("#inputAddress").val(address);
+        $("#contactNo").val(contactNo);
+        $("#Email").val(Email);
+        $("#guardianName").val(guardianName);
+        $("#guardianContactNo").val(guardianContactNo);
+
+    })
+
+    $(document).on("click", "#btnEmployeeUpdate", function() {
+        console.log("Button clicked");
+        updateEmployee();
+    });
+
+    function updateEmployee(){
+        const employeeCode = document.getElementById('employeeCode').value;
+        const employeeName = document.getElementById('employeeName').value;
+        const employeeProfilePic = document.getElementById('employeeProfilePic').value;
+        const gender = document.getElementById('gender').value;
+        const status= document.getElementById('status').value;
+        const branch = document.getElementById('branch').value;
+        const designation = document.getElementById('designation').value;
+        const accessRole = document.getElementById('accessRole').value;
+        const dob = document.getElementById('dob').value;
+        const joinDate = document.getElementById('joinDate').value;
+        const address1 = document.getElementById('inputAddress').value;
+        const address2 = document.getElementById('inputCity').value;
+        const contactNo = document.getElementById('contactNo').value;
+        const Email = document.getElementById('Email').value;
+        const guardianName = document.getElementById('guardianName').value;
+        const guardianContactNo = document.getElementById('guardianContactNumber').value;
+
+        const employee = {
+            employeeCode:employeeCode,
+            employeeName:employeeName,
+            employeeProfilePic:employeeProfilePic,
+            gender:gender,
+            status:status,
+            branch:branch,
+            designation:designation,
+            accessRole:accessRole,
+            dob:dob,
+            joinDate:joinDate,
+            address:`${address1},${address2}`,
+            contactNo:contactNo,
+            Email:Email,
+            guardianName:guardianName,
+            guardianContactNo:guardianContactNo
+        }
+
+        $.ajax({
+            url: 'http://localhost:8080/app/api/v1/employees/update',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(employee),
+            success: function (response) {
+                console.log(response);
+                alert('Employees information updated successfully!');
+                getAllEmployees();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Failed to save employee information. Please try again.');
+            }
+        });
+    }
+
+    /*table click*/
+    $('#employeeTable').on('click', 'tr', function (){
+        var employeeCode = $(this).find('td:eq(0)').text();
+        var employeeName = $(this).find('td:eq(1)').text();
+        var employeeProfilePic = $(this).find('td:eq(2)').text();
+        var gender = $(this).find('td:eq(3)').text();
+        var status = $(this).find('td:eq(4)').text();
+        var branch = $(this).find('td:eq(5)').text();
+        var designation = $(this).find('td:eq(6)').text();
+        var accessRole = $(this).find('td:eq(7)').text();
+        var dob = $(this).find('td:eq(8)').text();
+        var joinDate = $(this).find('td:eq(9)').text();
+        var address = $(this).find('td:eq(10)').text();
+        var contactNo = $(this).find('td:eq(11)').text();
+        var Email = $(this).find('td:eq(12)').text();
+        var guardianName = $(this).find('td:eq(13)').text();
+        var guardianContactNo = $(this).find('td:eq(14)').text();
+
+        $("#employeeCode").val(employeeCode);
+        $("#employeeName").val(employeeName);
+        $("#employeeProfile").val(employeeProfilePic);
+        $("#gender").val(gender);
+        $("#status").val(status);
+        $("#branch").val(branch);
+        $("#designation").val(designation);
+        $("#accessRole").val(accessRole);
+        $("#dob").val(dob);
+        $("#joinDate").val(joinDate);
+        $("#inputAddress").val(address);
+        $("#contactNo").val(contactNo);
+        $("#Email").val(Email);
+        $("#guardianName").val(guardianName);
+        $("#guardianContactNo").val(guardianContactNo);
+
+    })
+
+    $(document).ready(function () {
+        getAllEmployees();
+
+        $('#btnEmployeeDelete').on('click', function() {
+            var employeeCode = $('#employeeCode').val();
+            if (employeeCode !== "") {
+                deleteEmployee(employeeCode);
+            } else {
+                alert("Please select a employee to delete.");
+            }
+        });
+    });
+
+    function deleteEmployee(employeeCode) {
+        $.ajax({
+            url: 'http://localhost:8080/app/api/v1/employees/' + employeeCode,
+            type: 'DELETE',
+            success: function (response) {
+                console.log(response);
+                alert('Employee deleted successfully!');
+                getAllEmployees();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Failed to delete employee. Please try again.');
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        getAllEmployees();
+    });
+
+    function employeeCapitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+</script>
 </body>
 </html>

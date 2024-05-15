@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Inventory Management Form</title>
-  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
+  <!--<link rel="stylesheet" href="../../assets/icon/icon.jpeg" >-->
 
   <meta content="Shoe Shop Management System" name="keywords">
   <meta content="This is shoe management project" name="description">
@@ -61,8 +61,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="searchInput">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnItemSearch">Search</button>
     </form>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
@@ -116,8 +116,8 @@
           <input type="file" class="form-control" id="itemImage">
         </div>
         <div class="form-group col-md-6">
-          <label for="category">Category</label>
-          <input type="date" class="form-control" id="category">
+          <label for="itemCategory">Category</label>
+          <input type="text" class="form-control" id="itemCategory">
         </div>
       </div>
       <div class="form-row">
@@ -158,14 +158,25 @@
         </div>
         <div class="form-group col-md-6">
           <label for="status">Status</label>
-          <input type="text" class="form-control" id="status" placeholder="status">
+          <select id="status" class="form-control">
+            <option selected>Choose...</option>
+            <option value="LOW">LOW</option>
+            <option value="AVAILABLE">AVAILABLE</option>
+            <option value="NOT_AVAILABLE">NOT_AVAILABLE</option>
+          </select>
         </div>
       </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="quantity">Quantity</label>
+        <input type="text" class="form-control" id="quantity">
+      </div>
+      </div>
 
-
-      <button type="save" class="btn btn-primary">Save</button>
-      <button type="Update" class="btn btn-primary">Update</button>
-      <button type="Delete" class="btn btn-primary">Delete</button>
+      <button id="btnItemSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b">Submit</button>
+      <button id="btnItemUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a">Update</button>
+      <button id="btnItemDelete" type="button" class="btn btn-primary mr-2" style="background-color: #ffab00">Delete</button>
+      <button id="btnItemClear" type="button" class="btn btn-dark" style="background-color: #8f5fe8">Clear</button>
     </form>
   </div>
 
@@ -182,6 +193,7 @@
               <th scope="col">Item Image</th>
               <th scope="col">Category</th>
               <th scope="col">Size</th>
+              <th scope="col"> Quantity</th>
               <th scope="col">Supplier Code</th>
               <th scope="col">Supplier Name</th>
               <th scope="col">Unit Price-Sale</th>
@@ -190,6 +202,8 @@
               <th scope="col">Profit Margin</th>
               <th scope="col"> Status</th>
 
+
+
             </tr>
             </thead>
             <tbody id="inventoryTable"></tbody>
@@ -197,17 +211,332 @@
         </div>
       </div>
     </div>
-    <!-- View Customer Details Table End -->
+
   </div>
 </main>
 
 <footer id="footer" class="footer">
   <div class="copyright">
-    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
+    &copy; Copyright <strong><span>Shoe Management System</span></strong>. All Rights Reserved
   </div>
   <div class="credits">
     Designed by <a href="">Sethmini Dissanayake</a>
   </div>
 </footer>
+
+<script>
+  getAllItems();
+  /*loadNextCustomerId();*/
+
+  /*get all*/
+  function getAllItems() {
+    $.ajax({
+      url: "http://localhost:8080/app/api/v1/inventories/getAllItems",
+      method: "GET",
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        console.log(response.length);
+        loadItemDataInTable(response);
+      },
+      error: function (xhr, status, err) {
+        console.log(err)
+      }
+    })
+  }
+
+  function loadItemDataInTable(items) {
+    var tableBody = document.getElementById("inventoryTable");
+    tableBody.innerHTML = "";
+
+    items.forEach(function(item) {
+      var row = document.createElement("tr");
+
+      ["itemCode", "itemDesc", "itemPicture","category", "size", "quantity", "supplierCode", "supplierName", "unitPriceSale",
+        "unitPriceBuy","expectProfit","profitMargin","status"].forEach(function(property) {
+        var cell = document.createElement("td");
+        cell.textContent = item[property];
+        row.appendChild(cell);
+      });
+      tableBody.appendChild(row);
+    });
+  }
+  $("#btnItemSave").click(function (){
+    saveItem();
+  })
+
+  /*save*/
+  function saveItem(){
+    const itemCode = document.getElementById('itemCode').value;
+    const itemDesc = document.getElementById('itemDesc').value;
+    const itemPicture = document.getElementById('itemImage').value;
+    const category = document.getElementById('itemCategory').value;
+    const size= document.getElementById('size').value;
+    const quantity = document.getElementById('quantity').value;
+    const supplierCode = document.getElementById('supplierCode').value;
+    const supplierName = document.getElementById('supplierName').value;
+    const unitPriceSale = document.getElementById('unitPrice').value;
+    const unitPriceBuy = document.getElementById('unitPriceBuy').value;
+    const expectProfit = document.getElementById('profit').value;
+    const profitMargin = document.getElementById('profitMargin').value;
+    const status = document.getElementById('status').value;
+
+
+    const item = {
+      itemCode:itemCode,
+      itemDesc:itemDesc,
+      itemPicture:itemPicture,
+      category:category,
+      size:size,
+      quantity:quantity,
+      supplierCode:supplierCode,
+      supplierName:supplierName,
+      unitPriceSale:unitPriceSale,
+      unitPriceBuy:unitPriceBuy,
+      expectProfit:expectProfit,
+      profitMargin:profitMargin,
+      status:status,
+    }
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/inventories/save',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(item),
+      success: function (response) {
+        console.log(response);
+        /*document.getElementById('customerForm').reset();*/
+        alert('Item information saved successfully!');
+        getAllItems();
+
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        alert('Failed to save item information. Please try again.');
+      }
+    });
+  }
+
+  $("#btnItemUpdate").click(function (){
+    updateItem();
+  })
+
+  /*save*/
+  function updateItem(){
+    const itemCode = document.getElementById('itemCode').value;
+    const itemDesc = document.getElementById('itemDesc').value;
+    const itemPicture = document.getElementById('itemImage').value;
+    const category = document.getElementById('itemCategory').value;
+    const size= document.getElementById('size').value;
+    const quantity = document.getElementById('quantity').value;
+    const supplierCode = document.getElementById('supplierCode').value;
+    const supplierName = document.getElementById('supplierName').value;
+    const unitPriceSale = document.getElementById('unitPrice').value;
+    const unitPriceBuy = document.getElementById('unitPriceBuy').value;
+    const expectProfit = document.getElementById('profit').value;
+    const profitMargin = document.getElementById('profitMargin').value;
+    const status = document.getElementById('status').value;
+
+
+    const item = {
+      itemCode:itemCode,
+      itemDesc:itemDesc,
+      itemPicture:itemPicture,
+      category:category,
+      size:size,
+      quantity:quantity,
+      supplierCode:supplierCode,
+      supplierName:supplierName,
+      unitPriceSale:unitPriceSale,
+      unitPriceBuy:unitPriceBuy,
+      expectProfit:expectProfit,
+      profitMargin:profitMargin,
+      status:status,
+    }
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/inventories/update',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(item),
+      success: function (response) {
+        console.log(response);
+        /*document.getElementById('customerForm').reset();*/
+        alert('Item information Updated successfully!');
+        getAllItems();
+
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        alert('Failed to update item information. Please try again.');
+      }
+    });
+  }
+
+  /*table click*/
+  $('#inventoryTable').on('click', 'tr', function (){
+    var itemCode = $(this).find('td:eq(0)').text();
+    var itemDesc = $(this).find('td:eq(1)').text();
+    var itemPicture = $(this).find('td:eq(2)').text();
+    var category = $(this).find('td:eq(3)').text();
+    var size = $(this).find('td:eq(4)').text();
+    var quantity = $(this).find('td:eq(5)').text();
+    var supplierCode = $(this).find('td:eq(6)').text();
+    var supplierName = $(this).find('td:eq(7)').text();
+    var unitPriceSale = $(this).find('td:eq(8)').text();
+    var unitPriceBuy = $(this).find('td:eq(9)').text();
+    var expectProfit = $(this).find('td:eq(10)').text();
+    var profitMargin = $(this).find('td:eq(11)').text();
+    var status = $(this).find('td:eq(12)').text();
+
+    $("#itemCode").val(itemCode);
+    $("#itemDesc").val(itemDesc);
+    $("#itemImage").val(itemPicture);
+    $("#category").val(category);
+    $("#size").val(size);
+    $("#quantity").val(quantity);
+    $("#supplierCode").val(supplierCode);
+    $("#supplierName").val(supplierName);
+    $("#unitPrice").val(unitPriceSale);
+    $("#unitPriceBuy").val(unitPriceBuy);
+    $("#profit").val(expectProfit);
+    $("#profitMargin").val(profitMargin);
+    $("#status").val(status);
+
+  })
+
+  $(document).ready(function () {
+    getAllItems();
+
+    $('#btnItemDelete').on('click', function() {
+      var itemCode = $('#itemCode').val();
+      if (itemCode !== "") {
+        deleteItem(itemCode);
+      } else {
+        alert("Please select a customer to delete.");
+      }
+    });
+  });
+
+  /*delete customer*/
+  function deleteItem(itemCode) {
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/inventories/' + itemCode,
+      type: 'DELETE',
+      success: function (response) {
+        console.log(response);
+        alert('Item deleted successfully!');
+        getAllCustomers();
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        alert('Failed to delete Item. Please try again.');
+      }
+    });
+  }
+
+  /*$("#btnItemSearch").on("click", function () {
+    var search = $("#searchInput").val(); // Assuming the input field has id="searchInput"
+    $("#inventoryTable").empty();
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/inventories/search',
+      method: "GET",
+      data: {
+        id: search
+      },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (res) {
+        console.log(res);
+        if (res) {
+          let itemCode = res.itemCode;
+          let itemDesc = res.itemDesc;
+          let itemImage = res.itemPicture;
+          let category = res.category;
+          let size = res.size;
+          let quantity = res.quantity;
+          let supplierCode = res.supplierCode;
+          let supplierName = res.supplierName;
+          let unitPrice = res.unitPriceSale;
+          let unitPriceBuy = res.unitPriceBuy;
+          let profit = res.expectProfit;
+          let profitMargin = res.profitMargin;
+          let status = res.status;
+
+          let row = "<tr><td>" + itemCode + "</td><td>" + itemDesc + "</td><td>" + itemImage + "</td><td>" + category + "</td><td>" + size + "</td><td>" + quantity +
+                  "</td><td>" + supplierCode + "</td><td>" + supplierName + "</td><td>" + unitPrice + "</td><td>" + unitPriceBuy + "</td><td>" + profit + "</td>" +
+                  "<td>" + profitMargin + "</td><td>" + status + "</td></tr>";
+
+          // Insert the row at the beginning of the table
+          $("#inventoryTable").prepend(row);
+        } else {
+          console.log("No data found");
+        }
+      },
+      error: function (error) {
+        console.error(error);
+        alert('Failed to search for items. Please try again.');
+      }
+    });
+  });*/
+
+
+  $("#btnItemSearch").on("click", function () {
+    var search = $("#searchInput").val();
+    $("#inventoryTable").empty();
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/inventories/search?id' +id,
+      method: "GET",
+      data: { id: search },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (res) {
+        console.log(res);
+        if (res && res.length > 0) {
+          // Assuming res is an array of objects
+          let firstItem = res[0]; // Assuming you only want details of the first item
+
+          let row = "<tr><td>" + firstItem.itemCode + "</td><td>" + firstItem.itemDesc + "</td><td>" + firstItem.itemPicture + "</td><td>" + firstItem.category + "</td><td>" + firstItem.size + "</td><td>" + firstItem.quantity +
+                  "</td><td>" + firstItem.supplierCode + "</td><td>" + firstItem.supplierName + "</td><td>" + firstItem.unitPriceSale + "</td><td>" + firstItem.unitPriceBuy + "</td><td>" + firstItem.expectProfit + "</td>" +
+                  "<td>" + firstItem.profitMargin + "</td><td>" + firstItem.status + "</td></tr>";
+
+          // Insert the row before any existing rows
+          $("#inventoryTable").append(row);
+
+          // If you want to display other items as well, you can loop through the remaining items and append them to the table
+          for (let i = 1; i < res.length; i++) {
+            let currentItem = res[i];
+            let itemRow = "<tr><td>" + currentItem.itemCode + "</td><td>" + currentItem.itemDesc + "</td><td>" + currentItem.itemPicture + "</td><td>" + currentItem.category + "</td><td>" + currentItem.size + "</td><td>" + currentItem.quantity +
+                    "</td><td>" + currentItem.supplierCode + "</td><td>" + currentItem.supplierName + "</td><td>" + currentItem.unitPriceSale + "</td><td>" + currentItem.unitPriceBuy + "</td><td>" + currentItem.expectProfit + "</td>" +
+                    "<td>" + currentItem.profitMargin + "</td><td>" + currentItem.status + "</td></tr>";
+
+            $("#inventoryTable").append(itemRow);
+          }
+        } else {
+          console.log("No data found");
+          alert("No Data Found")
+          // Display a message to the user
+          $("#inventoryTable").append("<tr><td colspan='13'>No data found</td></tr>");
+        }
+      },
+      error: function (error) {
+        console.error(error);
+        alert('Failed to search for items. Please try again.');
+      }
+    });
+  });
+
+  $(document).ready(function () {
+    getAllItems();
+  });
+
+  function customerCapitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+
+
+</script>
 </body>
 </html>

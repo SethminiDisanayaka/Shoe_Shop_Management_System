@@ -83,11 +83,11 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="supplierCode">Supplier Code</label>
-          <input type="text" class="form-control" id="supplierCode" placeholder="Supplier Code">
+          <input type="text" class="form-control" id="supplierCode" placeholder="Supplier Code" required>
         </div>
         <div class="form-group col-md-6">
           <label for="supplierName">Supplier Name</label>
-          <input type="text" class="form-control" id="supplierName" placeholder="Supplier Name">
+          <input type="text" class="form-control" id="supplierName" placeholder="Supplier Name" required>
         </div>
       </div>
       <div class="form-row">
@@ -103,11 +103,11 @@
       <div class="form-row">
         <div class="form-group">
           <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
         </div>
         <div class="form-group col-md-6">
           <label for="inputCity">City & State</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="city">
+          <input type="text" class="form-control" id="inputCity" placeholder="city" required>
         </div>
 
       </div>
@@ -116,20 +116,20 @@
         <label for="contactNumber1">Contact</label>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="text" class="form-control" id="contactNumber1" placeholder="Contact Number">
+            <input type="text" class="form-control" id="contactNumber1" placeholder="Contact Number" required>
           </div>
           <div class="form-group col-md-6">
-            <input type="text" class="form-control" id="contactNumber2" placeholder="Another Contact Number">
+            <input type="text" class="form-control" id="contactNumber2" placeholder="Another Contact Number" required>
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="inputEmail">E-mail</label>
-        <input type="text" class="form-control" id="inputEmail" placeholder="abcd12#gmail.com">
+        <input type="text" class="form-control" id="inputEmail" placeholder="abcd12#gmail.com" required>
       </div>
 
-      <button id="btnSupplierSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b">Submit</button>
-      <button id="btnSupplierUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a">Update</button>
+      <button id="btnSupplierSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b" >Submit</button>
+      <button id="btnSupplierUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a" >Update</button>
       <button id="btnSupplierDelete" type="button" class="btn btn-primary mr-2" style="background-color: #ffab00">Delete</button>
       <button id="btnSupplierClear" type="button" class="btn btn-dark" style="background-color: #8f5fe8">Clear</button>
 
@@ -172,5 +172,275 @@
     Designed by <a href="">Sethmini Dissanayake</a>
   </div>
 </footer>
+
+<script>
+  getAllSuppliers();
+  /*loadNextCustomerId();*/
+
+  /*get all*/
+  function getAllSuppliers() {
+    $.ajax({
+      url: "http://localhost:8080/app/api/v1/suppliers/getAllSuppliers",
+      method: "GET",
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        console.log(response.length);
+        loadSupplierDataInTable(response);
+      },
+      error: function (xhr, status, err) {
+        console.log(err)
+      }
+    })
+  }
+
+
+  function loadSupplierDataInTable(suppliers) {
+    var tableBody = document.getElementById("supplierTable");
+    tableBody.innerHTML = "";
+
+    suppliers.forEach(function(supplier) {
+      var row = document.createElement("tr");
+
+      ["supplierCode", "supplierName", "category", "address", "contactNo1", "contactNo2", "email"].forEach(function(property) {
+        var cell = document.createElement("td");
+        cell.textContent = supplier[property];
+        row.appendChild(cell);
+      });
+
+      tableBody.appendChild(row);
+    });
+  }
+
+  /*$("#btnSupplierSave").click(function (){
+      saveSupplier();
+  })*/
+
+  $(document).on("click", "#btnSupplierSave", function() {
+    console.log("Button clicked");
+    saveSupplier();
+  });
+
+  /*function saveSupplier(){
+      const supplierCode = $("#supplierCode").val();
+      const supplierName = $("#supplierName").val();
+      const category = $("#category").val();
+      const address1 = $("#inputAddress").val();
+      const address2 = $("#inputCity").val();
+      const contactNo1 = $("#contactNumber1").val();
+      const contactNo2 = $("#contactNumber2").val();
+      const email = $("#inputEmail").val();
+
+      const supplier = {
+          supplierCode: supplierCode,
+          supplierName: supplierName,
+          category: category,
+          address: `${address1}, ${address2}`,
+          contactNo1: contactNo1,
+          contactNo2: contactNo2,
+          email: email
+      };
+
+      $.ajax({
+          url: 'http://localhost:8080/app/api/v1/suppliers/save',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(supplier),
+          success: function (response) {
+              console.log(response);
+              alert('Supplier information saved successfully!');
+              getAllSuppliers(); // Assuming this function retrieves all suppliers after saving
+          },
+          error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+              alert('Failed to save supplier information. Please try again.');
+          }
+      });
+  }*/
+
+  function saveSupplier(){
+    const supplierCode = $("#supplierCode").val().trim();
+    const supplierName = $("#supplierName").val().trim();
+    const category = $("#category").val().trim();
+    const address1 = $("#inputAddress").val().trim();
+    const address2 = $("#inputCity").val().trim();
+    const contactNo1 = $("#contactNumber1").val().trim();
+    const contactNo2 = $("#contactNumber2").val().trim();
+    const email = $("#inputEmail").val().trim();
+
+
+    const supplier = {
+      supplierCode: supplierCode,
+      supplierName: supplierName,
+      category: category,
+      address: `${address1}, ${address2}`,
+      contactNo1: contactNo1,
+      contactNo2: contactNo2,
+      email: email
+    };
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/suppliers/save',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(supplier),
+      success: function (response) {
+        console.log(response);
+        alert('Supplier information saved successfully!');
+        getAllSuppliers();
+      },
+      error: function (xhr, status, error) {
+        console.error(xhr.responseText);
+        alert('Failed to save supplier information. Please try again.');
+      }
+    });
+  }
+
+
+  /*table click*/
+  $('#supplierTable').on('click', 'tr', function (){
+    var supplierCode = $(this).find('td:eq(0)').text();
+    var supplierName = $(this).find('td:eq(1)').text();
+    var category = $(this).find('td:eq(2)').text();
+    var address = $(this).find('td:eq(3)').text();
+    var contactNo1 = $(this).find('td:eq(4)').text();
+    var contactNo2 = $(this).find('td:eq(5)').text();
+    var email = $(this).find('td:eq(6)').text();
+
+    $("#supplierCode").val(supplierCode);
+    $("#supplierName").val(supplierName);
+    $("#category").val(category);
+    $("#inputAddress").val(address);
+    $("#contactNumber1").val(contactNo1);
+    $("#contactNumber2").val(contactNo2);
+    $("#inputEmail").val(email);
+  })
+
+  $("#btnSupplierUpdate").click(function (){
+    updateSupplier();
+  })
+
+  /*save*/
+  function updateSupplier(){
+    const supplierCode = document.getElementById('supplierCode').value;
+    const supplierName = document.getElementById('supplierName').value;
+    const category = document.getElementById('category').value;
+    const address1 = document.getElementById('inputAddress').value;
+    const address2 = document.getElementById('inputCity').value;
+    const contactNo1= document.getElementById('contactNumber1').value;
+    const contactNo2 = document.getElementById('contactNumber2').value;
+    const email = document.getElementById('inputEmail').value;
+
+    const supplier = {
+      supplierCode:supplierCode,
+      supplierName:supplierName,
+      category:category,
+      address:`${address1},${address2}`,
+      contactNo1:contactNo1,
+      contactNo2:contactNo2,
+      email:email
+    }
+
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/suppliers/update',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(supplier),
+      success: function (response) {
+        console.log(response);
+        /*document.getElementById('customerForm').reset();*/
+        alert('Supplier information updated successfully!');
+
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        alert('Failed to update supplier information. Please try again.');
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    getAllSuppliers();
+
+    $('#btnSupplierDelete').on('click', function() {
+      var supplierCode = $('#supplierCode').val();
+      if (supplierCode !== "") {
+        deleteSupplier(supplierCode);
+      } else {
+        alert("Please select a supplier to delete.");
+      }
+    });
+  });
+
+  /*delete customer*/
+  function deleteSupplier(supplierCode) {
+    $.ajax({
+      url: 'http://localhost:8080/app/api/v1/suppliers/' + supplierCode,
+      type: 'DELETE',
+      success: function (response) {
+        console.log(response);
+        alert('Supplier deleted successfully!');
+        getAllSuppliers();
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+        alert('Failed to delete supplier. Please try again.');
+      }
+    });
+  }
+
+
+  $(document).ready(function () {
+    getAllSuppliers();
+  });
+
+  function customerCapitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+</script>
+
+
+
+<main id="main" class="main" style="padding-left: 100px">
+  <div class="container mt-5">
+    <h2>Sale Service</h2>
+    <form>
+      <div class="row">
+        <!-- Sale Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color: lightseagreen; border-radius: 15px">
+            <div class="form-group col-md-12">
+              <h4>Sale Details</h4>
+            </div>
+            <!-- Sale Details Inputs -->
+          </div>
+        </div>
+
+        <!-- Item Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color: #25cff2; margin-top: 20px; border-radius: 15px">
+            <div class="form-group col-md-12">
+              <h4>Item Details</h4>
+            </div>
+            <!-- Item Details Inputs -->
+          </div>
+        </div>
+
+        <!-- Purchase Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color:#b7b9cc; margin-top: 30px; border-radius: 15px">
+            <div class="form-group col-md-12">
+              <h4>Purchase Details</h4>
+            </div>
+            <!-- Purchase Details Inputs -->
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</main>
+
 </body>
 </html>
