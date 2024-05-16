@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.enttity.CustomerEntity;
 import lk.ijse.gdse66.Backend.repository.CustomerRepo;
@@ -48,5 +49,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerDTO> getAllCustomers() {
        return customerRepo.findAll().stream().map(customerEntity -> mapper.map(customerEntity,CustomerDTO.class)).toList();
+    }
+
+    @Override
+    public CustomDTO customerIdGenerate() {
+        return new CustomDTO(customerRepo.getLastIndex());
     }
 }

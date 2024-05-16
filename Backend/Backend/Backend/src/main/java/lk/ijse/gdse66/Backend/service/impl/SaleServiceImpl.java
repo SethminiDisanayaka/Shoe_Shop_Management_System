@@ -6,28 +6,29 @@ import lk.ijse.gdse66.Backend.service.SaleService;
 import java.util.List;
 
 public class SaleServiceImpl implements SaleService {
+
     @Override
-    public List<SaleDTO> getAllSales() {
+    public List<SaleDTO> getAllOrders() {
         return null;
     }
 
     @Override
-    public SaleDTO getSaleDetails(String id) {
+    public SaleDTO getOrderDetails(String id) {
         return null;
     }
 
     @Override
-    public SaleDTO saveSales(SaleDTO salesDTO) {
+    public SaleDTO saveOrder(SaleDTO salesDTO) {
         return null;
     }
 
     @Override
-    public void updateSales(String id, SaleDTO salesDTO) {
+    public void updateOrder(String id, SaleDTO salesDTO) {
 
     }
 
     @Override
-    public void deleteSales(String id) {
+    public void deleteOrder(String id) {
 
     }
 }

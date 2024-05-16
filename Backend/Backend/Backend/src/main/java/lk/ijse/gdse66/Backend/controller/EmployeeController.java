@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.Backend.controller;
 
 
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.Backend.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,10 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/EmployeeIdGenerate")
+    public @ResponseBody
+    CustomDTO customerIdGenerate() {
+        return employeeService.employeeIdGenerate();
+    }
 }

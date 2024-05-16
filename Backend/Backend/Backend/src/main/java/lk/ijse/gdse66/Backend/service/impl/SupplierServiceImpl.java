@@ -1,8 +1,7 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
-import lk.ijse.gdse66.Backend.dto.CustomerDTO;
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.SupplierDTO;
-import lk.ijse.gdse66.Backend.enttity.CustomerEntity;
 import lk.ijse.gdse66.Backend.enttity.SupplierEntity;
 import lk.ijse.gdse66.Backend.repository.SupplierRepo;
 import lk.ijse.gdse66.Backend.service.SupplierService;
@@ -54,4 +53,10 @@ public class SupplierServiceImpl implements SupplierService {
     public List<SupplierDTO> getAllSuppliers() {
         return supplierRepo.findAll().stream().map(supplierEntity -> mapper.map(supplierEntity,SupplierDTO.class)).toList();
     }
+
+    @Override
+    public CustomDTO supplierIdGenerate() {
+         return new CustomDTO(supplierRepo.getLastIndex());
+    }
+
 }

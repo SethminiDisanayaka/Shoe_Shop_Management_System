@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.Backend.enttity.CustomerEntity;
@@ -51,5 +52,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> getAllEmployee() {
         return employeeRepo.findAll().stream().map(employeeEntity -> mapper.map(employeeEntity,EmployeeDTO.class)).toList();
 
+    }
+
+    @Override
+    public CustomDTO employeeIdGenerate() {
+        return new CustomDTO(employeeRepo.getLastIndex());
     }
 }

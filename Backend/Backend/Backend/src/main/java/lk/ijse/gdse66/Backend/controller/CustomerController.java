@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.controller;
 
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class CustomerController {
     public void delete(@PathVariable(value = "id") String id){
         customerService.deleteCustomer(id);
     }
-    
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/CustomerIdGenerate")
+    public @ResponseBody
+    CustomDTO customerIdGenerate() {
+        return customerService.customerIdGenerate();
+    }
 }

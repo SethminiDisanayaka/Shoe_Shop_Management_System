@@ -4,17 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class SaleDTO {
-   private String itemCode;
-   private String itemName;
-   private String price;
-   private int orderQty;
-   private double total;
+
+   private String orderNo;
+   private String customerName;
+   private LocalDateTime purchaseDate;
+   private Double total;
+   private String paymentMethod;
+   private Double totalPoints;
+   private String cashier;
 }

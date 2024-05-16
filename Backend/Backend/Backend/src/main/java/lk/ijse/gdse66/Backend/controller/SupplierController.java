@@ -1,9 +1,8 @@
 package lk.ijse.gdse66.Backend.controller;
 
 
-import lk.ijse.gdse66.Backend.dto.EmployeeDTO;
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.SupplierDTO;
-import lk.ijse.gdse66.Backend.service.EmployeeService;
 import lk.ijse.gdse66.Backend.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,4 +44,10 @@ public class SupplierController {
         supplierService.deleteSupplier(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/SupplierIdGenerate")
+    public @ResponseBody
+    CustomDTO supplierIdGenerate() {
+        return supplierService.supplierIdGenerate();
+    }
 }

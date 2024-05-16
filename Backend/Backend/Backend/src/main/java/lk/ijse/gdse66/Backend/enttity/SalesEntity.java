@@ -19,20 +19,14 @@ import java.util.List;
 public class SalesEntity {
 
     @Id
-    private String itemCode;
-    private String itemName;
-    private String price;
-    private int orderQty;
-    private double total;
-   /* @Id
     private String orderNo;
-
+    private String customerName;
     @CreationTimestamp
     private LocalDateTime purchaseDate;
 
     private Double total;
     private String paymentMethod;
-    private Integer totalPoints;
-    private String cashier;*/
+    private Double totalPoints;
+    private String cashier;
 
 }
