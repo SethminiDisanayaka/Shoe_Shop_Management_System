@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-public class USerEntity {
+public class UserEntity {
 
     @Id
-    private String email;
+    private String userId;
+    private String username;
     private String password;
     @Enumerated(EnumType.STRING)
     private AccessRole role;

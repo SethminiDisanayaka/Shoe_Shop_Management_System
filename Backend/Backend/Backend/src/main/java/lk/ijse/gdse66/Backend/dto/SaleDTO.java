@@ -5,12 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class SaleDTO {
+
+   private List<SalesDetailsDTO> salesDetails;
 
    private String orderNo;
    private String customerName;
