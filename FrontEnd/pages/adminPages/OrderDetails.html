@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OrderDetail Page</title>
-  <!--<link rel="stylesheet" href="../../assets/icon/icon.jpeg" >-->
+  <title>Sale Management Form</title>
+  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
 
   <meta content="Shoe Shop Management System" name="keywords">
   <meta content="This is shoe management project" name="description">
@@ -17,10 +17,10 @@
 
   <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
   <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   <style>
     .sidebar-nav .nav-link {
       font-size: 22px;
@@ -28,10 +28,11 @@
 
   </style>
   <link rel="stylesheet" href="../../assets/css/Dashboard.css">
+  <script src="../../assets/js/jquery-3.7.1.min.js"></script>
   <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body style=" background-color: #f8f9fa">
 
-<body>
-<!--Nav Bar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="../../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe- Shoe Management System
@@ -63,7 +64,6 @@
   </div>
 </nav>
 
-<!--side bar-->
 <div class="sidebar">
   <a href="../../pages/adminDashboard.html">Dashboard</a>
   <a href="../adminPages/SaleManagement.html">Sales</a>
@@ -74,31 +74,20 @@
   <a href="../adminPages/InventoryManagement.html">Inventory</a>
   <a href="#">Users</a>
   <a href="#">Log Out</a>
+
 </div>
 
-<div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 267px">
-  <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
-    <div class="col-11 justify-content-around sectionBorder"
-         style="height: 290px; background: white">
-      <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
-        <table class="table table-light table-striped table-bordered table-hover" >
-          <thead class="text-dark table-danger text-center  table-bordered sticky-top">
-          <tr>
-            <th scope="col">Item Code</th>
-            <th scope="col">Item Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Order Qty </th>
-            <th scope="col">Total</th>
-
-          </tr>
-          </thead>
-          <tbody id="saleServiceTable"></tbody>
-        </table>
-      </div>
-    </div>
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
   </div>
-</div>
+  <div class="credits">
+    Designed by <a href="">Sethmini Dissanayake</a>
+  </div>
+</footer>
 
+<script>
 
+</script>
 </body>
 </html>

@@ -1,108 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>Easy Car Login</title>
-  <link href="../assets/icon/logo.png" rel="icon">
+  <title>Sale Management Form</title>
+  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
 
-  <meta content="Easy Car Rental, Car rental,Vehicle Rental" name="keywords">
-  <meta content="This is Car Rental Web Project." name="description">
-  <meta content="Nimesh Piyumantha" name="author">
-  <meta content="Nimesh Piyumantha" name="owner">
+  <meta content="Shoe Shop Management System" name="keywords">
+  <meta content="This is shoe management project" name="description">
+  <meta content="Sethmini Dissanayake" name="author">
+  <meta content="Sethmini Dissanayake" name="owner">
   <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
   <meta content="green" name="theme-color">
 
-  <!-- Custom fonts for this template-->
-  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .sidebar-nav .nav-link {
+      font-size: 22px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 250px;
+      padding: 20px 0;
+      background-color: #343a40;
+      color: white;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+
+    .sidebar a:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+  </style>
+  <link rel="stylesheet" href="../../assets/css/Dashboard.css">
+  <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+<body style=" background-color: #f8f9fa">
 
-<body style="background: #ecf0f1;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="../../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe- Shoe Management System
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div class="container">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../assets/img/admin1.jpg" alt="Admin Photo" class="rounded-circle" style="width: 50px;">
+          David Wilson
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" href="#">Account Settings</a>
+          <a class="dropdown-item" href="#">Need Help</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Sign Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Outer Row -->
-  <div class="row justify-content-center mt-5">
+<div class="sidebar">
+  <a href="../../pages/adminDashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+  <a href="../adminPages/SaleManagement.html"><i class="fas fa-dollar-sign"></i> Sales</a>
+  <a href="../adminPages/OrderDetails.html"><i class="fas fa-receipt"></i> Sale Details</a>
+  <a href="../adminPages/SupplierManagement.html" class="active"><i class="fas fa-truck"></i> Suppliers</a>
+  <a href="../adminPages/CustomerManagement.html"><i class="fas fa-users"></i> Customers</a>
+  <a href="../adminPages/EmployeeManagement.html"><i class="fas fa-user-tie"></i> Employees</a>
+  <a href="../adminPages/InventoryManagement.html"><i class="fas fa-boxes"></i> Inventory</a>
+  <a href="#"><i class="fas fa-user"></i> Users</a>
+  <a href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+</div>
 
-    <div class="col-xl-10 col-lg-12 col-md-9">
 
-      <div class="card o-hidden border-0 shadow-lg my-6 sectionBorder">
-        <div class="card-body p-0">
-          <!-- Nested Row within Card Body -->
-          <div class="row">
-            <div class="col-lg-6 d-none d-lg-block" style="background: url(../assets/img/login.webp);background-size: cover"></div>
-            <div class="col-lg-6">
-              <div class="p-5">
-                <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                </div>
-                <form class="user m-2 p-3" id="loginForm">
-                  <div class="form-group">
-                    <select class="form-control" id="role_Type" name="role_Type" style="border-radius: 30px;height: 3.5em">
-                      <option value="RoleType">Choose Role</option>
-                      <option value="ADMIN">ADMIN</option>
-                      <option value="REGISTERED_USER">REGISTERED_USER</option>
-                      <option value="DRIVER">DRIVER</option>
-                    </select>
-                  </div>
-                  <div class="form-group mt-4">
-                    <input type="text" class="form-control form-control-user"
-                           id="user_Name" aria-describedby="emailHelp"
-                           placeholder="Enter User Name...">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-user"
-                           id="password" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox small">
-                      <input type="checkbox" class="custom-control-input" id="customCheck">
-                      <label class="custom-control-label" for="customCheck">Remember
-                        Me</label>
-                    </div>
-                  </div>
-                  <button id="btnLogin" type="button" class="btn btn-primary btn-user btn-block">
-                    Login
-                  </button>
 
-                </form>
-                <hr>
-                <div class="text-center">
-                  <a class="small" href="">Forgot Password?</a>
-                </div>
-                <div class="text-center">
-                  <a class="small" href="../index.html">Create an Account!</a>
-                </div>
-              </div>
+<main id="main" class="main" style="padding-left: 100px">
+  <div class="container mt-5">
+    <h2>Sale Service</h2>
+    <form>
+      <div class="row">
+        <!-- Sale Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color: lightseagreen; border-radius: 15px " >
+            <div class="form-group col-md-12">
+              <h4>Sale Details</h4>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="saleId">Sale ID</label>
+              <input type="text" class="form-control" id="saleId" placeholder="Sale ID">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="saleDate">Sale Date</label>
+              <input type="text" class="form-control" id="saleDate" placeholder="Sale Date">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="customerCode">Customer Code</label>
+              <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="customerName">Customer Name</label>
+              <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
+        <!-- Item Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color: #25cff2; border-radius: 15px">
+            <div class="form-group col-md-12">
+              <h4>Item Details</h4>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="itemCode">Item Code</label>
+              <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="itemName">Item Name</label>
+              <input type="text" class="form-control" id="itemName" placeholder="Item Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="unitPrice">Unit Price</label>
+              <input type="text" class="form-control" id="unitPrice">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="qtyOnHand">Qty on Hand</label>
+              <input type="text" class="form-control" id="qtyOnHand">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="buyQty">Buy Qty</label>
+              <input type="text" class="form-control" id="buyQty">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cashierName">Cashier Name</label>
+              <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="price">Price</label>
+              <input type="text" class="form-control" id="price" placeholder="Price">
+            </div>
+            <button id="btnAddtoCart" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Purchase Details -->
+        <div class="col-md-4">
+          <div class="form-row" style="background-color:#b7b9cc;  border-radius: 15px">
+            <div class="form-group col-md-12">
+              <h4>Purchase Details</h4>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="total">Total</label>
+              <input type="text" class="form-control" id="total">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="discount">Discount</label>
+              <input type="text" class="form-control" id="discount">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="subTotal">Sub Total</label>
+              <input type="text" class="form-control" id="subTotal">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" class="form-control">
+                <option selected>Choose...</option>
+                <option value="CASH">Cash</option>
+                <option value="CARD">Card</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cash">Cash</label>
+              <input type="text" class="form-control" id="cash">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="balance">Balance</label>
+              <input type="text" class="form-control" id="balance">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cardNo">Card No.</label>
+              <input type="text" class="form-control" id="cardNo">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="bank">Bank</label>
+              <input type="text" class="form-control" id="bank">
+            </div>
+
+            <button id="btnPurchase" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Purchase</button>
+
+          </div>
+        </div>
+      </div>
+    </form>
 
   </div>
 
-</div>
+  <div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
+    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+      <div class="col-11 justify-content-around sectionBorder"
+           style="height: 290px; background: white">
+        <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+          <table class="table table-light table-striped table-bordered table-hover" >
+            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+            <tr>
+              <th scope="col">Item Code</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Order Qty </th>
+              <th scope="col">Total</th>
 
-<!-- Bootstrap core JavaScript-->
-<script src="../assets/vendor/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/vendor/jQuery/jquery-3.6.1.min.js "></script>
-<script rel="script" src="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.js"></script>
+            </tr>
+            </thead>
+            <tbody id="saleServiceTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-<!-- Core plugin JavaScript-->
-<script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  </div>
+</main>
 
-<!-- Controller JS File -->
-<script src="../controller/LoginForm.js"></script>
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    Designed by <a href="">Sethmini Dissanayake</a>
+  </div>
+</footer>
 
+<script>
+  let orderBaseUrl = "http://localhost:8080/Back_End/";
+
+
+  generateOrderID();
+
+  $("#btnPurchase").attr('disabled', true);
+  /* /$("#btnAddToCart").attr('disabled', true);/*/
+
+  function generateOrderID() {
+    $.ajax({
+      url: orderBaseUrl+"orders/OrderIdGenerate",
+      method: "GET",
+      contentType: "application/json",
+      dataType: "json",
+      success: function (resp) {
+        let id = resp.value;
+        console.log("id" + id);
+
+        if (id === null) {
+          $("#oid").val("O00-001");
+        } else {
+          let tempId = parseInt(id.split("-")[1]);
+          tempId = tempId + 1;
+          if (tempId <= 9) {
+            $("#oid").val("O00-00" + tempId);
+          } else if (tempId <= 99) {
+            $("#oid").val("O00-0" + tempId);
+          } else {
+            $("#oid").val("O00-" + tempId);
+          }
+        }
+      },
+      error: function (ob, statusText, error) {
+        console.log(ob);
+        console.log(statusText);
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Request failed",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    });
+  }
+
+  $("#Customer_Id").empty();
+  $.ajax({
+    url: orderBaseUrl+ "customer",
+    method: "GET",
+    dataType: "json",
+    success: function (res) {
+      console.log(res);
+
+      for (let i of res.data) {
+        let id = i.code;
+
+        $("#Customer_Id").append(<option>${id}</option>);
+      }
+      console.log(res.message);
+    },
+    error: function (error) {
+      let message = JSON.parse(error.responseText).message;
+      console.log(message);
+    }
+
+  });
+
+  $("#Customer_Id").click(function () {
+    var search = $("#Customer_Id").val();
+    $.ajax({
+      url:orderBaseUrl+ "customer/searchCus?code="+ search,
+      method: "GET",
+      contentType: "application/json",
+      dataType: "json",
+      success: function (res) {
+        console.log(res);
+        $("#cusName").val(res.name);
+      },
+      error: function (error) {
+        let message = JSON.parse(error.responseText).message;
+        console.log(message);
+      }
+    })
+  });
+
+  $("#Item_Code").empty();
+  $.ajax({
+    url: orderBaseUrl+ "item",
+    method: "GET",
+    dataType: "json",
+    success: function (res) {
+      console.log(res);
+
+      for (let i of res.data) {
+        let id = i.code;
+
+        $("#Item_Code").append(<option>${id}</option>);
+      }
+      console.log(res.message);
+    },
+    error: function (error) {
+      let message = JSON.parse(error.responseText).message;
+      console.log(message);
+    }
+
+  });
+
+  $("#Item_Code").click(function () {
+    var search = $("#Item_Code").val();
+    $.ajax({
+      url:orderBaseUrl+ "item/searchItemId?code="+ search,
+      method: "GET",
+      contentType: "application/json",
+      dataType: "json",
+      success: function (res) {
+        console.log(res);
+        $("#itemName").val(res.name);
+        $("#itemPrice").val(res.salePrice);
+        $("#qtyOnHand").val(res.qty);
+      },
+      error: function (error) {
+        let message = JSON.parse(error.responseText).message;
+        console.log(message);
+      }
+    })
+  });
+
+  function updateDateTime() {
+    let currentDateTime = new Date();
+
+    let year = currentDateTime.getFullYear();
+    let month = currentDateTime.getMonth() + 1;
+    let day = currentDateTime.getDate();
+
+    let hours = currentDateTime.getHours();
+    let minutes = currentDateTime.getMinutes();
+    let seconds = currentDateTime.getSeconds();
+
+    let formattedDate = ${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')};
+    let formattedTime = ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')};
+
+    $('#oDate').val(${formattedDate} ${formattedTime});
+
+  }
+
+  updateDateTime();
+
+  setInterval(updateDateTime,1000);
+
+  let itemCode;
+  let itemName;
+  let itemPrice;
+  let itemQty;
+  let itemOrderQty;
+  let total = 0;
+  let discount = 0;
+  let subTotal = 0;
+  let tableRow = [];
+
+  $("#btnAddToCart").on("click", function () {
+    let duplicate = false;
+    for (let i = 0; i < $("#tblAddToCart tr").length; i++) {
+      if ($("#Item_Code option:selected").text() === $("#tblAddToCart tr").children(':nth-child(1)')[i].innerText) {
+        duplicate = true;
+      }
+    }
+    if (duplicate !== true) {
+      loadCartTableDetail();
+      reduceQty($("#buyQty").val());
+      calcTotal($("#buyQty").val() * $("#itemPrice").val());
+      $('#Item_Code,#itemName,#itemPrice,#qtyOnHand,#buyQty').val("");
+      $("#btnAddToCart").attr('disabled', false);
+    } else if (duplicate === true) {
+      manageQtyOnHand(tableRow.children(':nth-child(4)').text(), $("#buyQty").val());
+      $(tableRow).children(':nth-child(4)').text($("#buyQty").val());
+      manageTotal(tableRow.children(':nth-child(5)').text(), $("#buyQty").val() * $("#itemPrice").val());
+      $(tableRow).children(':nth-child(5)').text($("#buyQty").val() * $("#itemPrice").val());
+    }
+    $("#tblAddToCart>tr").click('click', function () {
+      tableRow = $(this);
+      let itemCode = $(this).children(":eq(0)").text();
+      let itemName = $(this).children(":eq(1)").text();
+      let unitPrice = $(this).children(":eq(2)").text();
+      let qty = $(this).children(":eq(3)").text();
+      let total = $(this).children(":eq(4)").text();
+      $("#Item_Code").val(itemCode);
+      $("#itemName").val(itemName);
+      $("#itemPrice").val(unitPrice);
+      $("#buyQty").val(qty);
+      $("#txtTotal").val(total);
+    });
+  });
+
+  function reduceQty(orderQty) {
+    let minQty = parseInt(orderQty);
+    let reduceQty = parseInt($("#qtyOnHand").val());
+    reduceQty = reduceQty - minQty;
+    $("#qtyOnHand").val(reduceQty);
+  }
+
+  function calcTotal(amount) {
+    total += amount;
+    $("#txtTotal").val(total);
+  }
+
+  function manageQtyOnHand(preQty, nowQty) {
+    var preQty = parseInt(preQty);
+    var nowQty = parseInt(nowQty);
+    let avaQty = parseInt($("#qtyOnHand").val());
+    avaQty = avaQty + preQty;
+    avaQty = avaQty - nowQty;
+    $("#qtyOnHand").val(avaQty);
+  }
+
+  function manageTotal(preTotal, nowTotal) {
+    total -= preTotal;
+    total += nowTotal;
+    $("#txtTotal").val(total);
+  }
+  $("#tblAddToCart").empty();
+
+  function loadCartTableDetail() {
+    itemCode = $("#Item_Code").val();
+    itemName = $("#itemName").val();
+    itemPrice = $("#itemPrice").val();
+    itemQty = $("#qtyOnHand").val();
+    itemOrderQty = $("#buyQty").val();
+    let total = itemPrice * itemOrderQty;
+    let row = <tr><td>${itemCode}</td><td>${itemName}</td><td>${itemPrice}</td><td>${itemOrderQty}</td><td>${total}</td></tr>;
+    $("#tblAddToCart").append(row);
+  }
+
+  $(document).on("change keyup blur", "#txtDiscount", function () {
+    discount = $("#txtDiscount").val();
+    discount = (total / 100) * discount;
+    subTotal = total - discount;
+
+    $("#txtSubTotal").val(subTotal);
+  });
+
+  $(document).on("change keyup blur", "#txtCash", function () {
+    let cash = $("#txtCash").val();
+    let balance = cash - subTotal;
+    $("#txtBalance").val(balance);
+    if (balance < 0) {
+      $("#lblCheckSubtotal").parent().children('strong').text(balance + " : plz enter valid Balance");
+      $("#btnPurchase").attr('disabled', true);
+    } else {
+      $("#lblCheckSubtotal").parent().children('strong').text("");
+      $("#btnPurchase").attr('disabled', false);
+    }
+  });
+
+
+  $("#btnPurchase").click(function () {
+
+    var SaleDetails = [];
+    for (let i = 0; i < $("#tblAddToCart tr").length; i++) {
+      var detailOb = {
+        oid: $("#oid").val(),
+        itemCode: $("#tblAddToCart tr").children(':nth-child(1)')[i].innerText,
+        qty: $("#tblAddToCart tr").children(':nth-child(4)')[i].innerText,
+        unitPrice: $("#tblAddToCart tr").children(':nth-child(5)')[i].innerText
+      }
+      SaleDetails.push(detailOb);
+    }
+    var saleId = $("#oid").val();
+
+    if (!saleId) {
+      alert("Order ID must not be null");
+      return;
+    }
+
+    var customerCode = $("#Customer_Id").val();
+    var customerName = $("#cusName").val();
+
+    if (!customerCode || !customerName) {
+      alert("Customer information must not be null");
+      return;
+    }
+    var date = $("#oDate").val();
+    var payment = $("#Payment").val();
+    var total = $("#txtTotal").val();
+    var totalPoint = $("#point").val();
+    var cashierName = $("#cashierName").val();
+
+
+    var orderOb = {
+      oid: saleId,
+      purchaseDate: date,
+      total: total,
+      paymentMethod:payment,
+      cashier: cashierName,
+      customer: {
+        code: customerCode,
+        name: customerName
+      },
+      saleDetails: SaleDetails
+    };
+
+
+
+    /* console.log(orderOb)
+     console.log(SaleDetails)*/
+
+    $.ajax({
+      url:orderBaseUrl+ "orders",
+      method: "POST",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(orderOb),
+      success: function (res) {
+        saveUpdateAlert("Sale", res.message);
+        generateOrderID();
+
+      },
+      error: function (error) {
+        let message = JSON.parse(error.responseText).message;
+        unSuccessUpdateAlert("Sale", message);
+      }
+    });
+
+    /*   clearDetails();*/
+    $("#tblAddToCart").empty();
+    $("#btnPurchase").attr('disabled', true);
+    $("#btnAddToCart").attr('disabled', true);
+    total = 0;
+  });
+</script>
 </body>
-
 </html>

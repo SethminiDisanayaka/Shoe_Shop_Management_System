@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Management Form</title>
+    <!--<link rel="stylesheet" href="../../assets/icon/icon.jpeg" >-->
+
+    <meta content="Shoe Shop Management System" name="keywords">
+    <meta content="This is shoe management project" name="description">
+    <meta content="Sethmini Dissanayake" name="author">
+    <meta content="Sethmini Dissanayake" name="owner">
+    <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
+    <meta content="green" name="theme-color">
+
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
+
+    <style>
+        .sidebar-nav .nav-link {
+            font-size: 22px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../assets/css/Dashboard.css">
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe- Shoe Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--  <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>-->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../assets/img/admin1.jpg" alt="Admin Photo" class="rounded-circle" style="width: 50px;">
+                    David Wilson
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <a class="dropdown-item" href="#">Need Help</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Sign Out</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <a href="../pages/userDashboard.html">Dashboard</a>
+    <a >Sales</a>
+    <a href="adminPages/OrderDetails.html">Sale Details</a>
+    <a id="userSupplierControllerSection">Suppliers</a>
+    <a id="userCustomerControllerSection">Customers</a>
+    <a id="userEmployeeControllerSection">Employees</a>
+    <a href="adminPages/InventoryManagement.html">Inventory</a>
+    <a href="../pages/login.html">Log Out</a>
+</div>
+
+<section class="container-fluid mt-3" id="customerControl" style="margin-left: 214px;">
+    <main id="main" class="main">
+        <div class="container mt-5">
+            <div class="card p-4">
+                <h2>Customer Form</h2>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="customerCode">Customer Code</label>
+                            <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="gender">Gender</label>
+                            <select id="gender" class="form-control">
+                                <option selected>Choose...</option>
+                                <option value="MALE">MALE</option>
+                                <option value="FEMALE">FEMALE</option>
+                                <option value="OTHER">OTHER</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="joinDate">Join Date</label>
+                            <input type="date" class="form-control" id="joinDate">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="level">Level</label>
+                            <select id="level" class="form-control">
+                                <option selected>Choose...</option>
+                                <option value="NEW">NEW</option>
+                                <option value="GOLD">GOLD</option>
+                                <option value="BRONZE">BRONZE</option>
+                                <option value="SILVER">SILVER</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="totalPoints">Total Points</label>
+                            <input type="text" class="form-control" id="totalPoints" placeholder="Total Points">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dob">DOB</label>
+                            <input type="date" class="form-control" id="dob">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="purchaseDate">Purchase Date</label>
+                            <input type="date" class="form-control" id="purchaseDate">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City & State</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="City & State">
+                        </div>
+                    </div>
+                    <button id="btnCustomerSave" type="button" class="btn btn-custom mr-2">Submit</button>
+                    <button id="btnCustomerUpdate" type="button" class="btn btn-custom mr-2" style="background-color: #fc424a">Update</button>
+                    <button id="btnCustomerDelete" type="button" class="btn btn-custom mr-2" style="background-color: #ffab00">Delete</button>
+                    <button id="btnCustomerClear" type="button" class="btn btn-dark">Clear</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card info-card mt-4">
+            <div class="row p-4 justify-content-around">
+                <div class="col-12 sectionBorder" style="background: white">
+                    <div class="table-responsive customerTableDiv overflow-auto">
+                        <table class="table table-light table-striped table-bordered table-hover">
+                            <thead class="text-dark table-danger text-center table-bordered sticky-top">
+                            <tr>
+                                <th scope="col">Customer Code</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Join Date</th>
+                                <th scope="col">Level</th>
+                                <th scope="col">Total Point</th>
+                                <th scope="col">DOB</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Purchase Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="customerTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+
+<section class="container-fluid mt-3" id="supplierControl" style="margin-left: 306px;">
+    <!--   <nav>
+           <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="">Home</a></li>
+               <li class="breadcrumb-item active">Customer Details</li>
+           </ol>
+       </nav>
+   -->
+    <!-- <div class="row mt-3"  >-->
+    <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+        <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+            <form>
+                <div class="col col-lg-12 col-sm-8">
+                    <label class="form-label" for="supplierId">Supplier ID<span
+                            class="text-danger"></span></label>
+                    <input class="form-control" id="supplierId" readonly
+                           name="customer_id" type="text">
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+            <div class="col-11 justify-content-around sectionBorder"
+                 style="height: 290px; background: white">
+                <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                    <table class="table table-light table-striped table-bordered table-hover" >
+                        <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                        <tr>
+                            <th scope="col">Supplier Code</th>
+                            <th scope="col">Supplier Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact No.1</th>
+                            <th scope="col">Contact No.1 </th>
+                            <th scope="col">E-mail</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody id="supplierTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<section class="container-fluid mt-3" id="employeeControl" style="margin-left: 306px;">
+    <!--   <nav>
+           <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="">Home</a></li>
+               <li class="breadcrumb-item active">Customer Details</li>
+           </ol>
+       </nav>
+   -->
+    <!-- <div class="row mt-3"  >-->
+    <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+        <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+            <form>
+                <div class="col col-lg-12 col-sm-8">
+                    <label class="form-label" for="employeeId">Employee ID<span
+                            class="text-danger"></span></label>
+                    <input class="form-control" id="employeeId" readonly
+                           name="customer_id" type="text">
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+            <div class="col-11 justify-content-around sectionBorder"
+                 style="height: 290px; background: white">
+                <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                    <table class="table table-light table-striped table-bordered table-hover" >
+                        <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                        <tr>
+                            <th scope="col">Employee Code</th>
+                            <th scope="col">Employee Name</th>
+                            <th scope="col">Employee Profile pic.</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Designation </th>
+                            <th scope="col">Access Role </th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Date of Join</th>
+                            <th scope="col">Attached Branch</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email </th>
+                            <th scope="col"> Guardian Name</th>
+                            <th scope="col">Guardian Contact No.</th>
+                        </tr>
+                        </thead>
+                        <tbody id="employeeTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+<script>
+
+
+    $("#userCustomerControllerSection").click(function () {
+        $("#customerControl").css('display', 'block');
+        $("#supplierControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
+    });
+
+    $("#userSupplierControllerSection").click(function () {
+        $("#supplierControl").css('display', 'block');
+        $("#customerControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
+    });
+
+    $("#userEmployeeControllerSection").click(function () {
+        $("#employeeControl").css('display', 'block');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+
+    });
+</script>
+</body>
+</html>
