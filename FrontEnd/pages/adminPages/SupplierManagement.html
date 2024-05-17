@@ -68,6 +68,7 @@
 <div class="sidebar">
   <a href="../../pages/adminDashboard.html">Dashboard</a>
   <a href="../adminPages/SaleManagement.html">Sales</a>
+  <a href="../adminPages/OrderDetails.html">Sale Details</a>
   <a href="../adminPages/SupplierManagement.html">Suppliers</a>
   <a href="../adminPages/CustomerManagement.html">Customers</a>
   <a href="../adminPages/EmployeeManagement.html">Employees</a>
@@ -187,6 +188,7 @@
         console.log(response);
         console.log(response.length);
         loadSupplierDataInTable(response);
+        generateSupplierId();
       },
       error: function (xhr, status, err) {
         console.log(err)
@@ -389,6 +391,37 @@
     });
   }
 
+  function generateSupplierId() {
+    $("#supplierCode").val("S00-001");
+    $.ajax({
+      url: "http://localhost:8080/app/api/v1/suppliers/SupplierIdGenerate",
+      method: "GET",
+      contentType: "application/json",
+      dataType: "json",
+      success: function (resp) {
+        let id = resp.value;
+        console.log("id" +id);
+
+        if (id === null){
+          $("#supplierCode").val("S00-001" );
+        } else {
+          let tempId = parseInt(id.split("-")[1]);
+          tempId = tempId + 1;
+          if (tempId <= 9) {
+            $("#supplierCode").val("S00-00" + tempId);
+          } else if (tempId <= 99) {
+            $("#supplierCode").val("S00-0" + tempId);
+          } else {
+            $("#supplierCode").val("S00-" + tempId);
+          }
+        }
+      },
+      error: function (ob, statusText, error) {
+
+      }
+    });
+  }
+
 
   $(document).ready(function () {
     getAllSuppliers();
@@ -398,49 +431,6 @@
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 </script>
-
-
-
-<main id="main" class="main" style="padding-left: 100px">
-  <div class="container mt-5">
-    <h2>Sale Service</h2>
-    <form>
-      <div class="row">
-        <!-- Sale Details -->
-        <div class="col-md-4">
-          <div class="form-row" style="background-color: lightseagreen; border-radius: 15px">
-            <div class="form-group col-md-12">
-              <h4>Sale Details</h4>
-            </div>
-            <!-- Sale Details Inputs -->
-          </div>
-        </div>
-
-        <!-- Item Details -->
-        <div class="col-md-4">
-          <div class="form-row" style="background-color: #25cff2; margin-top: 20px; border-radius: 15px">
-            <div class="form-group col-md-12">
-              <h4>Item Details</h4>
-            </div>
-            <!-- Item Details Inputs -->
-          </div>
-        </div>
-
-        <!-- Purchase Details -->
-        <div class="col-md-4">
-          <div class="form-row" style="background-color:#b7b9cc; margin-top: 30px; border-radius: 15px">
-            <div class="form-group col-md-12">
-              <h4>Purchase Details</h4>
-            </div>
-            <!-- Purchase Details Inputs -->
-          </div>
-        </div>
-      </div>
-
-
-    </form>
-  </div>
-</main>
 
 </body>
 </html>

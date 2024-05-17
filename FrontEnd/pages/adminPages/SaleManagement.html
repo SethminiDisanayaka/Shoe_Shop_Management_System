@@ -1,234 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Sale Management Form</title>
-  <link rel="stylesheet" href="../../assets/icon/icon.jpeg" >
+  <title>Easy Car Login</title>
+  <link href="../assets/icon/logo.png" rel="icon">
 
-  <meta content="Shoe Shop Management System" name="keywords">
-  <meta content="This is shoe management project" name="description">
-  <meta content="Sethmini Dissanayake" name="author">
-  <meta content="Sethmini Dissanayake" name="owner">
+  <meta content="Easy Car Rental, Car rental,Vehicle Rental" name="keywords">
+  <meta content="This is Car Rental Web Project." name="description">
+  <meta content="Nimesh Piyumantha" name="author">
+  <meta content="Nimesh Piyumantha" name="owner">
   <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
   <meta content="green" name="theme-color">
 
-  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-  <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <style>
-    .sidebar-nav .nav-link {
-      font-size: 22px;
-    }
-
-  </style>
-  <link rel="stylesheet" href="../../assets/css/Dashboard.css">
-  <script src="../../assets/js/jquery-3.7.1.min.js"></script>
-  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <!-- Custom styles for this template-->
+  <link href="../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
 </head>
-<body style=" background-color: #f8f9fa">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="../../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe- Shoe Management System
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<body style="background: #ecf0f1;">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/img/admin1.jpg" alt="Admin Photo" class="rounded-circle" style="width: 50px;">
-          David Wilson
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Profile</a>
-          <a class="dropdown-item" href="#">Account Settings</a>
-          <a class="dropdown-item" href="#">Need Help</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sign Out</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="container">
 
-<div class="sidebar">
-  <a href="../../pages/adminDashboard.html">Dashboard</a>
-  <a href="../adminPages/SaleManagement.html">Sales</a>
-  <a href="../adminPages/SupplierManagement.html">Suppliers</a>
-  <a href="../adminPages/CustomerManagement.html">Customers</a>
-  <a href="../adminPages/EmployeeManagement.html">Employees</a>
-  <a href="../adminPages/InventoryManagement.html">Inventory</a>
-  <a href="#">Users</a>
-  <a href="#">Log Out</a>
+  <!-- Outer Row -->
+  <div class="row justify-content-center mt-5">
 
-</div>
+    <div class="col-xl-10 col-lg-12 col-md-9">
 
+      <div class="card o-hidden border-0 shadow-lg my-6 sectionBorder">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block" style="background: url(../assets/img/login.webp);background-size: cover"></div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                </div>
+                <form class="user m-2 p-3" id="loginForm">
+                  <div class="form-group">
+                    <select class="form-control" id="role_Type" name="role_Type" style="border-radius: 30px;height: 3.5em">
+                      <option value="RoleType">Choose Role</option>
+                      <option value="ADMIN">ADMIN</option>
+                      <option value="REGISTERED_USER">REGISTERED_USER</option>
+                      <option value="DRIVER">DRIVER</option>
+                    </select>
+                  </div>
+                  <div class="form-group mt-4">
+                    <input type="text" class="form-control form-control-user"
+                           id="user_Name" aria-describedby="emailHelp"
+                           placeholder="Enter User Name...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-user"
+                           id="password" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                      <input type="checkbox" class="custom-control-input" id="customCheck">
+                      <label class="custom-control-label" for="customCheck">Remember
+                        Me</label>
+                    </div>
+                  </div>
+                  <button id="btnLogin" type="button" class="btn btn-primary btn-user btn-block">
+                    Login
+                  </button>
 
-
-<main id="main" class="main" style="padding-left: 100px">
-  <div class="container mt-5">
-    <h2>Sale Service</h2>
-    <form>
-      <div class="row">
-      <!-- Sale Details -->
-        <div class="col-md-4">
-      <div class="form-row" style="background-color: lightseagreen; border-radius: 15px " >
-        <div class="form-group col-md-12">
-          <h4>Sale Details</h4>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="saleId">Sale ID</label>
-          <input type="text" class="form-control" id="saleId" placeholder="Sale ID">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="saleDate">Sale Date</label>
-          <input type="text" class="form-control" id="saleDate" placeholder="Sale Date">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="customerCode">Customer Code</label>
-          <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="customerName">Customer Name</label>
-          <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                </form>
+                <hr>
+                <div class="text-center">
+                  <a class="small" href="">Forgot Password?</a>
+                </div>
+                <div class="text-center">
+                  <a class="small" href="../index.html">Create an Account!</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-        </div>
 
-      <!-- Item Details -->
-        <div class="col-md-4">
-      <div class="form-row" style="background-color: #25cff2; border-radius: 15px">
-        <div class="form-group col-md-12">
-          <h4>Item Details</h4>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="itemCode">Item Code</label>
-          <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="itemName">Item Name</label>
-          <input type="text" class="form-control" id="itemName" placeholder="Item Name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="unitPrice">Unit Price</label>
-          <input type="text" class="form-control" id="unitPrice">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="qtyOnHand">Qty on Hand</label>
-          <input type="text" class="form-control" id="qtyOnHand">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="buyQty">Buy Qty</label>
-          <input type="text" class="form-control" id="buyQty">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="cashierName">Cashier Name</label>
-          <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="price">Price</label>
-          <input type="text" class="form-control" id="price" placeholder="Price">
-        </div>
-        <button id="btnAddtoCart" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Add to Cart</button>
-      </div>
-        </div>
-      <!-- Purchase Details -->
-        <div class="col-md-4">
-      <div class="form-row" style="background-color:#b7b9cc;  border-radius: 15px">
-        <div class="form-group col-md-12">
-          <h4>Purchase Details</h4>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="total">Total</label>
-          <input type="text" class="form-control" id="total">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="discount">Discount</label>
-          <input type="text" class="form-control" id="discount">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="subTotal">Sub Total</label>
-          <input type="text" class="form-control" id="subTotal">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="paymentMethod">Payment Method</label>
-          <select id="paymentMethod" class="form-control">
-            <option selected>Choose...</option>
-            <option value="CASH">Cash</option>
-            <option value="CARD">Card</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="cash">Cash</label>
-          <input type="text" class="form-control" id="cash">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="balance">Balance</label>
-          <input type="text" class="form-control" id="balance">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="cardNo">Card No.</label>
-          <input type="text" class="form-control" id="cardNo">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="bank">Bank</label>
-          <input type="text" class="form-control" id="bank">
-        </div>
-
-        <button id="btnPurchase" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Purchase</button>
-
-      </div>
-        </div>
-      </div>
-    </form>
-
-  </div>
-
-  <div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
-    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
-      <div class="col-11 justify-content-around sectionBorder"
-           style="height: 290px; background: white">
-        <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
-          <table class="table table-light table-striped table-bordered table-hover" >
-            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
-            <tr>
-              <th scope="col">Item Code</th>
-              <th scope="col">Item Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Order Qty </th>
-              <th scope="col">Total</th>
-
-            </tr>
-            </thead>
-            <tbody id="saleServiceTable"></tbody>
-          </table>
-        </div>
-      </div>
     </div>
 
   </div>
-</main>
 
-<footer id="footer" class="footer">
-  <div class="copyright">
-    &copy; Copyright <strong><span>Shoe Managemnt Syatem</span></strong>. All Rights Reserved
-  </div>
-  <div class="credits">
-    Designed by <a href="">Sethmini Dissanayake</a>
-  </div>
-</footer>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="../assets/vendor/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/jQuery/jquery-3.6.1.min.js "></script>
+<script rel="script" src="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Controller JS File -->
+<script src="../controller/LoginForm.js"></script>
+
 </body>
+
 </html>

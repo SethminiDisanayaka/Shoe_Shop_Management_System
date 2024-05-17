@@ -11,6 +11,7 @@ function getAllCustomers() {
             console.log(response);
             console.log(response.length);
             loadCustomerDataInTable(response);
+            generateCustomerID();
         },
         error: function (xhr, status, err) {
             console.log(err)
@@ -249,7 +250,36 @@ function deleteCustomer(customerCode) {
     });
 }
 
+function generateCustomerID() {
+    $("#customerCode").val("C00-001");
+    $.ajax({
+        url: "http://localhost:8080/app/api/v1/customers/CustomerIdGenerate",
+        method: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (resp) {
+            let id = resp.value;
+            console.log("id" +id);
 
+            if (id === null){
+                $("#customerCode").val("C00-001" );
+            } else {
+                let tempId = parseInt(id.split("-")[1]);
+                tempId = tempId + 1;
+                if (tempId <= 9) {
+                    $("#customerCode").val("C00-00" + tempId);
+                } else if (tempId <= 99) {
+                    $("#customerCode").val("C00-0" + tempId);
+                } else {
+                    $("#customerCode").val("C00-" + tempId);
+                }
+            }
+        },
+        error: function (ob, statusText, error) {
+
+        }
+    });
+}
 
 
 $(document).ready(function () {

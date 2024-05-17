@@ -67,6 +67,7 @@
 <div class="sidebar">
     <a href="../../pages/adminDashboard.html">Dashboard</a>
     <a href="../adminPages/SaleManagement.html">Sales</a>
+    <a href="../adminPages/OrderDetails.html">Sale Details</a>
     <a href="../adminPages/SupplierManagement.html">Suppliers</a>
     <a href="../adminPages/CustomerManagement.html">Customers</a>
     <a href="../adminPages/EmployeeManagement.html">Employees</a>
@@ -251,6 +252,7 @@
                 console.log(response.length);
                 console.log("success to load employees")
                 loadEmployeeDataInTable(response);
+                generateEmployeeID();
             },
             error: function (xhr, status, err) {
                 console.log("Fail to load employees")
@@ -493,6 +495,37 @@
             error: function (xhr, status, error) {
                 console.error(error);
                 alert('Failed to delete employee. Please try again.');
+            }
+        });
+    }
+
+    function generateEmployeeID() {
+        $("#employeeCode").val("C00-001");
+        $.ajax({
+            url: "http://localhost:8080/app/api/v1/employees/EmployeeIdGenerate",
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resp) {
+                let id = resp.value;
+                console.log("id" +id);
+
+                if (id === null){
+                    $("#employeeCode").val("E00-001" );
+                } else {
+                    let tempId = parseInt(id.split("-")[1]);
+                    tempId = tempId + 1;
+                    if (tempId <= 9) {
+                        $("#employeeCode").val("E00-00" + tempId);
+                    } else if (tempId <= 99) {
+                        $("#employeeCode").val("E00-0" + tempId);
+                    } else {
+                        $("#employeeCode").val("E00-" + tempId);
+                    }
+                }
+            },
+            error: function (ob, statusText, error) {
+
             }
         });
     }
