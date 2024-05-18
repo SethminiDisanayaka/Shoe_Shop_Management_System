@@ -1,104 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
-  <title>Supplier Management Form</title>
+  <title>Inventory Management Form</title>
+  <!--<link rel="stylesheet" href="../../assets/icon/icon.jpeg" >-->
 
   <meta content="Shoe Shop Management System" name="keywords">
   <meta content="This is shoe management project" name="description">
   <meta content="Sethmini Dissanayake" name="author">
   <meta content="Sethmini Dissanayake" name="owner">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" name="viewport">
+  <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
   <meta content="green" name="theme-color">
 
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   <link href="../../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
   <link href="../../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   <style>
     .sidebar-nav .nav-link {
-      font-size: 18px;
-      padding: 10px 20px;
+      font-size: 22px;
     }
 
-    .sidebar-nav .nav-link:hover {
-      background-color: #e9ecef;
-      border-radius: 5px;
-    }
-
-    .sidebar-nav .active {
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 250px;
-      padding: 20px 0;
-      background-color: #343a40;
-      color: white;
-    }
-
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px 20px;
-    }
-
-    .sidebar a:hover {
-      background-color: #007bff;
-      color: white;
-    }
-
-    .navbar-brand img {
-      width: 30px;
-      margin-right: 10px;
-    }
-
-    .main {
-      margin-left: 250px;
-      padding: 20px;
-    }
-
-    .card {
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .form-group label {
-      font-weight: bold;
-    }
-
-    .btn-custom {
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .btn-custom:hover {
-      background-color: #0056b3;
-    }
   </style>
   <link rel="stylesheet" href="../../assets/css/Dashboard.css">
   <script src="../../assets/js/jquery-3.7.1.min.js"></script>
-  <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
-<body style="background-color: #f8f9fa">
+<body style=" background-color: #f8f9fa">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
-    <img src="../../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe - Shoe Management System
+    <img src="../../assets/icon/icon.jpeg" alt="Logo" class="logo mr-2"> Hello Shoe- Shoe Management System
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -106,8 +42,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="searchInput">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnItemSearch">Search</button>
     </form>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
@@ -128,102 +64,135 @@
 </nav>
 
 <div class="sidebar">
-  <a href="../../pages/adminDashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-  <a href="../adminPages/SaleManagement.html"><i class="fas fa-dollar-sign"></i> Sales</a>
-  <a href="../adminPages/OrderDetails.html"><i class="fas fa-receipt"></i> Sale Details</a>
-  <a href="../adminPages/SupplierManagement.html" class="active"><i class="fas fa-truck"></i> Suppliers</a>
-  <a href="../adminPages/CustomerManagement.html"><i class="fas fa-users"></i> Customers</a>
-  <a href="../adminPages/EmployeeManagement.html"><i class="fas fa-user-tie"></i> Employees</a>
-  <a href="../adminPages/InventoryManagement.html"><i class="fas fa-boxes"></i> Inventory</a>
-  <a href="#"><i class="fas fa-user"></i> Users</a>
-  <a href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+  <a href="../../pages/adminDashboard.html">Dashboard</a>
+  <a href="../adminPages/SaleManagement.html">Sales</a>
+  <a href="../adminPages/OrderDetails.html">Sale Details</a>
+  <a href="../adminPages/SupplierManagement.html">Suppliers</a>
+  <a href="../adminPages/CustomerManagement.html">Customers</a>
+  <a href="../adminPages/EmployeeManagement.html">Employees</a>
+  <a href="../adminPages/InventoryManagement.html">Inventory</a>
+  <a href="#">Users</a>
+  <a href="#">Log Out</a>
 </div>
 
-<main id="main" class="main">
-  <div class="container mt-5">
-    <div class="card p-4">
-      <h2>Supplier Form</h2>
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="supplierCode">Supplier Code</label>
-            <input type="text" class="form-control" id="supplierCode" placeholder="Supplier Code" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="supplierName">Supplier Name</label>
-            <input type="text" class="form-control" id="supplierName" placeholder="Supplier Name" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="category">Category</label>
-            <select id="category" class="form-control">
-              <option selected>Choose...</option>
-              <option value="INTERNATIONAL">INTERNATIONAL</option>
-              <option value="LOCAL">LOCAL</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputCity">City & State</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="City" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="contactNumber1">Contact</label>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="contactNumber1" placeholder="Contact Number" required>
-            </div>
-            <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="contactNumber2" placeholder="Another Contact Number" required>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail">E-mail</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="abcd12@gmail.com" required>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <button id="btnSupplierSave" type="button" class="btn btn-custom mr-2" onclick="saveSupplier()">Submit</button>
-            <button id="btnSupplierUpdate" type="button" class="btn btn-custom mr-2" style="background-color: #fc424a" onclick="updateSupplier()">Update</button>
-            <button id="btnSupplierDelete" type="button" class="btn btn-custom mr-2" style="background-color: #ffab00" onclick="deleteSupplier()">Delete</button>
-          </div>
-          <div class="form-group col-md-6">
-            <button id="btnSupplierClear" type="button" class="btn btn-dark" style="background-color: #8f5fe8">Clear</button>
-          </div>
-        </div>
-      </form>
-    </div>
 
-    <div class="card info-card mt-4">
-      <div class="row p-4 justify-content-around">
-        <div class="col-12 sectionBorder" style="background: white">
-          <div class="table-responsive customerTableDiv overflow-auto">
-            <table class="table table-light table-striped table-bordered table-hover">
-              <thead class="text-dark table-danger text-center table-bordered sticky-top">
-              <tr>
-                <th scope="col">Supplier Code</th>
-                <th scope="col">Supplier Name</th>
-                <th scope="col">Category</th>
-                <th scope="col">Address</th>
-                <th scope="col">Contact No.1</th>
-                <th scope="col">Contact No.2</th>
-                <th scope="col">E-mail</th>
-              </tr>
-              </thead>
-              <tbody id="supplierTable"></tbody>
-            </table>
-          </div>
+<main id="main" class="main" style="padding-left: 100px">
+  <div class="container mt-5">
+    <h2>Inventory Form</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="itemCode">Item Code</label>
+          <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="itemDesc">Item Desc</label>
+          <input type="text" class="form-control" id="itemDesc" placeholder="Item Desc">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="itemImage">Item Image</label>
+          <input type="file" class="form-control" id="itemImage">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="itemCategory">Category</label>
+          <input type="text" class="form-control" id="itemCategory">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="size">Size</label>
+          <input type="text" class="form-control" id="size">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="supplierCode">Supplier Code</label>
+          <input type="text" class="form-control" id="supplierCode">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="supplierName">Supplier Name</label>
+          <input type="text" class="form-control" id="supplierName">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="unitPrice">Unit Price-Sale</label>
+          <input type="text" class="form-control" id="unitPrice">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="unitPriceBuy">Unit Price-Buy</label>
+          <input type="text" class="form-control" id="unitPriceBuy">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="profit">Expected Profit</label>
+          <input type="text" class="form-control" id="profit">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="profitMargin">Profit Margin</label>
+          <input type="text" class="form-control" id="profitMargin" placeholder="Profit Margin">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="status">Status</label>
+          <select id="status" class="form-control">
+            <option selected>Choose...</option>
+            <option value="LOW">LOW</option>
+            <option value="AVAILABLE">AVAILABLE</option>
+            <option value="NOT_AVAILABLE">NOT_AVAILABLE</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="quantity">Quantity</label>
+        <input type="text" class="form-control" id="quantity">
+      </div>
+      </div>
+
+      <button id="btnItemSave"  type="button" class="btn btn-primary mr-2 " style="background-color: #00d25b">Submit</button>
+      <button id="btnItemUpdate" type="button" class="btn btn-primary mr-2" style="background-color: #fc424a">Update</button>
+      <button id="btnItemDelete" type="button" class="btn btn-primary mr-2" style="background-color: #ffab00">Delete</button>
+      <button id="btnItemClear" type="button" class="btn btn-dark" style="background-color: #8f5fe8">Clear</button>
+    </form>
+  </div>
+
+  <div class="card info-card" style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
+    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+      <div class="col-11 justify-content-around sectionBorder"
+           style="height: 290px; background: white">
+        <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+          <table class="table table-light table-striped table-bordered table-hover" >
+            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+            <tr>
+              <th scope="col">Item Code</th>
+              <th scope="col">Item Desc</th>
+              <th scope="col">Item Image</th>
+              <th scope="col">Category</th>
+              <th scope="col">Size</th>
+              <th scope="col"> Quantity</th>
+              <th scope="col">Supplier Code</th>
+              <th scope="col">Supplier Name</th>
+              <th scope="col">Unit Price-Sale</th>
+              <th scope="col">Unit Price-Buy</th>
+              <th scope="col">Expected Profit</th>
+              <th scope="col">Profit Margin</th>
+              <th scope="col"> Status</th>
+
+
+
+            </tr>
+            </thead>
+            <tbody id="inventoryTable"></tbody>
+          </table>
         </div>
       </div>
     </div>
+
   </div>
 </main>
 
@@ -232,9 +201,10 @@
     &copy; Copyright <strong><span>Shoe Management System</span></strong>. All Rights Reserved
   </div>
   <div class="credits">
-    Designed by <a href="#">Sethmini Dissanayake</a>
+    Designed by <a href="">Sethmini Dissanayake</a>
   </div>
 </footer>
+
 <script>
   getAllItems();
   /*loadNextCustomerId();*/

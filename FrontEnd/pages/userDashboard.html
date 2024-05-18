@@ -66,12 +66,12 @@
 
 <div class="sidebar">
     <a href="../pages/userDashboard.html">Dashboard</a>
-    <a >Sales</a>
+    <a id="userSalesControllerSection">Sales</a>
     <a href="adminPages/OrderDetails.html">Sale Details</a>
     <a id="userSupplierControllerSection">Suppliers</a>
     <a id="userCustomerControllerSection">Customers</a>
     <a id="userEmployeeControllerSection">Employees</a>
-    <a href="adminPages/InventoryManagement.html">Inventory</a>
+    <a id="userInventoryControllerSection">Inventory</a>
     <a href="../pages/login.html">Log Out</a>
 </div>
 
@@ -84,11 +84,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="customerCode">Customer Code</label>
-                            <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+                            <input type="text" class="form-control" id="customerCode1" placeholder="Customer Code">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="customerName">Customer Name</label>
-                            <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                            <input type="text" class="form-control" id="customerName2" placeholder="Customer Name">
                         </div>
                     </div>
                     <div class="form-row">
@@ -230,6 +230,7 @@
     </div>
 </section>
 
+<!--employee-->
 <section class="container-fluid mt-3" id="employeeControl" style="margin-left: 306px;">
     <!--   <nav>
            <ol class="breadcrumb">
@@ -288,6 +289,216 @@
     </div>
     </div>
 </section>
+
+<!--Sales-->
+<section class="container-fluid mt-3" id="saleControl" style="margin-left: 306px;">
+    <main id="main1" class="main" style="padding-left: 100px; margin-right: 400px;" >
+        <div class="container mt-5">
+            <h2>Sale Service</h2>
+            <form>
+                <div class="row">
+                    <!-- Sale Details -->
+                    <div class="col-md-4">
+                        <div class="form-row" style="background-color: lightseagreen; border-radius: 15px " >
+                            <div class="form-group col-md-12">
+                                <h4>Sale Details</h4>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="saleId">Sale ID</label>
+                                <input type="text" class="form-control" id="saleId" placeholder="Sale ID">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="saleDate">Sale Date</label>
+                                <input type="text" class="form-control" id="saleDate" placeholder="Sale Date">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="customerCode">Customer Code</label>
+                                <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="customerName">Customer Name</label>
+                                <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Details -->
+                    <div class="col-md-4">
+                        <div class="form-row" style="background-color: #25cff2; border-radius: 15px">
+                            <div class="form-group col-md-12">
+                                <h4>Item Details</h4>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="itemCode">Item Code</label>
+                                <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="itemName">Item Name</label>
+                                <input type="text" class="form-control" id="itemName" placeholder="Item Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="unitPrice">Unit Price</label>
+                                <input type="text" class="form-control" id="unitPrice">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="qtyOnHand">Qty on Hand</label>
+                                <input type="text" class="form-control" id="qtyOnHand">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="buyQty">Buy Qty</label>
+                                <input type="text" class="form-control" id="buyQty">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cashierName">Cashier Name</label>
+                                <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="price">Price</label>
+                                <input type="text" class="form-control" id="price" placeholder="Price">
+                            </div>
+                            <button id="btnAddtoCart" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Purchase Details -->
+                    <div class="col-md-4">
+                        <div class="form-row" style="background-color:#b7b9cc;  border-radius: 15px">
+                            <div class="form-group col-md-12">
+                                <h4>Purchase Details</h4>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="total">Total</label>
+                                <input type="text" class="form-control" id="total">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="discount">Discount</label>
+                                <input type="text" class="form-control" id="discount">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="subTotal">Sub Total</label>
+                                <input type="text" class="form-control" id="subTotal">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="paymentMethod">Payment Method</label>
+                                <select id="paymentMethod" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option value="CASH">Cash</option>
+                                    <option value="CARD">Card</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cash">Cash</label>
+                                <input type="text" class="form-control" id="cash">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="balance">Balance</label>
+                                <input type="text" class="form-control" id="balance">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cardNo">Card No.</label>
+                                <input type="text" class="form-control" id="cardNo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="bank">Bank</label>
+                                <input type="text" class="form-control" id="bank">
+                            </div>
+
+                            <button id="btnPurchase" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Purchase</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
+            <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+                <div class="col-11 justify-content-around sectionBorder"
+                     style="height: 290px; background: white">
+                    <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                        <table class="table table-light table-striped table-bordered table-hover" >
+                            <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+                            <tr>
+                                <th scope="col">Item Code</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Order Qty </th>
+                                <th scope="col">Total</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="saleServiceTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</section>
+
+
+<!--Inventory -->
+<section class="container-fluid mt-3" id="inventoryControl" style="margin-left: 306px;">
+    <!--   <nav>
+           <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="">Home</a></li>
+               <li class="breadcrumb-item active">Customer Details</li>
+           </ol>
+       </nav>
+   -->
+    <!-- <div class="row mt-3"  >-->
+    <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+        <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+            <form>
+                <div class="col col-lg-12 col-sm-8">
+                    <label class="form-label" for="inventoryId">Employee ID<span
+                            class="text-danger"></span></label>
+                    <input class="form-control" id="inventoryId" readonly
+                           name="customer_id" type="text">
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+            <div class="col-11 justify-content-around sectionBorder"
+                 style="height: 290px; background: white">
+                <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                    <table class="table table-light table-striped table-bordered table-hover" >
+                        <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                        <tr>
+                            <th scope="col">Item Code</th>
+                            <th scope="col">Item Desc</th>
+                            <th scope="col">Item Image</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Size</th>
+                            <th scope="col"> Quantity</th>
+                            <th scope="col">Supplier Code</th>
+                            <th scope="col">Supplier Name</th>
+                            <th scope="col">Unit Price-Sale</th>
+                            <th scope="col">Unit Price-Buy</th>
+                            <th scope="col">Expected Profit</th>
+                            <th scope="col">Profit Margin</th>
+                            <th scope="col"> Status</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="inventoryTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+
 <script>
 
 
@@ -295,16 +506,37 @@
         $("#customerControl").css('display', 'block');
         $("#supplierControl").css('display', 'none');
         $("#employeeControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
     });
 
     $("#userSupplierControllerSection").click(function () {
         $("#supplierControl").css('display', 'block');
         $("#customerControl").css('display', 'none');
         $("#employeeControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
     });
 
     $("#userEmployeeControllerSection").click(function () {
         $("#employeeControl").css('display', 'block');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+    });
+    $("#userSalesControllerSection").click(function () {
+        $("#saleControl").css('display', 'block');
+        $("#employeeControl").css('display', 'none');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+
+    });
+    $("#userInventoryControllerSection").click(function () {
+        $("#inventoryControl").css('display','block');
+        $("#saleControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
         $("#supplierControl").css('display', 'none');
         $("#customerControl").css('display', 'none');
 
