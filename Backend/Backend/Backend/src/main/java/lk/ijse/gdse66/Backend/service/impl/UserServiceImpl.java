@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public CustomDTO userIdGenerate() {
         return new CustomDTO(userRepo.getLastIndex());    }
+
+    @Override
+    public UserDTO getRegUsers(String username, String password) {
+            return modelMapper.map(userRepo.findUserByUser_NameAndPassword(username, password), UserDTO.class);
+    }
 }

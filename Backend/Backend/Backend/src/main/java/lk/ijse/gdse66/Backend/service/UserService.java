@@ -17,4 +17,6 @@ public interface UserService {
 
     @ResponseBody
     CustomDTO userIdGenerate();
+
+    UserDTO getRegUsers(String username,String password);
 }
