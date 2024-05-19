@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminPanelDTO {
+public class AdminDTO {
     private double totalSales;
     private double totalProfit;
     private String  mostSaleItem;
