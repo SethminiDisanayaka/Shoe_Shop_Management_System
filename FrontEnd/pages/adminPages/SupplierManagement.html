@@ -46,6 +46,7 @@
       padding: 20px 0;
       background-color: #343a40;
       color: white;
+      overflow-y: auto;
     }
 
     .sidebar a {
@@ -68,6 +69,8 @@
     .main {
       margin-left: 250px;
       padding: 20px;
+      overflow-y: auto; /* Added to make the main content scrollable */
+      height: calc(100vh - 56px); /* Subtracting navbar height */
     }
 
     .card {
@@ -88,6 +91,15 @@
 
     .btn-custom:hover {
       background-color: #0056b3;
+    }
+
+    .info-card {
+      margin-top: 20px;
+    }
+
+    .customerTableDiv {
+      max-height: calc(100vh - 350px); /* Adjust the height as needed */
+      overflow-y: auto;
     }
   </style>
   <link rel="stylesheet" href="../../assets/css/Dashboard.css">
@@ -127,7 +139,7 @@
   </div>
 </nav>
 
-<div class="sidebar">
+<div class="sidebar" style="background-color: #a3b6ee">
   <a href="../../pages/adminDashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
   <a href="../adminPages/SaleManagement.html"><i class="fas fa-dollar-sign"></i> Sales</a>
   <a href="../adminPages/OrderDetails.html"><i class="fas fa-receipt"></i> Sale Details</a>
@@ -142,7 +154,8 @@
 <main id="main" class="main">
   <div class="container mt-5">
     <div class="card p-4">
-      <h2>Supplier Form</h2>
+      <h2>Supplier
+      </h2>
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">

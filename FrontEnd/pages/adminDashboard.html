@@ -2,27 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Page</title>
-    <link rel="stylesheet" href="../assets/icon/icon.jpeg" >
-
-    <meta content="Shoe Shop Management System" name="keywords">
-    <meta content="This is shoe management project" name="description">
-    <meta content="Sethmini Dissanayake" name="author">
-    <meta content="Sethmini Dissanayake" name="owner">
-    <meta content="width=device-width initial-scale=1 maximum-scale=1 minimum-scale=1 user-scalable=no" name="viewport">
-    <meta content="green" name="theme-color">
-
-    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <link href="../assets/vendor/styleslog/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/vendor/sweetalert2-11.6.16/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Supplier Management Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom styles here */
+    </style>
     <link rel="stylesheet" href="../assets/css/Dashboard.css">
-    <script src="../assets/js/jquery-3.7.1.min.js"></script>
-
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
 
@@ -35,10 +26,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,161 +44,472 @@
     </div>
 </nav>
 
-<div class="sidebar">
-    <a href="../pages/adminDashboard.html">Dashboard</a>
-    <a href="adminPages/SaleManagement.html">Sales</a>
-    <a href="adminPages/SupplierManagement.html">Suppliers</a>
-    <a href="adminPages/CustomerManagement.html">Customers</a>
-    <a href="adminPages/EmployeeManagement.html">Employees</a>
-    <a href="adminPages/InventoryManagement.html">Inventory</a>
-    <a href="#">Users</a>
-    <a href="#">Log Out</a>
+<div class="container-fluid">
+    <!-- Sidebar -->
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="sidebar">
+                <a href="../pages/userDashboard.html">Dashboard</a>
+                <a id="userSalesControllerSection">Sales</a>
+                <a href="adminPages/OrderDetails.html">Sale Details</a>
+                <a id="userSupplierControllerSection">Suppliers</a>
+                <a id="userCustomerControllerSection">Customers</a>
+                <a id="userEmployeeControllerSection">Employees</a>
+                <a id="userInventoryControllerSection">Inventory</a>
+                <a href="../pages/login.html">Log Out</a>
+            </div>
+        </div>
+        <!-- Main content -->
+        <div class="col-lg-9">
+            <!-- Customer Form -->
+            <section id="customerControl">
+                <main id="main" class="main">
+                    <div class="container mt-5">
+                        <div class="card p-4">
+                            <h2>Customer Form</h2>
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="customerCode">Customer Code</label>
+                                        <input type="text" class="form-control" id="customerCode" placeholder="Customer Code">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="customerName">Customer Name</label>
+                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                            <option value="OTHER">OTHER</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="joinDate">Join Date</label>
+                                        <input type="date" class="form-control" id="joinDate">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="level">Level</label>
+                                        <select id="level" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option value="NEW">NEW</option>
+                                            <option value="GOLD">GOLD</option>
+                                            <option value="BRONZE">BRONZE</option>
+                                            <option value="SILVER">SILVER</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="totalPoints">Total Points</label>
+                                        <input type="text" class="form-control" id="totalPoints" placeholder="Total Points">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="dob">DOB</label>
+                                        <input type="date" class="form-control" id="dob">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="purchaseDate">Purchase Date</label>
+                                        <input type="date" class="form-control" id="purchaseDate">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="inputAddress">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City & State</label>
+                                        <input type="text" class="form-control" id="inputCity" placeholder="City & State">
+                                    </div>
+                                </div>
+                                <button id="btnCustomerSave" type="button" class="btn btn-custom mr-2">Submit</button>
+                                <button id="btnCustomerUpdate" type="button" class="btn btn-custom mr-2" style="background-color: #fc424a">Update</button>
+                                <button id="btnCustomerDelete" type="button" class="btn btn-custom mr-2" style="background-color: #ffab00">Delete</button>
+                                <button id="btnCustomerClear" type="button" class="btn btn-dark">Clear</button>
+                            </form>
+                        </div>
+                    </div>
 
+                    <div class="card info-card mt-4">
+                        <div class="row p-4 justify-content-around">
+                            <div class="col-12 sectionBorder" style="background: white">
+                                <div class="table-responsive customerTableDiv overflow-auto">
+                                    <table class="table table-light table-striped table-bordered table-hover">
+                                        <thead class="text-dark table-danger text-center table-bordered sticky-top">
+                                        <tr>
+                                            <th scope="col">Customer Code</th>
+                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Join Date</th>
+                                            <th scope="col">Level</th>
+                                            <th scope="col">Total Point</th>
+                                            <th scope="col">DOB</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Purchase Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="customerTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>>
+            </section>
+
+
+            <!-- Supplier Control -->
+            <section id="supplierControl" style="display: none;">
+                <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+                    <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+                        <form>
+                            <div class="col col-lg-12 col-sm-8">
+                                <label class="form-label" for="supplierId">Supplier ID<span
+                                        class="text-danger"></span></label>
+                                <input class="form-control" id="supplierId" readonly
+                                       name="supplierId" type="text">
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+                        <div class="col-11 justify-content-around sectionBorder"
+                             style="height: 290px; background: white">
+                            <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                                <table class="table table-light table-striped table-bordered table-hover" >
+                                    <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                                    <tr>
+                                        <th scope="col">Supplier Code</th>
+                                        <th scope="col">Supplier Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Contact No.1</th>
+                                        <th scope="col">Contact No.1 </th>
+                                        <th scope="col">E-mail</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="supplierTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </section>
+
+
+            <!-- Employee Control -->
+            <section id="employeeControl" style="display: none;">
+                <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+                    <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+                        <form>
+                            <div class="col col-lg-12 col-sm-8">
+                                <label class="form-label" for="employeeId">Employee ID<span
+                                        class="text-danger"></span></label>
+                                <input class="form-control" id="employeeId" readonly
+                                       name="customer_id" type="text">
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+                        <div class="col-11 justify-content-around sectionBorder"
+                             style="height: 290px; background: white">
+                            <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                                <table class="table table-light table-striped table-bordered table-hover" >
+                                    <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                                    <tr>
+                                        <th scope="col">Employee Code</th>
+                                        <th scope="col">Employee Name</th>
+                                        <th scope="col">Employee Profile pic.</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Designation </th>
+                                        <th scope="col">Access Role </th>
+                                        <th scope="col">DOB</th>
+                                        <th scope="col">Date of Join</th>
+                                        <th scope="col">Attached Branch</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Contact No.</th>
+                                        <th scope="col">Email </th>
+                                        <th scope="col"> Guardian Name</th>
+                                        <th scope="col">Guardian Contact No.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="employeeTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- Sale Control -->
+            <section id="saleControl" style="display: none;">
+                <main id="main1" class="main" style="padding-left: 100px; margin-right: 400px;" >
+                    <div class="container mt-5">
+                        <h2>Sale Service</h2>
+                        <form>
+                            <div class="row">
+                                <!-- Sale Details -->
+                                <div class="col-md-4">
+                                    <div class="form-row" style="background-color: lightseagreen; border-radius: 15px " >
+                                        <div class="form-group col-md-12">
+                                            <h4>Sale Details</h4>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="saleId">Sale ID</label>
+                                            <input type="text" class="form-control" id="saleId" placeholder="Sale ID">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="saleDate">Sale Date</label>
+                                            <input type="text" class="form-control" id="saleDate" placeholder="Sale Date">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="customerCodeSale">Customer Code</label>
+                                            <input type="text" class="form-control" id="customerCodeSale" placeholder="Customer Code">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="customerNameSale">Customer Na me</label>
+                                            <input type="text" class="form-control" id="customerNameSale" placeholder="Customer Name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Item Details -->
+                                <div class="col-md-4">
+                                    <div class="form-row" style="background-color: #25cff2; border-radius: 15px">
+                                        <div class="form-group col-md-12">
+                                            <h4>Item Details</h4>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="itemCode">Item Code</label>
+                                            <input type="text" class="form-control" id="itemCode" placeholder="Item Code">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="itemName">Item Name</label>
+                                            <input type="text" class="form-control" id="itemName" placeholder="Item Name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="unitPrice">Unit Price</label>
+                                            <input type="text" class="form-control" id="unitPrice">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="qtyOnHand">Qty on Hand</label>
+                                            <input type="text" class="form-control" id="qtyOnHand">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="buyQty">Buy Qty</label>
+                                            <input type="text" class="form-control" id="buyQty">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="cashierName">Cashier Name</label>
+                                            <input type="text" class="form-control" id="cashierName" placeholder="Cashier Name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="price">Price</label>
+                                            <input type="text" class="form-control" id="price" placeholder="Price">
+                                        </div>
+                                        <button id="btnAddtoCart" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Add to Cart</button>
+                                    </div>
+                                </div>
+                                <!-- Purchase Details -->
+                                <div class="col-md-4">
+                                    <div class="form-row" style="background-color:#b7b9cc;  border-radius: 15px">
+                                        <div class="form-group col-md-12">
+                                            <h4>Purchase Details</h4>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="total">Total</label>
+                                            <input type="text" class="form-control" id="total">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="discount">Discount</label>
+                                            <input type="text" class="form-control" id="discount">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="subTotal">Sub Total</label>
+                                            <input type="text" class="form-control" id="subTotal">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="paymentMethod">Payment Method</label>
+                                            <select id="paymentMethod" class="form-control">
+                                                <option selected>Choose...</option>
+                                                <option value="CASH">Cash</option>
+                                                <option value="CARD">Card</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="cash">Cash</label>
+                                            <input type="text" class="form-control" id="cash">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="balance">Balance</label>
+                                            <input type="text" class="form-control" id="balance">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="cardNo">Card No.</label>
+                                            <input type="text" class="form-control" id="cardNo">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="bank">Bank</label>
+                                            <input type="text" class="form-control" id="bank">
+                                        </div>
+
+                                        <button id="btnPurchase" type="button" class="btn btn-primary mr-2" style="background-color: #00d25b">Purchase</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="card info-card"  style="margin-top: 10px; margin-right: 12px;margin-left: 90px">
+                        <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px;">
+                            <div class="col-11 justify-content-around sectionBorder"
+                                 style="height: 290px; background: white">
+                                <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                                    <table class="table table-light table-striped table-bordered table-hover" >
+                                        <thead class="text-dark table-danger text-center  table-bordered sticky-top">
+                                        <tr>
+                                            <th scope="col">Item Code</th>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Order Qty </th>
+                                            <th scope="col">Total</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody id="saleServiceTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+            </section>
+
+
+            <!-- Inventory Control -->
+            <section id="inventoryControl" style="display: none;">
+                <div class="card info-card" style="background-color: lightblue; margin-right: 320px">
+
+
+                    <div class="mb-3 mt-5 d-grid gap-1 d-md-flex justify-content-md-center">
+                        <form>
+                            <div class="col col-lg-12 col-sm-8">
+                                <label class="form-label" for="inventoryId">Employee ID<span
+                                        class="text-danger"></span></label>
+                                <input class="form-control" id="inventoryId" readonly
+                                       name="customer_id" type="text">
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                    <div class="row mt-1 mt-md-2 mt-lg-4 mm-2 p-2 justify-content-around" style="height: 350px; " >
+                        <div class="col-11 justify-content-around sectionBorder"
+                             style="height: 290px; background: white">
+                            <div class="table-responsive customerTableDiv overflow-auto " style="height: 300px;">
+                                <table class="table table-light table-striped table-bordered table-hover" >
+                                    <thead class="text-dark table-danger text-nowrap text-center  table-bordered" style="background-color: #25cff2">
+                                    <tr>
+                                        <th scope="col">Item Code</th>
+                                        <th scope="col">Item Desc</th>
+                                        <th scope="col">Item Image</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col"> Quantity</th>
+                                        <th scope="col">Supplier Code</th>
+                                        <th scope="col">Supplier Name</th>
+                                        <th scope="col">Unit Price-Sale</th>
+                                        <th scope="col">Unit Price-Buy</th>
+                                        <th scope="col">Expected Profit</th>
+                                        <th scope="col">Profit Margin</th>
+                                        <th scope="col"> Status</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="inventoryTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
 </div>
 
-<div class="content">
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Recent Sales
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>Running Shoes</td>
-                                <td>2</td>
-                                <td>$150</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>Sneakers</td>
-                                <td>1</td>
-                                <td>$80</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>Boots</td>
-                                <td>1</td>
-                                <td>$120</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Recent Sales
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>Running Shoes</td>
-                                <td>2</td>
-                                <td>$150</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>Sneakers</td>
-                                <td>1</td>
-                                <td>$80</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>Boots</td>
-                                <td>1</td>
-                                <td>$120</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Recent Sales
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>John Doe</td>
-                                <td>Running Shoes</td>
-                                <td>2</td>
-                                <td>$150</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jane Smith</td>
-                                <td>Sneakers</td>
-                                <td>1</td>
-                                <td>$80</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Michael Johnson</td>
-                                <td>Boots</td>
-                                <td>1</td>
-                                <td>$120</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- jQuery, Popper.js, Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Your custom JavaScript -->
+<script src="../assets/js/jquery-3.7.1.min.js"></script>
+<script>
+    // Add your JavaScript code here
+    $("#userCustomerControllerSection").click(function () {
+        $("#customerControl").css('display', 'block');
+        $("#supplierControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+    });
 
+    $("#userSupplierControllerSection").click(function () {
+        $("#supplierControl").css('display', 'block');
+        $("#customerControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+    });
+
+    $("#userEmployeeControllerSection").click(function () {
+        $("#employeeControl").css('display', 'block');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+        $("#saleControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+    });
+    $("#userSalesControllerSection").click(function () {
+        $("#saleControl").css('display', 'block');
+        $("#employeeControl").css('display', 'none');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+        $("#inventoryControl").css('display','none');
+    });
+    $("#userInventoryControllerSection").click(function () {
+        $("#inventoryControl").css('display','block');
+        $("#saleControl").css('display', 'none');
+        $("#employeeControl").css('display', 'none');
+        $("#supplierControl").css('display', 'none');
+        $("#customerControl").css('display', 'none');
+    });
+</script>
 </body>
 </html>

@@ -88,6 +88,26 @@
     .btn-custom:hover {
       background-color: #0056b3;
     }
+
+    body {
+      padding-top: 70px; /* Adjust according to the height of your navbar */
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    main {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
   </style>
   <link rel="stylesheet" href="../../assets/css/Dashboard.css">
   <link rel="stylesheet" href="../../assets/css/styles.css">
@@ -124,7 +144,7 @@
   </div>
 </nav>
 
-<div class="sidebar">
+<div class="sidebar" style="background-color: #a3b6ee">
   <a href="../../pages/adminDashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
   <a href="../adminPages/SaleManagement.html"><i class="fas fa-dollar-sign"></i> Sales</a>
   <a href="../adminPages/OrderDetails.html"><i class="fas fa-receipt"></i> Sale Details</a>
@@ -137,7 +157,7 @@
 </div>
 
 <main id="main" class="main">
-  <div class="container mt-5">
+  <div class="container">
     <div class="card p-4">
       <h2>Customer Form</h2>
       <form>
