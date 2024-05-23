@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
+import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.SaleDTO;
 import lk.ijse.gdse66.Backend.dto.SalesDetailsDTO;
 import lk.ijse.gdse66.Backend.enttity.SalesDetailsEntity;
@@ -51,5 +52,10 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public void deleteOrder(String id) {
 
+    }
+
+    @Override
+    public CustomDTO orderGenerateId() {
+        return null;
     }
 }
