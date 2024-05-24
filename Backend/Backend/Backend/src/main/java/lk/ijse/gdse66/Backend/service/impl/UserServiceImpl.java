@@ -10,6 +10,9 @@ import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,14 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Override
+    public UserDetailsService userDetailService() {
+        return username -> (UserDetails) userRepo.findByEmail(username)
+                .orElseThrow(() -> new
+                        UsernameNotFoundException(
+                        "user not found"));
+    }
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
