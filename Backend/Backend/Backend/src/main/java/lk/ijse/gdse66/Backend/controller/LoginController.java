@@ -1,33 +1,43 @@
 package lk.ijse.gdse66.Backend.controller;
 
+import lk.ijse.gdse66.Backend.auth.request.SignInRequest;
+import lk.ijse.gdse66.Backend.auth.request.SignUpRequest;
+import lk.ijse.gdse66.Backend.auth.response.JWTAuthResponse;
+import lk.ijse.gdse66.Backend.service.AuthenticationService;
 import lk.ijse.gdse66.Backend.util.CurrentUser;
 import lk.ijse.gdse66.Backend.util.ResponseUtil;
 import lk.ijse.gdse66.Backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class LoginController {
+    private final AuthenticationService authenticationService;
 
-    @Autowired
-    private UserService service;
-
-    @GetMapping(params = {"username"})
-    public ResponseUtil setUser(String username,String password){
-        CurrentUser.currentUser=service.getRegUsers(username,password);
-        return new ResponseUtil("OK","Successfully Loaded..!","");
+    @PostMapping("/signin")
+    public ResponseEntity<JWTAuthResponse> signIn(
+            @RequestBody SignInRequest signInRequest){
+        System.out.println("Signing in");
+        return ResponseEntity.ok(
+                authenticationService.signIn(signInRequest));
     }
 
-    @GetMapping(path = "current")
-    public ResponseUtil getCurrentUser(){
-        return new ResponseUtil("OK","Successfully Loaded..!",CurrentUser.currentUser);
+    @PostMapping("/signup")
+    public ResponseEntity<JWTAuthResponse> signUp(
+            @RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(
+                authenticationService.signUp(signUpRequest));
+    }
+    @PostMapping("/signupupdate")
+    public ResponseEntity<JWTAuthResponse> signUpdate(
+            @RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(
+                authenticationService.signUp(signUpRequest));
     }
 
 }
