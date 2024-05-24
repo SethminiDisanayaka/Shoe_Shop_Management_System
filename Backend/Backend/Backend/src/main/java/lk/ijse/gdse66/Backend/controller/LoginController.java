@@ -3,6 +3,7 @@ package lk.ijse.gdse66.Backend.controller;
 import lk.ijse.gdse66.Backend.util.CurrentUser;
 import lk.ijse.gdse66.Backend.util.ResponseUtil;
 import lk.ijse.gdse66.Backend.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/loginForm")
+@RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
 public class LoginController {
 
     @Autowired
