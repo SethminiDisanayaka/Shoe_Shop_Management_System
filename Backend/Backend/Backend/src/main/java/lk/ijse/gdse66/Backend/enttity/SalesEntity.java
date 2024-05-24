@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.ManyToAny;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,14 +17,28 @@ import java.util.List;
 public class SalesEntity {
 
     @Id
+    @Column(name = "order_no")
     private String orderNo;
-    private String customerName;
-    @CreationTimestamp
-    private LocalDateTime purchaseDate;
 
-    private Double total;
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @Column(name = "total_price")
+    private Double totalPrice;
+
+    @Column(name = "purchase_date")
+    private Date purchaseDate;
+
+    @Column(name = "payment_method")
     private String paymentMethod;
-    private Double totalPoints;
-    private String cashier;
+
+    @Column(name = "added_points")
+    private Double addedPoints;
+
+    @Column(name = "cashier_name")
+    private String cashierName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "sales")
+    private List<SalesDetailsEntity> salesDetails = new ArrayList<>();
 
 }

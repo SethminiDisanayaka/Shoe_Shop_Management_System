@@ -22,10 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
-
     @Autowired
     private ModelMapper modelMapper;
 
+    public UserServiceImpl(UserRepo userRepository, ModelMapper modelMapper) {
+        this.userRepo = userRepository;
+        this.modelMapper = modelMapper;
+    }
     @Override
     public UserDetailsService userDetailService() {
         return username -> (UserDetails) userRepo.findByEmail(username)
@@ -36,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        if (userRepo.existsById(userDTO.getUserId())){
+        if (userRepo.existsById(userDTO.getEmail())){
             throw new DuplicateRecordException("User ID is Already Exist");
         }
         return modelMapper.map(userRepo.save(modelMapper.map(userDTO, UserEntity.class)), UserDTO.class);
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
-        if (!userRepo.existsById(userDTO.getUserId())){
+        if (!userRepo.existsById(userDTO.getEmail())){
             throw new NotFoundException("Can't find user id!!!");
         }
         return modelMapper.map(userRepo.save(modelMapper.map(userDTO, UserEntity.class)), UserDTO.class);

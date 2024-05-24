@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.gdse66.Backend.service.JWTService;
 import lk.ijse.gdse66.Backend.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,15 +16,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
+@Configuration
+@RequiredArgsConstructor
 public class JWTConfigurationFilter extends OncePerRequestFilter {
     private final JWTService jwtService;
     private final UserService userService;
-
-    public JWTConfigurationFilter(JWTService jwtService, UserService userService) {
-        this.jwtService = jwtService;
-        this.userService = userService;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -54,7 +52,11 @@ public class JWTConfigurationFilter extends OncePerRequestFilter {
                         }else if(request.getMethod().equals("POST") & request.getRequestURI().equals("/app/api/v0/sales")){
                             System.out.println("Processing...");
                         }else{
-
+                            /*response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.setContentType("application/json");
+                            String message = "{\"error\": \"You haven't Authorization to execute this process\"}";
+                            response.getWriter().write(message);
+                            return;*/
                         }
                     }
                 }
