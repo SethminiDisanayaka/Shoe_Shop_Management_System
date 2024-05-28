@@ -1,6 +1,3 @@
-
-
-
 var bearerToken = 'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJSb2xlX0FETUlOIn1dLCJzdWIiOiJtYW5pdGhAZ21haWwuY29tIiwiaWF0IjoxNzE2MzkzMzQ0LCJleHAiOjE3MTY0Nzk3NDR9.0mLJTGZgd8Nc5NsegcZVaKwZSjpiO1TsLfSrcIJ6gdk';
 
 function showAlert(iconType,titleMessage,textMessage){
