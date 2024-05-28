@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.Backend.controller;
 
+import jakarta.validation.Valid;
 import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.service.CustomerService;
@@ -11,43 +12,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customers")
-@CrossOrigin(origins = "*")
+@RequestMapping("api/v0/customers")
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE,RequestMethod.PATCH, RequestMethod.OPTIONS})
 public class CustomerController {
-
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
-        System.out.println("customer working !");
+        this.customerService = customerService;
     }
 
-    @GetMapping("/getAllCustomers")
-    public List<CustomerDTO> getAllCustomers(){
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    List<CustomerDTO> getAllCustomer(){
         return customerService.getAllCustomers();
     }
 
-    @PostMapping("/save")
-    public CustomerDTO save(@RequestBody CustomerDTO customerDTO){
-        System.out.println(customerDTO);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    CustomerDTO saveCustomer(@Valid @RequestBody CustomerDTO customerDTO){
         return customerService.saveCustomer(customerDTO);
     }
 
-    @PostMapping("/update")
-    public CustomerDTO update(@RequestBody CustomerDTO customerDTO){
-        System.out.println(customerDTO);
-        return customerService.updateCustomer(customerDTO);
+    @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void updateCustomer(@Valid @RequestBody CustomerDTO customerDTO,@PathVariable("id") String id){
+        customerService.updateCustomer(id,customerDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable(value = "id") String id){
+    @DeleteMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void deleteCustomer(@PathVariable("id") String id){
         customerService.deleteCustomer(id);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/CustomerIdGenerate")
-    public @ResponseBody
-    CustomDTO customerIdGenerate() {
-        return customerService.customerIdGenerate();
+    @PatchMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    CustomerDTO getCustomer(@PathVariable("id") String id){
+        return customerService.getCustomerDetails(id);
+    }
+
+    @GetMapping("/nextid")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    String getNextEmployeeCode(){
+        return customerService.genarateNextCustomerCode();
     }
 }

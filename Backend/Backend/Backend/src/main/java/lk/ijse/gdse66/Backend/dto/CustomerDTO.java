@@ -1,5 +1,8 @@
 package lk.ijse.gdse66.Backend.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
+import jakarta.validation.constraints.Pattern;
 import lk.ijse.gdse66.Backend.enums.Gender;
 import lk.ijse.gdse66.Backend.enums.Level;
 import lombok.AllArgsConstructor;
@@ -9,17 +12,32 @@ import lombok.ToString;
 
 import java.util.Date;
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 public class CustomerDTO {
+    @Null(message = "Customer CODE is auto genarated")
     private String customerCode;
+    @NotBlank(message = "Customer Name Cannot Be Null")
+    @Pattern(regexp = "^[a-zA-Z]+(?:[ '-][a-zA-Z]+)*$", message = "Name not valid")
     private String customerName;
     private Gender gender;
     private Date joinDate;
-    private Level Level;
-    private double totalPoints;
-    private Date DOB;
-    private String address;
-    private String purchaseDate;
+    private Level level;
+    private int totalPoints;
+    private Date dob;
+    @NotBlank(message = "Customer Address Line 01 Cannot Be Null")
+    private String addressLine01;
+    @NotBlank(message = "Customer Address Line 02 Cannot Be Null")
+    private String addressLine02;
+    private String addressLine03;
+    private String addressLine04;
+    private String addressLine05;
+    @NotBlank(message = "Customer Contact Number Cannot Be Null")
+    @Pattern(regexp = "^\\+?[0-9()-]{1,11}$", message = "Contact Number not valid")
+    private String contactNo;
+    @NotBlank(message = "Customer Email Cannot Be Null")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Email not valid")
+    private String email;
+    private Date recentPurchaseDateTime;
 }
+

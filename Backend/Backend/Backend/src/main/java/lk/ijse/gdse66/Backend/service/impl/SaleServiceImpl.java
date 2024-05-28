@@ -11,10 +11,12 @@ import lk.ijse.gdse66.Backend.service.SaleService;
 import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SaleServiceImpl implements SaleService {
 
     SaleRepo saleRepo;

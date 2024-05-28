@@ -3,7 +3,7 @@ package lk.ijse.gdse66.Backend.service.impl;
 import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.CustomerDTO;
 import lk.ijse.gdse66.Backend.enttity.CustomerEntity;
-import lk.ijse.gdse66.Backend.repository.CustomerRepo;
+import lk.ijse.gdse66.Backend.repository.CustomerRepository;
 import lk.ijse.gdse66.Backend.service.CustomerService;
 import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
@@ -16,43 +16,64 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private CustomerRepo customerRepo;
+    CustomerRepository customerRepository;
+    ModelMapper modelMapper;
 
-    @Autowired
-    private ModelMapper mapper;
-    @Override
-    public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
-        if (customerRepo.existsById(customerDTO.getCustomerCode())){
-            throw new DuplicateRecordException("Customer ID is Already Exist");
-        }
-        return mapper.map(customerRepo.save(mapper.map(customerDTO, CustomerEntity.class)),CustomerDTO.class);
-    }
-
-    @Override
-    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
-        if (!customerRepo.existsById(customerDTO.getCustomerCode())){
-            throw new NotFoundException("Can't find customer id!!!");
-        }
-        return mapper.map(customerRepo.save(mapper.map(customerDTO ,CustomerEntity.class)) ,CustomerDTO.class);
-    }
-
-    @Override
-    public boolean deleteCustomer(String id) {
-        if (!customerRepo.existsById(id)){
-            throw new NotFoundException("Can't find customer id!!!");
-        }
-        customerRepo.deleteById(id);
-        return false;
+    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper) {
+        this.customerRepository = customerRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-       return customerRepo.findAll().stream().map(customerEntity -> mapper.map(customerEntity,CustomerDTO.class)).toList();
+        return customerRepository.findAll().stream().map(
+                customer -> modelMapper.map(customer,CustomerDTO.class)
+        ).toList();
     }
 
     @Override
-    public CustomDTO customerIdGenerate() {
-        return new CustomDTO(customerRepo.getLastIndex());
+    public CustomerDTO getCustomerDetails(String id) {
+        if(!customerRepository.existsByCustomerCode(id)){
+            throw new NotFoundException("Customer "+id+" Not Found!");
+        }
+        return modelMapper.map(customerRepository.findByCustomerCode(id), CustomerDTO.class);
+    }
+
+    @Override
+    public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
+        if(customerRepository.existsByCustomerCode(customerDTO.getCustomerCode())){
+            throw new DuplicateRecordException("This Customer "+customerDTO.getCustomerCode()+" already exicts...");
+        }
+        customerDTO.setCustomerCode(genarateNextCustomerCode());
+        return modelMapper.map(customerRepository.save(modelMapper.map(
+                customerDTO, CustomerEntity.class)), CustomerDTO.class
+        );
+    }
+
+    @Override
+    public void updateCustomer(String id, CustomerDTO customerDTO) {
+        if(!customerRepository.existsByCustomerCode(id)){
+            throw new NotFoundException("Customer ID"+ id + "Not Found...");
+        }
+        customerDTO.setCustomerCode(id);
+        customerRepository.save(modelMapper.map(customerDTO,CustomerEntity.class));
+    }
+
+    @Override
+    public void deleteCustomer(String id) {
+        if(!customerRepository.existsByCustomerCode(id)){
+            throw  new NotFoundException("Customer ID"+ id + "Not Found...");
+        }
+        customerRepository.deleteByCustomerCode(id);
+    }
+
+    @Override
+    public String genarateNextCustomerCode() {
+        String lastCustomerCode = customerRepository.findLatestCustomerCode();
+        if(lastCustomerCode==null){lastCustomerCode = "CUS000";}
+        int numericPart = Integer.parseInt(lastCustomerCode.substring(3));
+        numericPart++;
+        String nextSupplierCode = "CUS" + String.format("%03d", numericPart);
+        return nextSupplierCode;
     }
 }
