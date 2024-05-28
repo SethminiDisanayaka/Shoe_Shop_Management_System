@@ -5,7 +5,7 @@ import lk.ijse.gdse66.Backend.auth.request.SignUpRequest;
 import lk.ijse.gdse66.Backend.auth.response.JWTAuthResponse;
 import lk.ijse.gdse66.Backend.dto.UserDTO;
 import lk.ijse.gdse66.Backend.enttity.UserEntity;
-import lk.ijse.gdse66.Backend.repository.EmployeeRepo;
+import lk.ijse.gdse66.Backend.repository.EmployeeRepository;
 import lk.ijse.gdse66.Backend.repository.SecurityRepository;
 import lk.ijse.gdse66.Backend.service.AuthenticationService;
 import lk.ijse.gdse66.Backend.service.JWTService;
@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final ModelMapper mapper;
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
-    EmployeeRepo employeeRepository;
+    EmployeeRepository employeeRepository;
 
     @Override
     public JWTAuthResponse signIn(SignInRequest signInRequest) {

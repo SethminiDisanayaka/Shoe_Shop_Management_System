@@ -2,7 +2,10 @@ package lk.ijse.gdse66.Backend.service.impl;
 
 import lk.ijse.gdse66.Backend.dto.InventoryDTO;
 import lk.ijse.gdse66.Backend.enttity.InventoryEntity;
+import lk.ijse.gdse66.Backend.enttity.SalesEntity;
 import lk.ijse.gdse66.Backend.repository.InventoryRepo;
+import lk.ijse.gdse66.Backend.repository.SaleRepo;
+import lk.ijse.gdse66.Backend.repository.SalesDetailRepo;
 import lk.ijse.gdse66.Backend.service.InventoryService;
 import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
@@ -10,56 +13,136 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
-    @Autowired
-    private InventoryRepo inventoryRepo;
-    @Autowired
-    private ModelMapper modelMapper;
+    InventoryRepo inventoryRepository;
+    SaleRepo salesRepository;
+    SalesDetailRepo salesDetailsRepository;
+    ModelMapper modelMapper;
 
-    @Override
-    public InventoryDTO saveItem(InventoryDTO inventoryDTO) {
-        if(inventoryRepo.existsById(inventoryDTO.getItemCode())){
-            throw new DuplicateRecordException("Item ID is already exist");
-        }
-        return modelMapper.map(inventoryRepo.save(modelMapper.map(inventoryDTO , InventoryEntity.class)) , InventoryDTO.class);
+    public InventoryServiceImpl(InventoryRepo inventoryRepository, ModelMapper modelMapper, SaleRepo salesRepository, SalesDetailRepo salesDetailsRepository) {
+        this.inventoryRepository = inventoryRepository;
+        this.modelMapper = modelMapper;
+        this.salesRepository = salesRepository;
+        this.salesDetailsRepository = salesDetailsRepository;
     }
 
     @Override
-    public InventoryDTO updateItem(InventoryDTO inventoryDTO) {
-        if (!inventoryRepo.existsById(inventoryDTO.getItemCode())){
-            throw new NotFoundException("Can't find customer id!!!");
-        }
-        return modelMapper.map(inventoryRepo.save(modelMapper.map(inventoryDTO ,InventoryEntity.class)) ,InventoryDTO.class);
+    public List<InventoryDTO> getAllInventory() {
+        getMostSaleItem();
+        return inventoryRepository.findAll().stream().map(
+                inventory -> modelMapper.map(inventory, InventoryDTO.class)
+        ).toList();
     }
 
     @Override
-    public boolean deleteItem(String id) {
-        if (!inventoryRepo.existsById(id)){
-            throw new NotFoundException("Can't find customer id!!!");
+    public InventoryDTO getInventoryDetails(String id) {
+        if(!inventoryRepository.existsByItemCode(id)){
+            throw new NotFoundException("Inventory "+id+" Not Found!");
         }
-        inventoryRepo.deleteById(id);
-        return false;
+        return modelMapper.map(inventoryRepository.findByItemCode(id), InventoryDTO.class);
     }
 
     @Override
-    public List<InventoryDTO> getAllItems() {
-        return inventoryRepo.findAll().stream().map(inventoryEntity -> modelMapper.map(inventoryEntity,InventoryDTO.class)).toList();
+    public InventoryDTO saveInventory(InventoryDTO inventoryDTO) {
+        if(inventoryRepository.existsByItemCode(inventoryDTO.getItemCode())){
+            throw new DuplicateRecordException("This Inventory "+inventoryDTO.getItemCode()+" already exicts...");
+        }
+        System.out.println(inventoryDTO.getItemCode());
+        inventoryDTO.setItemCode(nextInventoryCode(inventoryDTO.getItemCode()));
+        return modelMapper.map(inventoryRepository.save(modelMapper.map(
+                inventoryDTO, InventoryEntity.class)), InventoryDTO.class
+        );
     }
 
     @Override
-    public List<InventoryDTO> searchItem(String id) {
-        List<InventoryEntity> inventoryEntities = inventoryRepo.findByItemCodeStartingWith(id);
-        if (inventoryEntities.isEmpty()) {
-            throw new NotFoundException("No items found with item code starting with: " + id);
+    public void updateInventory(String id, InventoryDTO inventoryDTO) {
+        InventoryEntity existingInventory = inventoryRepository.findByItemCode(id);
+
+        if(existingInventory.getItemCode().isEmpty()){
+            throw new NotFoundException("Inventory "+ id + "Not Found...");
         }
-        return inventoryEntities.stream()
-                .map(inventoryEntity -> modelMapper.map(inventoryEntity, InventoryDTO.class))
-                .collect(Collectors.toList());
+
+        existingInventory.setItemDescription(inventoryDTO.getIte());
+        existingInventory.setItemPicture(inventoryDTO.getItemPicture());
+
+        inventoryRepository.save(existingInventory);
+    }
+
+    @Override
+    public void deleteInventory(String id) {
+        if(!inventoryRepository.existsByItemCode(id)){
+            throw  new NotFoundException("Inventory "+ id + "Not Found...");
+        }
+        inventoryRepository.deleteByItemCode(id);
+    }
+
+    @Override
+    public String nextInventoryCode(String code) {
+        String lastInventoryCode = "IIM"+""+inventoryRepository.countInventoryRows();
+        if(lastInventoryCode==null){lastInventoryCode = code+"000";}
+        int numericPart = Integer.parseInt(lastInventoryCode.substring(3));
+        numericPart++;
+        String nextInventoryCode = code + String.format("%03d", numericPart);
+        return nextInventoryCode;
+    }
+
+    public InventoryDTO getMostSaleItem(){
+        List<SalesEntity>getAllTodaySales;
+        List<SalesInventoryDTO>getTodaySaleInventoryDetails = new ArrayList<>();
+        List<SalesInventoryDTO>TodaySaleInventoryDetails = new ArrayList<>();
+        Boolean notFound = false;
+        LocalDate today = LocalDate.now();
+        getAllTodaySales = salesRepository.findTodaySales(String.valueOf(today));
+        System.out.println(getAllTodaySales.get(0).getOrderNo());
+        for(int i = 0; i<getAllTodaySales.size(); i++){
+            List<SalesInventoryDTO>getOneOrderSalesDetails = salesDetailsRepository.findAllBySalesOrderNo(getAllTodaySales.get(i).getOrderNo()).stream().map(
+                    salesDetails -> modelMapper.map(salesDetails, SalesInventoryDTO.class)
+            ).toList();
+            for(SalesInventoryDTO salesInventoryDTO:getOneOrderSalesDetails){
+                getTodaySaleInventoryDetails.add(salesInventoryDTO);
+            }
+        }
+        System.out.println(getTodaySaleInventoryDetails.size());
+        for(int i = 0; i<getTodaySaleInventoryDetails.size(); i++){
+            if(TodaySaleInventoryDetails.size()>0) {
+                L:for (int j = 0; j < TodaySaleInventoryDetails.size(); j++) {
+                    if(getTodaySaleInventoryDetails.get(i).getInventory().getItemCode().equals(
+                            TodaySaleInventoryDetails.get(j).getInventory().getItemCode()
+                    )){
+                        System.out.println("comming!");
+                        TodaySaleInventoryDetails.get(j).setQuantity(
+                                TodaySaleInventoryDetails.get(j).getQuantity()+getTodaySaleInventoryDetails.get(i).getQuantity()
+                        );
+                        notFound = false;
+                        break L;
+                    }else {notFound = true;}
+                }
+                if(notFound){
+                    TodaySaleInventoryDetails.add(getTodaySaleInventoryDetails.get(i));
+                }
+            }else{
+                TodaySaleInventoryDetails.add(getTodaySaleInventoryDetails.get(i));
+            }
+        }
+        TodaySaleInventoryDetails = sortAsSaleItemsQuantity(TodaySaleInventoryDetails);
+        for(int i = 0; i <TodaySaleInventoryDetails.size(); i++){
+            System.out.println(TodaySaleInventoryDetails.get(i).getQuantity());
+        }
+
+        return null;
+    }
+
+    private List<SalesInventoryDTO> sortAsSaleItemsQuantity(List<SalesInventoryDTO> list){
+        list.sort(Comparator.comparingInt(SalesInventoryDTO::getQuantity));
+        return list;
     }
 
 }

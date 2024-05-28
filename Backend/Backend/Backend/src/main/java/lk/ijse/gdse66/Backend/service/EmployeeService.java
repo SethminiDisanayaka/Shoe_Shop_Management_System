@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 public interface EmployeeService {
-    EmployeeDTO saveEmployee(EmployeeDTO dto);
-    EmployeeDTO updateEmployee(EmployeeDTO dto);
-    boolean deleteEmployee(String id);
-    List<EmployeeDTO> getAllEmployee();
-
-    @ResponseBody
-    CustomDTO employeeIdGenerate();
+    List<EmployeeDTO> getAllEmployees();
+    EmployeeDTO getEmployeeDetails(String id);
+    EmployeeDTO saveEmployee(EmployeeDTO employeeDTO);
+    void updateEmployee(String id, EmployeeDTO employeeDTO);
+    void deleteEmployee(String id);
+    String nextEmployeeCode();
 }

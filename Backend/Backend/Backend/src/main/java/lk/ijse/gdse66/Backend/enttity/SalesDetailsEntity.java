@@ -29,7 +29,7 @@ public class SalesDetailsEntity {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "itemCode" , referencedColumnName = "itemCode")
+    @JoinColumn(name = "item_code" , referencedColumnName = "item_code")
     private InventoryEntity inventory;
 
     @ManyToOne
