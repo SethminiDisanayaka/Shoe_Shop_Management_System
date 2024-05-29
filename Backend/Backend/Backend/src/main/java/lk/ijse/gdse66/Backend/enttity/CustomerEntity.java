@@ -12,8 +12,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class CustomerEntity {
     @Id
     @Column(name = "customer_code", unique = true, nullable = false)

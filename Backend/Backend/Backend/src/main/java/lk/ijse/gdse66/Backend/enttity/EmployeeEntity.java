@@ -2,20 +2,21 @@ package lk.ijse.gdse66.Backend.enttity;
 
 import jakarta.persistence.*;
 import lk.ijse.gdse66.Backend.enums.AccessRole;
-import lk.ijse.gdse66.Backend.enums.Branch;
-import lk.ijse.gdse66.Backend.enums.Designation;
 import lk.ijse.gdse66.Backend.enums.Gender;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class EmployeeEntity {
     @Id
     @Column(name = "employee_code", unique = true, nullable = false)

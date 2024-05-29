@@ -19,7 +19,7 @@ import java.io.IOException;
 
 @Configuration
 @RequiredArgsConstructor
-public class JWTConfigurationFilter extends OncePerRequestFilter {
+public class JWTConfigurationFilter extends OncePerRequestFilter{
     private final JWTService jwtService;
     private final UserService userService;
 
@@ -53,11 +53,7 @@ public class JWTConfigurationFilter extends OncePerRequestFilter {
                         }else if(request.getMethod().equals("POST") & request.getRequestURI().equals("/app/api/v0/sales")){
                             System.out.println("Processing...");
                         }else{
-                            /*response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                            response.setContentType("application/json");
-                            String message = "{\"error\": \"You haven't Authorization to execute this process\"}";
-                            response.getWriter().write(message);
-                            return;*/
+
                         }
                     }
                 }

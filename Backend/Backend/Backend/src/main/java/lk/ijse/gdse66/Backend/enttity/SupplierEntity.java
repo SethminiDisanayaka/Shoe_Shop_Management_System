@@ -3,23 +3,59 @@ package lk.ijse.gdse66.Backend.enttity;
 import jakarta.persistence.*;
 import lk.ijse.gdse66.Backend.enums.Category;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "supplier")
+@Table(name = "suppliers")
 public class SupplierEntity {
     @Id
-    /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
+    @Column(name = "supplier_code", unique = true, nullable = false)
     private String supplierCode;
+
+    @Column(name = "supplier_name", nullable = false)
     private String supplierName;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false)
     private Category category;
-    private String address;
+
+    @Column(name = "address_line_01", nullable = false)
+    private String addressLine01;
+
+    @Column(name = "address_line_02")
+    private String addressLine02;
+
+    @Column(name = "address_line_03")
+    private String addressLine03;
+
+    @Column(name = "address_line_04")
+    private String addressLine04;
+
+    @Column(name = "address_line_05")
+    private String addressLine05;
+
+    @Column(name = "address_line_06")
+    private String addressLine06;
+
+    @Column(name = "contact_no1", nullable = false)
     private String contactNo1;
-    private String contactNo2;
+
+    @Column(name = "land_line_no", nullable = false)
+    private String landLineNo;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "supplier")
+    private List<InventoryEntity> inventory = new ArrayList<>();
 }

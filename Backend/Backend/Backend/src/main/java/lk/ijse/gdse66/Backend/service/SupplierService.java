@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 public interface SupplierService {
-    SupplierDTO saveSupplier(SupplierDTO dto);
-    SupplierDTO updateSupplier(SupplierDTO dto);
-    boolean deleteSupplier(String id);
     List<SupplierDTO> getAllSuppliers();
-
-    @ResponseBody
-    CustomDTO supplierIdGenerate();
+    SupplierDTO getSupplierDetails(String id);
+    SupplierDTO saveSupplier(SupplierDTO supplierDTO);
+    void updateSupplier(String id, SupplierDTO supplierDTO);
+    void deleteSupplier(String id);
+    String genarateNextSupplierCode();
 }

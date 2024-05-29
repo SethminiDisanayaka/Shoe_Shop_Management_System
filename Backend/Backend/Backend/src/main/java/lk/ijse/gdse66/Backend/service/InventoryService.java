@@ -5,9 +5,10 @@ import lk.ijse.gdse66.Backend.dto.InventoryDTO;
 import java.util.List;
 
 public interface InventoryService {
-    InventoryDTO saveItem(InventoryDTO dto);
-    InventoryDTO updateItem(InventoryDTO dto);
-    boolean deleteItem(String id);
-    List<InventoryDTO> getAllItems();
-    List<InventoryDTO> searchItem(String id);
+    List<InventoryDTO> getAllInventory();
+    InventoryDTO getInventoryDetails(String id);
+    InventoryDTO saveInventory(InventoryDTO inventoryDTO);
+    void updateInventory(String id, InventoryDTO inventoryDTO);
+    void deleteInventory(String id);
+    String nextInventoryCode(String code);
 }

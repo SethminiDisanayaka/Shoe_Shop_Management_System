@@ -10,53 +10,70 @@ import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class SupplierServiceImpl implements SupplierService {
+    SupplierRepo supplierRepository;
+    ModelMapper modelMapper;
 
-    @Autowired
-    private SupplierRepo supplierRepo;
-
-    @Autowired
-    private ModelMapper mapper;
-
-    @Override
-    public SupplierDTO saveSupplier(SupplierDTO supplierDTO) {
-            if (supplierRepo.existsById(supplierDTO.getSupplierCode())){
-                throw new DuplicateRecordException("Supplier ID is Already Exist");
-            }
-            return mapper.map(supplierRepo.save(mapper.map(supplierDTO, SupplierEntity.class)),SupplierDTO.class);
-        }
-
-
-    @Override
-    public SupplierDTO updateSupplier(SupplierDTO supplierDTO) {
-        if (!supplierRepo.existsById(supplierDTO.getSupplierCode())){
-            throw new NotFoundException("Can't find supplier id!!!");
-        }
-        return mapper.map(supplierRepo.save(mapper.map(supplierDTO ,SupplierEntity.class)) ,SupplierDTO.class);
-    }
-
-
-    @Override
-    public boolean deleteSupplier(String id) {
-        if (!supplierRepo.existsById(id)){
-            throw new NotFoundException("Can't find supplier id!!!");
-        }
-        supplierRepo.deleteById(id);
-        return false;
+    public SupplierServiceImpl(SupplierRepo supplierRepository, ModelMapper modelMapper) {
+        this.supplierRepository = supplierRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public List<SupplierDTO> getAllSuppliers() {
-        return supplierRepo.findAll().stream().map(supplierEntity -> mapper.map(supplierEntity,SupplierDTO.class)).toList();
+        System.out.println(genarateNextSupplierCode());
+        return supplierRepository.findAll().stream().map(
+                supplier -> modelMapper.map(supplier, SupplierDTO.class)
+        ).toList();
     }
 
     @Override
-    public CustomDTO supplierIdGenerate() {
-         return new CustomDTO(supplierRepo.getLastIndex());
+    public SupplierDTO getSupplierDetails(String id) {
+        if(!supplierRepository.existsBySupplierCode(id)){
+            throw new NotFoundException("Supplier "+id+" Not Found!");
+        }
+        return modelMapper.map(supplierRepository.findBySupplierCode(id), SupplierDTO.class);
     }
 
+    @Override
+    public SupplierDTO saveSupplier(SupplierDTO supplierDTO) {
+        if(supplierRepository.existsBySupplierCode(supplierDTO.getSupplierCode())){
+            throw new DuplicateRecordException("This Supplier "+supplierDTO.getSupplierCode()+" already exicts...");
+        }
+        return modelMapper.map(supplierRepository.save(modelMapper.map(
+                supplierDTO, SupplierEntity.class)), SupplierDTO.class
+        );
+    }
+
+    @Override
+    public void updateSupplier(String id, SupplierDTO supplierDTO) {
+        if(!supplierRepository.existsBySupplierCode(id)){
+            throw new NotFoundException("Supplier ID"+ id + "Not Found...");
+        }
+        supplierDTO.setSupplierCode(id);
+        supplierRepository.save(modelMapper.map(supplierDTO,SupplierEntity.class));
+    }
+
+    @Override
+    public void deleteSupplier(String id) {
+        if(!supplierRepository.existsBySupplierCode(id)){
+            throw  new NotFoundException("Supplier ID"+ id + "Not Found...");
+        }
+        supplierRepository.deleteBySupplierCode(id);
+    }
+
+    @Override
+    public String genarateNextSupplierCode() {
+        String lastSupplierCode = supplierRepository.findLatestSupplierCode();
+        int numericPart = Integer.parseInt(lastSupplierCode.substring(3));
+        numericPart++;
+        String nextSupplierCode = "SUP" + String.format("%03d", numericPart);
+        return nextSupplierCode;
+    }
 }

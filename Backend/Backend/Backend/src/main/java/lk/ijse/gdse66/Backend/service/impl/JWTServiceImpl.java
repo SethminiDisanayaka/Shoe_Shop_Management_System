@@ -20,6 +20,7 @@ public class JWTServiceImpl implements JWTService {
     @Value("${token.key}")
     String jwtKey;
 
+
     @Override
     public String extractUserName(String token) {
         return extractClaims(token, Claims::getSubject);
@@ -48,21 +49,23 @@ public class JWTServiceImpl implements JWTService {
         return subject.equals(userDetails.getUsername()) && !isExpired(token);
     }
 
-
     private Key getSignKey(){
         byte[] bytes = Decoders.BASE64.decode(jwtKey); //decode the base64-encoded jwt
         return Keys.hmacShaKeyFor(bytes); // generate an HMAC (Hash-based Message Authentication Code) signing key
     }
+
     private Claims getAllClaims(String token){
         return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
     }
+
+    // extract all claims from jwt
     private <T> T extractClaims(String token, Function<Claims,T> claimResolve){
         Claims claims = getAllClaims(token);
         return claimResolve.apply(claims);
     }
+
     private boolean isExpired(String token){
         Date expiredDate = extractClaims(token, Claims::getExpiration);
         return expiredDate.before(new Date());
     }
-
 }

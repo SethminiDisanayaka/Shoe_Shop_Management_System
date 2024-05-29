@@ -1,23 +1,22 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
 import lk.ijse.gdse66.Backend.dto.InventoryDTO;
+import lk.ijse.gdse66.Backend.dto.SalesDetailsDTO;
 import lk.ijse.gdse66.Backend.enttity.InventoryEntity;
 import lk.ijse.gdse66.Backend.enttity.SalesEntity;
 import lk.ijse.gdse66.Backend.repository.InventoryRepo;
-import lk.ijse.gdse66.Backend.repository.SaleRepo;
 import lk.ijse.gdse66.Backend.repository.SalesDetailRepo;
+import lk.ijse.gdse66.Backend.repository.SaleRepo;
 import lk.ijse.gdse66.Backend.service.InventoryService;
 import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
 import lk.ijse.gdse66.Backend.service.exception.NotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
@@ -70,7 +69,7 @@ public class InventoryServiceImpl implements InventoryService {
             throw new NotFoundException("Inventory "+ id + "Not Found...");
         }
 
-        existingInventory.setItemDescription(inventoryDTO.getIte());
+        existingInventory.setItemDescription(inventoryDTO.getItemDescription());
         existingInventory.setItemPicture(inventoryDTO.getItemPicture());
 
         inventoryRepository.save(existingInventory);
@@ -96,17 +95,17 @@ public class InventoryServiceImpl implements InventoryService {
 
     public InventoryDTO getMostSaleItem(){
         List<SalesEntity>getAllTodaySales;
-        List<SalesInventoryDTO>getTodaySaleInventoryDetails = new ArrayList<>();
-        List<SalesInventoryDTO>TodaySaleInventoryDetails = new ArrayList<>();
+        List<SalesDetailsDTO>getTodaySaleInventoryDetails = new ArrayList<>();
+        List<SalesDetailsDTO>TodaySaleInventoryDetails = new ArrayList<>();
         Boolean notFound = false;
         LocalDate today = LocalDate.now();
         getAllTodaySales = salesRepository.findTodaySales(String.valueOf(today));
         System.out.println(getAllTodaySales.get(0).getOrderNo());
         for(int i = 0; i<getAllTodaySales.size(); i++){
-            List<SalesInventoryDTO>getOneOrderSalesDetails = salesDetailsRepository.findAllBySalesOrderNo(getAllTodaySales.get(i).getOrderNo()).stream().map(
-                    salesDetails -> modelMapper.map(salesDetails, SalesInventoryDTO.class)
+            List<SalesDetailsDTO>getOneOrderSalesDetails = salesDetailsRepository.findAllBySalesOrderNo(getAllTodaySales.get(i).getOrderNo()).stream().map(
+                    salesDetails -> modelMapper.map(salesDetails, SalesDetailsDTO.class)
             ).toList();
-            for(SalesInventoryDTO salesInventoryDTO:getOneOrderSalesDetails){
+            for(SalesDetailsDTO salesInventoryDTO:getOneOrderSalesDetails){
                 getTodaySaleInventoryDetails.add(salesInventoryDTO);
             }
         }
@@ -140,8 +139,8 @@ public class InventoryServiceImpl implements InventoryService {
         return null;
     }
 
-    private List<SalesInventoryDTO> sortAsSaleItemsQuantity(List<SalesInventoryDTO> list){
-        list.sort(Comparator.comparingInt(SalesInventoryDTO::getQuantity));
+    private List<SalesDetailsDTO> sortAsSaleItemsQuantity(List<SalesDetailsDTO> list){
+        list.sort(Comparator.comparingInt(SalesDetailsDTO::getQuantity));
         return list;
     }
 

@@ -2,20 +2,20 @@ package lk.ijse.gdse66.Backend.enttity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "sales")
 public class SalesEntity {
-
     @Id
     @Column(name = "order_no")
     private String orderNo;
@@ -40,5 +40,4 @@ public class SalesEntity {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "sales")
     private List<SalesDetailsEntity> salesDetails = new ArrayList<>();
-
 }

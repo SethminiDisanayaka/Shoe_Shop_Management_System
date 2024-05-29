@@ -2,13 +2,15 @@ package lk.ijse.gdse66.Backend.enttity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "Sales_Details")
 public class SalesDetailsEntity {
     @Id
@@ -35,6 +37,4 @@ public class SalesDetailsEntity {
     @ManyToOne
     @JoinColumn(name = "order_no" , referencedColumnName = "order_no")
     private SalesEntity sales;
-
-
 }

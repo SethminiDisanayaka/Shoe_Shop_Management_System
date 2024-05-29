@@ -1,53 +1,57 @@
 package lk.ijse.gdse66.Backend.controller;
 
 
-import lk.ijse.gdse66.Backend.dto.CustomDTO;
+import jakarta.validation.Valid;
 import lk.ijse.gdse66.Backend.dto.SupplierDTO;
 import lk.ijse.gdse66.Backend.service.SupplierService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/suppliers")
-@CrossOrigin(origins="*")
+@RequestMapping("api/v0/suppliers")
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE,RequestMethod.PATCH, RequestMethod.OPTIONS})
 public class SupplierController {
-
-    @Autowired
-    private SupplierService supplierService;
+    private final SupplierService supplierService;
 
     public SupplierController(SupplierService supplierService) {
-        System.out.println("Supplier is working");
+        this.supplierService = supplierService;
     }
 
-    @GetMapping("/getAllSuppliers")
-    public List<SupplierDTO> getAllSupplier() {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    List<SupplierDTO> getAllSupplier(){
         return supplierService.getAllSuppliers();
     }
 
-    @PostMapping("/save")
-    public SupplierDTO save(@RequestBody SupplierDTO supplierDTO) {
-        System.out.println(supplierDTO);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    SupplierDTO saveSupplier(@Valid @RequestBody SupplierDTO supplierDTO){
         return supplierService.saveSupplier(supplierDTO);
     }
 
-    @PostMapping("/update")
-    public SupplierDTO update(@RequestBody SupplierDTO supplierDTO) {
-        System.out.println(supplierDTO);
-        return supplierService.updateSupplier(supplierDTO);
+    @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void updateSupplier(@PathVariable("id") String id,@Valid @RequestBody SupplierDTO supplierDTO){
+        supplierService.updateSupplier(id,supplierDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id")String id){
+    @DeleteMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void deleteSupplier(@PathVariable("id") String id){
         supplierService.deleteSupplier(id);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/SupplierIdGenerate")
-    public @ResponseBody
-    CustomDTO supplierIdGenerate() {
-        return supplierService.supplierIdGenerate();
+    @PatchMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    SupplierDTO getSupplier(@PathVariable("id") String id){
+        return supplierService.getSupplierDetails(id);
+    }
+
+    @GetMapping("/nextid")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    String getNextSupplierCode(){
+        return supplierService.genarateNextSupplierCode();
     }
 }

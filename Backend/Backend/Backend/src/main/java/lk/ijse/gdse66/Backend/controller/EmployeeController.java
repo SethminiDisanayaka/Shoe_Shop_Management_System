@@ -1,7 +1,6 @@
 package lk.ijse.gdse66.Backend.controller;
 
 
-import lk.ijse.gdse66.Backend.dto.CustomDTO;
 import lk.ijse.gdse66.Backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.Backend.service.EmployeeService;
 import lombok.RequiredArgsConstructor;

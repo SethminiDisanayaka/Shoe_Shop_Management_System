@@ -1,9 +1,8 @@
 package lk.ijse.gdse66.Backend.service.impl;
 
-import lk.ijse.gdse66.Backend.dto.CustomDTO;
-import lk.ijse.gdse66.Backend.dto.SupplierDTO;
 import lk.ijse.gdse66.Backend.dto.UserDTO;
 import lk.ijse.gdse66.Backend.enttity.UserEntity;
+import lk.ijse.gdse66.Backend.enums.AccessRole;
 import lk.ijse.gdse66.Backend.repository.UserRepo;
 import lk.ijse.gdse66.Backend.service.UserService;
 import lk.ijse.gdse66.Backend.service.exception.DuplicateRecordException;
@@ -14,65 +13,73 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private ModelMapper modelMapper;
+    UserRepo userRepository;
+    ModelMapper modelMapper;
 
     public UserServiceImpl(UserRepo userRepository, ModelMapper modelMapper) {
-        this.userRepo = userRepository;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
+
     @Override
     public UserDetailsService userDetailService() {
-        return username -> (UserDetails) userRepo.findByEmail(username)
+        return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new
                         UsernameNotFoundException(
                         "user not found"));
     }
 
     @Override
+    public List<UserDTO> getAllUser() {
+        return userRepository.findAll().stream().map(
+                user -> modelMapper.map(user, UserDTO.class)
+        ).toList();
+    }
+
+    @Override
+    public UserDTO getUserDetails(String email, AccessRole role) {
+        if(!userRepository.existsByEmail(email)){
+            throw new NotFoundException("User email :"+email+" Not Found!");
+        }
+        return modelMapper.map(userRepository.findByEmailAndRole(email,role), UserDTO.class);
+    }
+
+    @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        if (userRepo.existsById(userDTO.getEmail())){
-            throw new DuplicateRecordException("User ID is Already Exist");
+        if(userRepository.existsByEmail(userDTO.getEmail())){
+            throw new DuplicateRecordException("This User "+userDTO.getEmail()+" already have an account.");
         }
-        return modelMapper.map(userRepo.save(modelMapper.map(userDTO, UserEntity.class)), UserDTO.class);
+        return modelMapper.map(userRepository.save(modelMapper.map(
+                userDTO, UserEntity.class)), UserDTO.class
+        );
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO) {
-        if (!userRepo.existsById(userDTO.getEmail())){
-            throw new NotFoundException("Can't find user id!!!");
+    public void updateUser(String email, UserDTO userDTO) {
+        UserEntity existingUser = userRepository.findByEmailAndRole(email, userDTO.getRole());
+
+        if(existingUser.getPassword().isEmpty()){
+            throw new NotFoundException("User email :"+ email + "Not Found...");
         }
-        return modelMapper.map(userRepo.save(modelMapper.map(userDTO, UserEntity.class)), UserDTO.class);
+
+        existingUser.setPassword(userDTO.getPassword());
+        existingUser.setRole(userDTO.getRole());
+
+        userRepository.save(existingUser);
     }
 
     @Override
-    public boolean deleteUser(String id) {
-        if (!userRepo.existsById(id)){
-            throw new NotFoundException("Can't find user id!!!");
+    public void deleteUser(String email) {
+        if(!userRepository.existsByEmail(email)){
+            throw  new NotFoundException("User email :"+ email + "Not Found...");
         }
-        userRepo.deleteById(id);
-        return false;
-    }
-
-    @Override
-    public List<UserDTO> getAllUsers() {
-        return userRepo.findAll().stream().map(userEntity -> modelMapper.map(userEntity, UserDTO.class)).toList();
-    }
-
-    @Override
-    public CustomDTO userIdGenerate() {
-        return new CustomDTO(userRepo.getLastIndex());    }
-
-    @Override
-    public UserDTO getRegUsers(String username, String password) {
-            return modelMapper.map(userRepo.findUserByUser_NameAndPassword(username, password), UserDTO.class);
+        userRepository.deleteByEmail(email);
     }
 }
