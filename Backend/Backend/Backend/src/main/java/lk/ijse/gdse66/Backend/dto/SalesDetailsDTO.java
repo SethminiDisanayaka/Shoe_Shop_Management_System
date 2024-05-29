@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 @Data
 @AllArgsConstructor
@@ -36,6 +35,6 @@ public class SalesDetailsDTO {
     @Pattern(regexp = "^[1-9][0-9]*$", message = "Invalid quantity format. Must be a positive integer.")
     private Integer quantity;
 
-    private SaleDTO sales;
+    private SalesDTO sales;
 
 }

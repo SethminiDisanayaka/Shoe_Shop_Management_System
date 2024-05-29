@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SaleDTO {
+public class SalesDTO {
 
    private List<SalesDetailsDTO> salesDetails;
 
