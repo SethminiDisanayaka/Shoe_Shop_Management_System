@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7875a7b-ce71-40b4-9c53-d7c680dc368e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../FrontEnd/pages/SaleManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontEnd/pages/SaleManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_3_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_8_0_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__org_mockito_mockito_core_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__org_modelmapper_modelmapper_3_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__org_objenesis_objenesis_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_3_2_5.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Backend/Backend" />
   </component>
   <component name="ProjectId" id="2h57p37zgGTRiTYp8Ew4t3sJ7qd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -24,6 +31,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Hello_Shoe_PVT\Backend\Backend\Backend\src\main\java\lk\ijse\gdse66" />
+      <recent name="D:\Hello_Shoe_PVT\Backend\Backend\Backend\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Hello_Shoe_PVT\Backend\Backend\Backend\src\main\java\lk\ijse\gdse66\Backend" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -38,10 +57,26 @@
       <workItem from="1716895580983" duration="21000" />
       <workItem from="1716895625083" duration="19000" />
       <workItem from="1716910015863" duration="54000" />
+      <workItem from="1717142112013" duration="343000" />
+      <workItem from="1717142510097" duration="31000" />
+      <workItem from="1717142988443" duration="200000" />
+      <workItem from="1717152197378" duration="6000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
