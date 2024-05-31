@@ -2,128 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 
-        .login-container {
-            max-width: 400px;
-            width: 100%;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-container h3 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-container .form-group {
-            margin-bottom: 20px;
-        }
-
-        .login-container .form-control {
-            border-radius: 4px;
-        }
-
-        .login-container .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-container .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004a99;
-        }
-
-        .login-container .text-muted,
-        .login-container .text-primary {
-            font-size: 14px;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="../img/icon.jpeg" sizes="32x32">
+    <link rel="stylesheet" href="../bootstrap-5.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/loginPage.css">
+    <link rel="stylesheet" href="../css/loginPageMediaQuary.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
+<style>
+
+</style>
 <body>
-<div class="login-container">
-    <h3>Welcome to HELLO SHOE PVT_LTD</h3>
-    <form>
-        <div class="form-group">
-            <select class="form-control" id="roleType" name="roleType">
-                <option value="RoleType">Choose Role</option>
-                <option value="ADMIN">ADMIN</option>
-                <option value="REGISTERED_USER">REGISTERED_USER</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" id="username" placeholder="Enter your username">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="customCheck">
-            <label class="form-check-label" for="customCheck">Remember Me</label>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" id="btnLogin">Login</button>
-    </form>
-    <hr>
-    <div class="text-center mt-3">
-        <a href="#" class="text-muted">Forgot Password?</a>
-    </div>
-    <div class="text-center mt-2">
-        <p>Don't have an account? <a href="#" class="text-primary">Create an Account</a></p>
+
+<div class="row" style="margin-left: 450px;">
+    <div class="col-12 col-xxl-6 col-xxl-6 col-lg-6 col-md-6 col-sm-6 position-ab trans bg-white">
+        <h1 class="text-center mt-5 fw-bold fs-55">Login</h1>
+
+        <img src="../img/icon.jpeg" alt="" class="mx-auto d-block w-16 mt-5">
+
+        <form>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div data-mdb-input-init class="col-12 col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 form-outline mt-5 d-flex align-items-center">
+                        <input type="email" class="form-control ps-5 outline-black fw-bold" id="loginPwMail" placeholder="Email" />
+                        <i class="fas fa-envelope ms-3"></i>
+                    </div>
+                    <br>
+                    <div data-mdb-input-init class="col-12 col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 form-outline mt-3 d-flex align-items-center">
+                        <input type="password" class="form-control ps-5 outline-black fw-bold" id="loginPwTxt" placeholder="Password" />
+                        <i class="fas fa-lock ms-3"></i>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <h5 class="text-center mt-1 fw-bold" style="font-size: 12px">Don’t have an account? <a href="../view/signUp.html">Sign Up</a></h5>
+
+            <div class="container text-center mt-3">
+                <div class="row">
+                    <div class="col">
+                        <a href="#" class="btn btn-warning btn-lg active fw-bold" id="loginBtn" aria-pressed="true">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $("#btnLogin").on('click', function () {
-        login();
-    });
+<script src="../bootstrap-5.3.1-dist/lib/jquery.min.js"></script>
+<script src="../Controller/SignInController.js" type="module"></script>
 
-    function login() {
-        let loginRole_Type = $("#roleType").val();
-        let loginUserName = $("#username").val();
-        let loginPassword = $("#password").val();
-
-        $.ajax({
-            url:"http://localhost:8080/app/api/v1/loginForm",
-            contentType:"application/json",
-            dataType:"json",
-            success:function (res){
-                for (var login of res.data){
-                    if (loginRole_Type===login.roleType && loginUserName=== login.username && loginPassword===login.password){
-                        if(loginRole_Type==="REGISTERED_USER" && loginUserName===login.username && loginPassword===login.password){
-                            $.ajax({
-                                url:"http://localhost:8080/app/api/v1/loginForm" + "/?username=" +loginUserName + "&password=" +loginPassword,
-                                data:res.data,
-                                method:"GET",
-                                success:function (res1){
-                                }
-                            });
-                            window.location.href="";
-                        }else if(loginRole_Type==="ADMIN" && loginUserName===login.username && loginPassword===login.password){
-                            window.location.href="adminDashboard.html";
-                        }
-                        return;
-                    }
-                }
-            }
-        })
-
-    }
-</script>
 </body>
 </html>
