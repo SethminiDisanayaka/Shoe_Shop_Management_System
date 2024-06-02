@@ -16,11 +16,12 @@ $('#customerSaveBtn').on('click', ()=>{
     var bod = $('#custBirthday').val();
     var joinDate = $('#custJoinDate').val();
     var level = $('#custLevel').val();
+    var point = $('#totalPoints').val();
 
 
     if (validate(customerId,"Customer Id") && validate(customerName,"Customer Name") && validate(contact,"Contact") && validate(mail,"Mail") && validate(gender,"Gender") && validate(address1,"Address 1") && validate(address2,"Address 2") && validate(bod,"Birthday") && validate(joinDate,"Join Date") && validate(level,"Level")){
 
-        var customerDetails = new CustomerModel(customerId,customerName,gender,joinDate,level,bod,address1,address2,contact,mail);
+        var customerDetails = new CustomerModel(customerId,customerName,gender,joinDate,level,bod,address1,address2,contact,mail,point);
         var customerDetailsJson = JSON.stringify(customerDetails);
 
 
@@ -37,7 +38,27 @@ $('#customerSaveBtn').on('click', ()=>{
                     $("#customer_Table").empty();
                     getAllCustomerSendAJAX(jwtToken)
                     clearTextFields();
-                    $('#custLevel').val('BRONZE')
+                    $('#totalPoints').attr('readonly', true)
+
+                    $('#custLevel').change(function(){
+                        console.log($(this).val());
+                        switch($(this).val()) {
+                            case 'GOLD':
+                                $('#totalPoints').val('800');
+                                break;
+                            case 'SILVER':
+                                $('#totalPoints').val('600');
+                                break;
+                            case 'BRONZE':
+                                $('#totalPoints').val('400');
+                                break;
+                            case 'NEW':
+                                $('#totalPoints').val('200');
+                                break;
+                            default:
+                                alert('No valid level selected');
+                        }
+                    });
                     Swal.fire({
                         title: "Customer Save Success",
                         icon: "success"
@@ -56,6 +77,88 @@ $('#customerSaveBtn').on('click', ()=>{
 
 
 })
+
+/*
+$('#customerSaveBtn').on('click', () => {
+    // Auto-generate customerId
+    var customerId = generateNextCustomerId();
+
+    // Set generated customerId to the customerIdTxt field
+    $('#customerIdTxt').val(customerId);
+
+    var customerName = $('#customerNameTxt').val();
+    var contact = $('#custContactTxt').val();
+    var mail = $('#custEmailTxt').val();
+    var gender = $('#customerGenderOpation').val();
+    var address1 = $('#custAddress1').val();
+    var address2 = $('#custAddress2').val();
+    var bod = $('#custBirthday').val();
+    var joinDate = $('#custJoinDate').val();
+    var level = $('#custLevel').val();
+    var point = $('#totalPoints').val();
+    var recentPurchaseDate = $('#recentPurchaseDate').val();
+
+    if (validate(customerName, "Customer Name") && validate(contact, "Contact") && validate(mail, "Mail") && validate(gender, "Gender") && validate(address1, "Address 1") && validate(address2, "Address 2") && validate(bod, "Birthday") && validate(joinDate, "Join Date") && validate(level, "Level")) {
+
+        var customerDetails = new CustomerModel(customerId, customerName, gender, joinDate, level, bod, address1, address2, contact, mail, point, recentPurchaseDate);
+        var customerDetailsJson = JSON.stringify(customerDetails);
+
+        console.log("Customer Details to Save:", customerDetailsJson); // Debugging statement
+
+        const sendAJAX = (customerDetails, jwtToken) => {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/shoes/customer/save",
+                contentType: "application/json",
+                data: customerDetails,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + jwtToken);
+                },
+                success: function(data) {
+                    $("#customer_Table").empty();
+                    getAllCustomerSendAJAX(jwtToken);
+                    clearTextFields();
+                    $('#totalPoints').attr('readonly', true);
+
+                    Swal.fire({
+                        title: "Customer Save Success",
+                        icon: "success"
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert("Failed");
+                }
+            });
+        };
+        sendAJAX(customerDetailsJson, jwtToken);
+    }
+});
+
+// Function to generate the next ID based on the last existing ID
+function generateNextCustomerId() {
+    // Retrieve the last existing customerId from your data source or wherever it's stored
+    var lastId = getLastCustomerId();
+
+    // Extract the numerical part from the lastId
+    var lastIdNumber = parseInt(lastId.replace(/\D/g, ''), 10);
+
+    // Increment the numerical part by 1
+    var nextIdNumber = lastIdNumber + 1;
+
+    // Format the nextId
+    var nextId = 'CUS00' + nextIdNumber;
+
+    return nextId;
+}
+
+// Function to retrieve the last existing customerId
+function getLastCustomerId() {
+    // You need to implement this function to retrieve the last existing customerId
+    // This could involve querying your database or fetching it from another data source
+    // For now, I'll just return a placeholder value
+    return 'CUS00_000'; // Placeholder value, replace this with actual implementation
+}
+*/
 
 
 // Update Customer
@@ -93,7 +196,7 @@ $('#custUpdateBtn').on('click', ()=>{
                     $("#customer_Table").empty();
                     getAllCustomerSendAJAX(jwtToken)
                     clearTextFields();
-                    $('#custLevel').val('BRONZE')
+                    /* $('#custLevel').val('BRONZE')*/
                     Swal.fire({
                         title: "Customer Update Success",
                         icon: "info"
@@ -112,7 +215,6 @@ $('#custUpdateBtn').on('click', ()=>{
     }
 
 })
-
 
 // Delete Customer
 $('#custDeleteBtn').on('click', ()=>{
@@ -149,12 +251,33 @@ $('#custDeleteBtn').on('click', ()=>{
                         $("#customer_Table").empty();
                         getAllCustomerSendAJAX(jwtToken)
                         clearTextFields();
-                        $('#custLevel').val('BRONZE')
-                        
-                       swalWithBootstrapButtons.fire({
-                         title: "Customer Deleted Success !",
-                          icon: "success"
-                         });
+                        $('#totalPoints').attr('readonly', true)
+
+                        $('#custLevel').change(function(){
+                            console.log($(this).val());
+                            switch($(this).val()) {
+                                case 'GOLD':
+                                    $('#totalPoints').val('800');
+                                    break;
+                                case 'SILVER':
+                                    $('#totalPoints').val('600');
+                                    break;
+                                case 'BRONZE':
+                                    $('#totalPoints').val('400');
+                                    break;
+                                case 'NEW':
+                                    $('#totalPoints').val('200');
+                                    break;
+                                default:
+                                    alert('No valid level selected');
+                            }
+                        });
+
+
+                        swalWithBootstrapButtons.fire({
+                            title: "Customer Deleted Success !",
+                            icon: "success"
+                        });
 
                     },
                     error: function(xhr, status, error) {
@@ -278,11 +401,11 @@ $("#customer_Table").on("click","tr", function (){
     $('#custDeleteBtn').css('display','block')
     $('#customerSaveBtn').css('display','none')
 
- 
+
 });
 
 
-// Text Fields Clear 
+// Text Fields Clear
 function clearTextFields() {
     $("#customerIdTxt").val("");
     $("#customerNameTxt").val("");
@@ -311,21 +434,6 @@ function validate(value, field_name){
     return true;
 }
 
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const jwtToken = localStorage.getItem("jwtToken");
-    getAllCustomerSendAJAX(jwtToken)
-    $('#custLevel').val('BRONZE')
-
-
-    $('#custUpdateBtn').css('display','none')
-    $('#custDeleteBtn').css('display','none')
-
-
-
-});
 
 
 

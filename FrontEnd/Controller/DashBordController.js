@@ -23,9 +23,57 @@ $('#selectDate').on('change', ()=>{
         }
     });
 
+
+    $.ajax({
+        type: "GET",
+        url : "http://localhost:8080/shoes/order/mostSaleQty/" + selectDate +" 05:30:00.000000",
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: false,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("jwtToken"));
+        },
+        success: function(data) {
+
+            $('#mostSaleItemQty').text(data)
+
+        },
+        error: function(xhr, status, error) {
+            alert("Failedddddd");
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url : "http://localhost:8080/shoes/order/mostSaleImg/" + selectDate +" 05:30:00.000000",
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: false,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("jwtToken"));
+        },
+        success: function(data) {
+
+            if (data === ''){
+                Swal.fire({
+                    icon: 'info',
+                    title: `This Select Date Have No Orders!`
+                });
+
+            }else{
+                $('#mostSaleImg').attr('src', data);
+            }
+
+
+        },
+        error: function(xhr, status, error) {
+
+        }
+    });
+
 })
-
-
 
 
 
@@ -99,4 +147,3 @@ $(document).ready(function() {
 
     }
 });
-
